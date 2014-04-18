@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameViewController.h"
 
 @interface New2048AppDelegate : UIResponder <UIApplicationDelegate>
 

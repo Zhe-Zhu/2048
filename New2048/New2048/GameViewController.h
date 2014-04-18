@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DMAdView.h"
 
 // the main view of the game.
 
-@interface GameViewController : UIViewController
+@interface GameViewController : UIViewController<DMAdViewDelegate>
 
 @end
