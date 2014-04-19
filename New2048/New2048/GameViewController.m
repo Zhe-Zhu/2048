@@ -54,6 +54,12 @@
     [self initDmAdView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -86,8 +92,14 @@
     _dmAdView.rootViewController = self; // set RootViewController
     [self.view addSubview:_dmAdView];
     
-    //TODO: bugs need to be fixed
-    //[_dmAdView loadAd]; // start load advertisement
+    [_dmAdView loadAd]; // start load advertisement
+    
+    
+    //    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //    // 检查评价提醒，此处使用的是测试ID，请登陆多盟官网（www.domob.cn）获取新的ID
+    //    // Check for rate please get your own ID from Domob website
+    DMTools *_dmTools = [[DMTools alloc] initWithPublisherId:@"56OJwtc4uNFRVtBlad"];
+    [_dmTools checkRateInfo];
 }
 
 #pragma mark -

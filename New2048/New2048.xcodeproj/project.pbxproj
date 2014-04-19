@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		181325F01901870800B269E8 /* lib64DomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821B13C190185DA00CE49F0 /* lib64DomobAdSDK.a */; };
 		1821B0FC1901766100CE49F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821B0FB1901766100CE49F0 /* Security.framework */; };
 		1821B0FE1901767D00CE49F0 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821B0FD1901767D00CE49F0 /* CoreTelephony.framework */; };
 		1821B1001901768400CE49F0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821B0FF1901768400CE49F0 /* MessageUI.framework */; };
@@ -28,11 +27,10 @@
 		1821B11E1901770B00CE49F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821B11D1901770B00CE49F0 /* SystemConfiguration.framework */; };
 		1821B1201901771B00CE49F0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821B11F1901771B00CE49F0 /* AVFoundation.framework */; };
 		1821B1221901772E00CE49F0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821B1211901772E00CE49F0 /* libsqlite3.dylib */; };
-		1821B13F190185DA00CE49F0 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1821B138190185DA00CE49F0 /* DomobAdSDKBundle.bundle */; };
-		1821B141190185DA00CE49F0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1821B13A190185DA00CE49F0 /* README.txt */; };
-		1821B143190185DA00CE49F0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1821B13D190185DA00CE49F0 /* README.txt */; };
-		1821B144190185DA00CE49F0 /* UserGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1821B13E190185DA00CE49F0 /* UserGuide.pdf */; };
-		18C24BB219018C32005C4AAE /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821B139190185DA00CE49F0 /* libDomobAdSDK.a */; };
+		187214111902AFB60031D4BF /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1872140B1902AFB60031D4BF /* DomobAdSDKBundle.bundle */; };
+		187214121902AFB60031D4BF /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1872140C1902AFB60031D4BF /* libDomobAdSDK.a */; };
+		187214131902AFB60031D4BF /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1872140D1902AFB60031D4BF /* README.txt */; };
+		187214141902AFB60031D4BF /* UserGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1872140E1902AFB60031D4BF /* UserGuide.pdf */; };
 		2F3BF45F190028BE00D8DCDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BF45E190028BE00D8DCDF /* Foundation.framework */; };
 		2F3BF461190028BE00D8DCDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BF460190028BE00D8DCDF /* CoreGraphics.framework */; };
 		2F3BF463190028BF00D8DCDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BF462190028BF00D8DCDF /* UIKit.framework */; };
@@ -87,18 +85,16 @@
 		1821B11D1901770B00CE49F0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1821B11F1901771B00CE49F0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1821B1211901772E00CE49F0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		1821B131190185DA00CE49F0 /* DMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAdView.h; sourceTree = "<group>"; };
-		1821B132190185DA00CE49F0 /* DMFeedsAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMFeedsAdView.h; sourceTree = "<group>"; };
-		1821B133190185DA00CE49F0 /* DMInterstitialAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMInterstitialAdController.h; sourceTree = "<group>"; };
-		1821B134190185DA00CE49F0 /* DMRTSplashAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRTSplashAdController.h; sourceTree = "<group>"; };
-		1821B135190185DA00CE49F0 /* DMSplashAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplashAdController.h; sourceTree = "<group>"; };
-		1821B136190185DA00CE49F0 /* DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTools.h; sourceTree = "<group>"; };
-		1821B138190185DA00CE49F0 /* DomobAdSDKBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DomobAdSDKBundle.bundle; sourceTree = "<group>"; };
-		1821B139190185DA00CE49F0 /* libDomobAdSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDomobAdSDK.a; sourceTree = "<group>"; };
-		1821B13A190185DA00CE49F0 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		1821B13C190185DA00CE49F0 /* lib64DomobAdSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = lib64DomobAdSDK.a; sourceTree = "<group>"; };
-		1821B13D190185DA00CE49F0 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		1821B13E190185DA00CE49F0 /* UserGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = UserGuide.pdf; sourceTree = "<group>"; };
+		187214041902AFB60031D4BF /* DMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAdView.h; sourceTree = "<group>"; };
+		187214051902AFB60031D4BF /* DMFeedsAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMFeedsAdView.h; sourceTree = "<group>"; };
+		187214061902AFB60031D4BF /* DMInterstitialAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMInterstitialAdController.h; sourceTree = "<group>"; };
+		187214071902AFB60031D4BF /* DMRTSplashAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRTSplashAdController.h; sourceTree = "<group>"; };
+		187214081902AFB60031D4BF /* DMSplashAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplashAdController.h; sourceTree = "<group>"; };
+		187214091902AFB60031D4BF /* DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTools.h; sourceTree = "<group>"; };
+		1872140B1902AFB60031D4BF /* DomobAdSDKBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DomobAdSDKBundle.bundle; sourceTree = "<group>"; };
+		1872140C1902AFB60031D4BF /* libDomobAdSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDomobAdSDK.a; sourceTree = "<group>"; };
+		1872140D1902AFB60031D4BF /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		1872140E1902AFB60031D4BF /* UserGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = UserGuide.pdf; sourceTree = "<group>"; };
 		2F3BF45B190028BE00D8DCDF /* New2048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = New2048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3BF45E190028BE00D8DCDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F3BF460190028BE00D8DCDF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -134,9 +130,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18C24BB219018C32005C4AAE /* libDomobAdSDK.a in Frameworks */,
-				181325F01901870800B269E8 /* lib64DomobAdSDK.a in Frameworks */,
 				1821B1221901772E00CE49F0 /* libsqlite3.dylib in Frameworks */,
+				187214121902AFB60031D4BF /* libDomobAdSDK.a in Frameworks */,
 				1821B1201901771B00CE49F0 /* AVFoundation.framework in Frameworks */,
 				1821B11E1901770B00CE49F0 /* SystemConfiguration.framework in Frameworks */,
 				1821B11C190176FF00CE49F0 /* CoreLocation.framework in Frameworks */,
@@ -177,47 +172,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1821B12F190185DA00CE49F0 /* domob_ios_sdk-4.2.3 */ = {
+		187213FF1902AFB60031D4BF /* domob_ios_sdk-4.2.3 */ = {
 			isa = PBXGroup;
 			children = (
-				1821B130190185DA00CE49F0 /* DomobAdSDK */,
-				1821B13A190185DA00CE49F0 /* README.txt */,
-				1821B13B190185DA00CE49F0 /* static library for 64bit-A7 */,
-				1821B13E190185DA00CE49F0 /* UserGuide.pdf */,
+				187214031902AFB60031D4BF /* DomobAdSDK */,
+				1872140D1902AFB60031D4BF /* README.txt */,
+				1872140E1902AFB60031D4BF /* UserGuide.pdf */,
 			);
 			path = "domob_ios_sdk-4.2.3";
 			sourceTree = "<group>";
 		};
-		1821B130190185DA00CE49F0 /* DomobAdSDK */ = {
+		187214031902AFB60031D4BF /* DomobAdSDK */ = {
 			isa = PBXGroup;
 			children = (
-				1821B131190185DA00CE49F0 /* DMAdView.h */,
-				1821B132190185DA00CE49F0 /* DMFeedsAdView.h */,
-				1821B133190185DA00CE49F0 /* DMInterstitialAdController.h */,
-				1821B134190185DA00CE49F0 /* DMRTSplashAdController.h */,
-				1821B135190185DA00CE49F0 /* DMSplashAdController.h */,
-				1821B136190185DA00CE49F0 /* DMTools.h */,
-				1821B137190185DA00CE49F0 /* DomobAdSDKBundle */,
-				1821B139190185DA00CE49F0 /* libDomobAdSDK.a */,
+				187214041902AFB60031D4BF /* DMAdView.h */,
+				187214051902AFB60031D4BF /* DMFeedsAdView.h */,
+				187214061902AFB60031D4BF /* DMInterstitialAdController.h */,
+				187214071902AFB60031D4BF /* DMRTSplashAdController.h */,
+				187214081902AFB60031D4BF /* DMSplashAdController.h */,
+				187214091902AFB60031D4BF /* DMTools.h */,
+				1872140A1902AFB60031D4BF /* DomobAdSDKBundle */,
+				1872140C1902AFB60031D4BF /* libDomobAdSDK.a */,
 			);
 			path = DomobAdSDK;
 			sourceTree = "<group>";
 		};
-		1821B137190185DA00CE49F0 /* DomobAdSDKBundle */ = {
+		1872140A1902AFB60031D4BF /* DomobAdSDKBundle */ = {
 			isa = PBXGroup;
 			children = (
-				1821B138190185DA00CE49F0 /* DomobAdSDKBundle.bundle */,
+				1872140B1902AFB60031D4BF /* DomobAdSDKBundle.bundle */,
 			);
 			path = DomobAdSDKBundle;
-			sourceTree = "<group>";
-		};
-		1821B13B190185DA00CE49F0 /* static library for 64bit-A7 */ = {
-			isa = PBXGroup;
-			children = (
-				1821B13C190185DA00CE49F0 /* lib64DomobAdSDK.a */,
-				1821B13D190185DA00CE49F0 /* README.txt */,
-			);
-			path = "static library for 64bit-A7";
 			sourceTree = "<group>";
 		};
 		2F3BF452190028BE00D8DCDF = {
@@ -274,7 +259,7 @@
 		2F3BF466190028BF00D8DCDF /* New2048 */ = {
 			isa = PBXGroup;
 			children = (
-				1821B12F190185DA00CE49F0 /* domob_ios_sdk-4.2.3 */,
+				187213FF1902AFB60031D4BF /* domob_ios_sdk-4.2.3 */,
 				2F3BF493190028D800D8DCDF /* Utilies */,
 				2F3BF46F190028BF00D8DCDF /* New2048AppDelegate.h */,
 				2F3BF470190028BF00D8DCDF /* New2048AppDelegate.m */,
@@ -379,6 +364,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Chen Xiangwen";
 				TargetAttributes = {
+					2F3BF45A190028BE00D8DCDF = {
+						DevelopmentTeam = 87N4K2M736;
+					};
 					2F3BF47A190028BF00D8DCDF = {
 						TestTargetID = 2F3BF45A190028BE00D8DCDF;
 					};
@@ -409,12 +397,11 @@
 			files = (
 				2F3BF46B190028BF00D8DCDF /* InfoPlist.strings in Resources */,
 				2F3BF4A519002A3700D8DCDF /* OptionViewController.xib in Resources */,
-				1821B144190185DA00CE49F0 /* UserGuide.pdf in Resources */,
+				187214141902AFB60031D4BF /* UserGuide.pdf in Resources */,
 				2F3BF476190028BF00D8DCDF /* Images.xcassets in Resources */,
+				187214111902AFB60031D4BF /* DomobAdSDKBundle.bundle in Resources */,
 				2F3BF4A019002A0200D8DCDF /* GameViewController.xib in Resources */,
-				1821B141190185DA00CE49F0 /* README.txt in Resources */,
-				1821B143190185DA00CE49F0 /* README.txt in Resources */,
-				1821B13F190185DA00CE49F0 /* DomobAdSDKBundle.bundle in Resources */,
+				187214131902AFB60031D4BF /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +543,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "New2048/New2048-Prefix.pch";
 				INFOPLIST_FILE = "New2048/New2048-Info.plist";
@@ -568,10 +556,18 @@
 					library,
 					for,
 					"64bit-A7",
-					"/Users/Apple/Desktop/2048/New2048/New2048/domob_ios_sdk-4.2.3/static\\ library\\ for\\ 64bit-A7",
+					"/Users/Apple/Desktop/2048/New2048/New2048/domob_ios_sdk-4.2.3/static",
+					library,
+					for,
+					"64bit-A7",
+					"$(PROJECT_DIR)/New2048/domob_ios_sdk-4.2.3/64bit-A7",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -581,6 +577,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "New2048/New2048-Prefix.pch";
 				INFOPLIST_FILE = "New2048/New2048-Info.plist";
@@ -593,10 +590,18 @@
 					library,
 					for,
 					"64bit-A7",
-					"/Users/Apple/Desktop/2048/New2048/New2048/domob_ios_sdk-4.2.3/static\\ library\\ for\\ 64bit-A7",
+					"/Users/Apple/Desktop/2048/New2048/New2048/domob_ios_sdk-4.2.3/static",
+					library,
+					for,
+					"64bit-A7",
+					"$(PROJECT_DIR)/New2048/domob_ios_sdk-4.2.3/64bit-A7",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
