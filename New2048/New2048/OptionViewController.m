@@ -41,10 +41,14 @@
 
 - (IBAction)resumeGame:(id)sender
 {
+    self.view.alpha = 0.0;
+    [self.view removeFromSuperview];
 }
 
 - (IBAction)anotherGame:(id)sender
 {
+    self.view.alpha = 0.0;
+    [self.view removeFromSuperview];
 }
 
 - (IBAction)rate:(id)sender

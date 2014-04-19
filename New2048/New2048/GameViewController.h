@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "DMAdView.h"
 #import "DMTools.h"
+#import "OptionViewController.h"
+#import "GameOverViewController.h"
 
 // the main view of the game.
 

@@ -31,6 +31,9 @@
 		187214121902AFB60031D4BF /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1872140C1902AFB60031D4BF /* libDomobAdSDK.a */; };
 		187214131902AFB60031D4BF /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1872140D1902AFB60031D4BF /* README.txt */; };
 		187214141902AFB60031D4BF /* UserGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1872140E1902AFB60031D4BF /* UserGuide.pdf */; };
+		187214191902BD700031D4BF /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187214171902BD700031D4BF /* GameOverViewController.m */; };
+		1872141A1902BD700031D4BF /* GameOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187214181902BD700031D4BF /* GameOverViewController.xib */; };
+		187214201902BF730031D4BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187214221902BF730031D4BF /* Localizable.strings */; };
 		2F3BF45F190028BE00D8DCDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BF45E190028BE00D8DCDF /* Foundation.framework */; };
 		2F3BF461190028BE00D8DCDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BF460190028BE00D8DCDF /* CoreGraphics.framework */; };
 		2F3BF463190028BF00D8DCDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BF462190028BF00D8DCDF /* UIKit.framework */; };
@@ -95,6 +98,13 @@
 		1872140C1902AFB60031D4BF /* libDomobAdSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDomobAdSDK.a; sourceTree = "<group>"; };
 		1872140D1902AFB60031D4BF /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		1872140E1902AFB60031D4BF /* UserGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = UserGuide.pdf; sourceTree = "<group>"; };
+		187214161902BD700031D4BF /* GameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverViewController.h; sourceTree = "<group>"; };
+		187214171902BD700031D4BF /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
+		187214181902BD700031D4BF /* GameOverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameOverViewController.xib; sourceTree = "<group>"; };
+		1872141B1902BF0A0031D4BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		1872141C1902BF0A0031D4BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		187214211902BF730031D4BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		187214231902BF7C0031D4BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2F3BF45B190028BE00D8DCDF /* New2048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = New2048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3BF45E190028BE00D8DCDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F3BF460190028BE00D8DCDF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -274,6 +284,9 @@
 				2F3BF4A119002A3700D8DCDF /* OptionViewController.h */,
 				2F3BF4A219002A3700D8DCDF /* OptionViewController.m */,
 				2F3BF4A319002A3700D8DCDF /* OptionViewController.xib */,
+				187214161902BD700031D4BF /* GameOverViewController.h */,
+				187214171902BD700031D4BF /* GameOverViewController.m */,
+				187214181902BD700031D4BF /* GameOverViewController.xib */,
 			);
 			path = New2048;
 			sourceTree = "<group>";
@@ -303,6 +316,7 @@
 			children = (
 				2F3BF485190028BF00D8DCDF /* New2048Tests-Info.plist */,
 				2F3BF486190028BF00D8DCDF /* InfoPlist.strings */,
+				187214221902BF730031D4BF /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -378,6 +392,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 2F3BF452190028BE00D8DCDF;
 			productRefGroup = 2F3BF45C190028BE00D8DCDF /* Products */;
@@ -395,6 +410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1872141A1902BD700031D4BF /* GameOverViewController.xib in Resources */,
 				2F3BF46B190028BF00D8DCDF /* InfoPlist.strings in Resources */,
 				2F3BF4A519002A3700D8DCDF /* OptionViewController.xib in Resources */,
 				187214141902AFB60031D4BF /* UserGuide.pdf in Resources */,
@@ -410,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F3BF488190028BF00D8DCDF /* InfoPlist.strings in Resources */,
+				187214201902BF730031D4BF /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187214191902BD700031D4BF /* GameOverViewController.m in Sources */,
 				2F3BF4A419002A3700D8DCDF /* OptionViewController.m in Sources */,
 				2F3BF4981900294100D8DCDF /* Global.cpp in Sources */,
 				2F3BF474190028BF00D8DCDF /* New2048.xcdatamodeld in Sources */,
@@ -449,10 +467,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		187214221902BF730031D4BF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				187214211902BF730031D4BF /* en */,
+				187214231902BF7C0031D4BF /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		2F3BF469190028BF00D8DCDF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2F3BF46A190028BF00D8DCDF /* en */,
+				1872141B1902BF0A0031D4BF /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -461,6 +489,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2F3BF487190028BF00D8DCDF /* en */,
+				1872141C1902BF0A0031D4BF /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

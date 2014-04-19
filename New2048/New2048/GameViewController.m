@@ -14,13 +14,16 @@
     __weak UIButton * _option;
     __weak UIImageView * _gameBackgroundImageView;
     __weak DMAdView * _dmAdView;
+    OptionViewController *_optionViewController;
 }
 
 @property(nonatomic, weak) IBOutlet UILabel * score;
 @property(nonatomic, weak) IBOutlet UIButton* option;
 @property(nonatomic, weak) IBOutlet UIImageView* gameBackgroundImageView;
 @property(nonatomic, weak) DMAdView *dmAdView;
+@property(nonatomic, strong) OptionViewController *optionViewController;
 
+- (IBAction)setting:(id)sender;
 
 @end
 
@@ -29,6 +32,8 @@
 @synthesize score = _score;
 @synthesize option = _option;
 @synthesize gameBackgroundImageView = _gameBackgroundImageView;
+@synthesize dmAdView = _dmAdView;
+@synthesize optionViewController = _optionViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -138,6 +143,20 @@
 - (void)dmApplicationWillEnterBackgroundFromAd:(DMAdView *)adView
 {
     NSLog(@"[Domob Sample] will enter background.");
+}
+
+- (IBAction)setting:(id)sender
+{
+    if (_optionViewController == nil) {
+        _optionViewController = [[OptionViewController alloc] initWithNibName:@"OptionViewController" bundle:nil];
+    }
+    _optionViewController.view.alpha = 0.0;
+    [self.view addSubview:_optionViewController.view];
+    [UIView animateWithDuration:0.2 animations:^{
+        _optionViewController.view.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 @end
