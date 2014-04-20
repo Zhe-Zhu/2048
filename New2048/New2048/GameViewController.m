@@ -45,8 +45,7 @@ typedef struct{
     NSInteger  _animationCount;
     NSMutableArray * _storedSequences;
     int _everBestScore;
-    __weak DMAdView * _dmAdView;
-    OptionViewController *_optionViewController;
+    
 }
 
 @property(nonatomic, weak) IBOutlet UILabel * score;
@@ -78,10 +77,6 @@ typedef struct{
 - (void)handleRightGesture;
 
 - (void)animationFinished;
-@property(nonatomic, weak) DMAdView *dmAdView;
-@property(nonatomic, strong) OptionViewController *optionViewController;
-
-- (IBAction)setting:(id)sender;
 
 @end
 
@@ -94,8 +89,6 @@ typedef struct{
 @synthesize animationCount = _animationCount;
 @synthesize storedSequences = _storedSequences;
 
-@synthesize dmAdView = _dmAdView;
-@synthesize optionViewController = _optionViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -147,15 +140,6 @@ typedef struct{
     
     
     // Do any additional setup after loading the view from its nib.
-    
-    // add ad view
-    [self initDmAdView];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -873,92 +857,6 @@ typedef struct{
         [_gameBackgroundImageView addSubview:randomlyGeneratedPiece];
         return randomlyGeneratedPiece;
     }
-- (void)dealloc
-{
-    _dmAdView.delegate = nil;
-    _dmAdView.rootViewController = nil;
-    [_dmAdView removeFromSuperview];
-}
-
-- (void)initDmAdView
-{
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    // 创建广告视图，此处使用的是测试ID，请登陆多盟官网（www.domob.cn）获取新的ID
-    // Creat advertisement view please get your own ID from domob website  56OJyM1ouMGoULfJaL   16TLwebvAchkAY6iOMd734jz
-    CGSize adSize = DOMOB_AD_SIZE_320x50;
-    DMAdView *dmView = [[DMAdView alloc] initWithPublisherId:@"56OJwtc4uNFRVtBlad"
-                                          placementId:@"16TLuhYlApN9ANUku_8hNMSi"
-                                                 size:adSize];
-    _dmAdView = dmView;
-    
-    // 设置广告视图的位置
-    // Set the frame of advertisement view
-    CGSize winSize = [UIScreen mainScreen].bounds.size;
-    _dmAdView.frame = CGRectMake(0, winSize.height - 50, 320, 50);
-    _dmAdView.delegate = self;
-    _dmAdView.rootViewController = self; // set RootViewController
-    [self.view addSubview:_dmAdView];
-    
-    [_dmAdView loadAd]; // start load advertisement
-    
-    
-    //    ////////////////////////////////////////////////////////////////////////////////////////////////
-    //    // 检查评价提醒，此处使用的是测试ID，请登陆多盟官网（www.domob.cn）获取新的ID
-    //    // Check for rate please get your own ID from Domob website
-    DMTools *_dmTools = [[DMTools alloc] initWithPublisherId:@"56OJwtc4uNFRVtBlad"];
-    [_dmTools checkRateInfo];
-}
-
-#pragma mark -
-#pragma mark DMAdView delegate
-
-// 成功加载广告后，回调该方法
-// This method will be used after load successfully
-- (void)dmAdViewSuccessToLoadAd:(DMAdView *)adView
-{
-    NSLog(@"[Domob Sample] success to load ad.");
-}
-
-// 加载广告失败后，回调该方法
-// This method will be used after load failed
-- (void)dmAdViewFailToLoadAd:(DMAdView *)adView withError:(NSError *)error
-{
-    NSLog(@"[Domob Sample] fail to load ad. %@", error);
-}
-
-// 当将要呈现出 Modal View 时，回调该方法。如打开内置浏览器
-// When will be showing a Modal View, this method will be called. Such as open built-in browser
-- (void)dmWillPresentModalViewFromAd:(DMAdView *)adView
-{
-    NSLog(@"[Domob Sample] will present modal view.");
-}
-
-// 当呈现的 Modal View 被关闭后，回调该方法。如内置浏览器被关闭。
-// When presented Modal View is closed, this method will be called. Such as built-in browser is closed
-- (void)dmDidDismissModalViewFromAd:(DMAdView *)adView
-{
-    NSLog(@"[Domob Sample] did dismiss modal view.");
-}
-
-// 当因用户的操作（如点击下载类广告，需要跳转到Store），需要离开当前应用时，回调该方法
-// When the result of the user's actions (such as clicking download class advertising, you need to jump to the Store), need to leave the current application, this method will be called
-- (void)dmApplicationWillEnterBackgroundFromAd:(DMAdView *)adView
-{
-    NSLog(@"[Domob Sample] will enter background.");
-}
-
-- (IBAction)setting:(id)sender
-{
-    if (_optionViewController == nil) {
-        _optionViewController = [[OptionViewController alloc] initWithNibName:@"OptionViewController" bundle:nil];
-    }
-    _optionViewController.view.alpha = 0.0;
-    [self.view addSubview:_optionViewController.view];
-    [UIView animateWithDuration:0.2 animations:^{
-        _optionViewController.view.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        
-    }];
 }
 
 @end
