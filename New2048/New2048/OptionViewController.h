@@ -7,9 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Global.h"
+#import <StoreKit/StoreKit.h>
 
 // the option view of the apps.
 
-@interface OptionViewController : UIViewController
+@protocol BeginNewGameDelegate;
+
+
+@interface OptionViewController : UIViewController<SKStoreProductViewControllerDelegate>
+
+@property(nonatomic, weak) id<BeginNewGameDelegate> delegate;
+
+@end
+
+
+@protocol BeginNewGameDelegate
+
+- (void)beginNewGame;
 
 @end

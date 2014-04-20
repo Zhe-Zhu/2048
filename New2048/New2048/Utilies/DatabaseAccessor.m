@@ -57,7 +57,7 @@ DatabaseAccessor * databaseAccessor;
             
             [object setValue:[NSNumber numberWithBool:indicator] forKey:@"indicator"];
             NSNumber * bestScore = [object valueForKey:@"bestScore"];
-            
+            [object setValue:[NSNumber numberWithInt:score] forKey:@"currentScore"];
             // update the score
             if ([bestScore intValue] < score) {
                 [object setValue:[NSNumber numberWithInt:score] forKey:@"bestScore"];
@@ -91,6 +91,7 @@ DatabaseAccessor * databaseAccessor;
             }
             [newManagedObject setValue:stateArry forKey:@"gameState"];
             [newManagedObject setValue:[NSNumber numberWithInt:score] forKey:@"bestScore"];
+            [newManagedObject setValue:[NSNumber numberWithInt:score] forKey:@"currentScore"];
 
         }
     }
@@ -99,7 +100,7 @@ DatabaseAccessor * databaseAccessor;
     
 }
 
-- (BOOL)restoreGameState:(enum PieceState [gameDimension][gameDimension])state score:(NSNumber *)bestScore
+- (BOOL)restoreGameState:(enum PieceState [gameDimension][gameDimension])state score:(int *)bestScore currentScore:(int *)currentScore
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"GameState" inManagedObjectContext:self.managedObjectContext];
@@ -129,12 +130,14 @@ DatabaseAccessor * databaseAccessor;
                         state[row][col] = [stateNum intValue];
                     }
                 }
-                bestScore = [object valueForKey:@"bestScore"];
+                *bestScore = [[object valueForKey:@"bestScore"] intValue];
+                *currentScore = [[object valueForKey:@"currentScore"] intValue];
                 return YES;
             }
             else
             {
-                bestScore = [object valueForKey:@"bestScore"];
+                *bestScore = [[object valueForKey:@"bestScore"] intValue];
+                *currentScore = [[object valueForKey:@"currentScore"] intValue];
                 return NO;
             }
         }

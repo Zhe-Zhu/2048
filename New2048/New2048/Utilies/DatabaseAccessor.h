@@ -21,7 +21,7 @@
 
 // return yes means there is aviable game state in the data base.
 // return no means there is no aviable game state in the data base.
-- (BOOL)restoreGameState:(enum PieceState[gameDimension][gameDimension])state score:(NSNumber *)bestScore;
+- (BOOL)restoreGameState:(enum PieceState[gameDimension][gameDimension])state score:(int *)bestScore currentScore:(int *)currentScore;
 
 
 @end

@@ -7,8 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController">
             <connections>
                 <outlet property="gameBackgroundImageView" destination="QTX-0q-8We" id="KAU-El-nt0"/>
-                <outlet property="option" destination="aYj-Pc-t3l" id="jhk-0W-hs7"/>
-                <outlet property="score" destination="V6q-WX-9CJ" id="bAR-zA-cua"/>
+                <outlet property="option" destination="Zxl-pT-CPy" id="ESU-XG-ND4"/>
+                <outlet property="score" destination="6Qj-qV-1jl" id="eFe-Am-35W"/>
+                <outlet property="topTitle" destination="J03-57-p5w" id="Nqf-aZ-nE6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,27 +18,63 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6q-WX-9CJ">
-                    <rect key="frame" x="27" y="61" width="180" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYj-Pc-t3l">
-                    <rect key="frame" x="264" y="61" width="46" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QTX-0q-8We">
-                    <rect key="frame" x="-3" y="208" width="323" height="290"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="board_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="QTX-0q-8We">
+                    <rect key="frame" x="10" y="201" width="301" height="301"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toolbar_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="N0R-EY-ZBN">
+                    <rect key="frame" x="0.0" y="33" width="320" height="54"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Qj-qV-1jl">
+                    <rect key="frame" x="86" y="33" width="148" height="54"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zxl-pT-CPy">
+                    <rect key="frame" x="263" y="41" width="44" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="setting_icon.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="setting:" destination="-1" eventType="touchUpInside" id="6yP-NV-8vO"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最高2048" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J03-57-p5w">
+                    <rect key="frame" x="0.0" y="0.0" width="146" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="146" id="Jrb-85-AYp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <constraints>
+                <constraint firstItem="J03-57-p5w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FQM-4l-gPw"/>
+                <constraint firstItem="6Qj-qV-1jl" firstAttribute="centerY" secondItem="Zxl-pT-CPy" secondAttribute="centerY" id="IDQ-JS-cU8"/>
+                <constraint firstAttribute="bottom" secondItem="QTX-0q-8We" secondAttribute="bottom" constant="66" id="KGW-mk-FKF"/>
+                <constraint firstItem="N0R-EY-ZBN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Kvk-aB-cai"/>
+                <constraint firstItem="6Qj-qV-1jl" firstAttribute="top" secondItem="J03-57-p5w" secondAttribute="bottom" constant="1" id="Lk1-pz-HY0"/>
+                <constraint firstItem="QTX-0q-8We" firstAttribute="centerX" secondItem="N0R-EY-ZBN" secondAttribute="centerX" id="LnO-Ah-9tA"/>
+                <constraint firstItem="6Qj-qV-1jl" firstAttribute="bottom" secondItem="N0R-EY-ZBN" secondAttribute="bottom" id="POc-VY-WMS"/>
+                <constraint firstItem="J03-57-p5w" firstAttribute="leading" secondItem="N0R-EY-ZBN" secondAttribute="leading" id="PYs-W1-hIw"/>
+                <constraint firstItem="6Qj-qV-1jl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="86" id="eW7-MI-wKG"/>
+                <constraint firstItem="Zxl-pT-CPy" firstAttribute="leading" secondItem="6Qj-qV-1jl" secondAttribute="trailing" constant="29" id="mlx-qN-bqA"/>
+                <constraint firstItem="N0R-EY-ZBN" firstAttribute="centerX" secondItem="6Qj-qV-1jl" secondAttribute="centerX" id="nTc-1P-ZEl"/>
+                <constraint firstItem="Zxl-pT-CPy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="41" id="vEU-s4-bAB"/>
+                <constraint firstItem="N0R-EY-ZBN" firstAttribute="top" secondItem="6Qj-qV-1jl" secondAttribute="top" id="wV3-or-g1b"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="board_background.png" width="301" height="301"/>
+        <image name="setting_icon.png" width="44" height="38"/>
+        <image name="toolbar_background.png" width="320" height="54"/>
+    </resources>
 </document>
