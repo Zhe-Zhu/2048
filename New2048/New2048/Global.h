@@ -9,6 +9,9 @@
 #ifndef __New2048__Global__
 #define __New2048__Global__
 
-#include <iostream>
+
+
+#define gameDimension 4
+#define UMAppKey @"5352964b56240b09f40a2a4d"
 
 #endif /* defined(__New2048__Global__) */

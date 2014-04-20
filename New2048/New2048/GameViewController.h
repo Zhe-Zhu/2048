@@ -10,6 +10,21 @@
 
 // the main view of the game.
 
+enum PieceState{
+    StateNone,
+    StateA,    // white
+    StateB,    // red
+    StateC,    // blue
+    StateD,    // green
+    StateE,    // black
+    StateF,
+    StateG,
+    StateH,
+    StateI,
+    StateJ,
+    StateK
+};
+
 @interface GameViewController : UIViewController
 
 @end

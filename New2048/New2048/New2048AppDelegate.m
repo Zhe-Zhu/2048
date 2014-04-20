@@ -7,19 +7,36 @@
 //
 
 #import "New2048AppDelegate.h"
+#import "GameViewController.h"
+
+@interface New2048AppDelegate ()
+{
+    GameViewController * _gameViewController;
+}
+
+@property(nonatomic, strong) GameViewController * gameViewController;
+@end
+
 
 @implementation New2048AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize gameViewController = _gameViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    
+    _gameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    self.window.rootViewController = _gameViewController;
     return YES;
 }
 
