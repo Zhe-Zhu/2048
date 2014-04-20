@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Global.h"
+#import <StoreKit/StoreKit.h>
 
 // the option view of the apps.
 
-@interface OptionViewController : UIViewController
+@interface OptionViewController : UIViewController<SKStoreProductViewControllerDelegate>
 
 @end

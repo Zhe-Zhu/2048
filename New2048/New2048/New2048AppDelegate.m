@@ -37,6 +37,7 @@
     [self.window makeKeyAndVisible];
     
     self.window.rootViewController = _gameViewController;
+
     return YES;
 }
 

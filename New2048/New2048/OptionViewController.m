@@ -10,6 +10,10 @@
 
 @interface OptionViewController ()
 
+- (IBAction)resumeGame:(id)sender;
+- (IBAction)anotherGame:(id)sender;
+- (IBAction)rate:(id)sender;
+
 @end
 
 @implementation OptionViewController
@@ -33,6 +37,43 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)resumeGame:(id)sender
+{
+    self.view.alpha = 0.0;
+    [self.view removeFromSuperview];
+}
+
+- (IBAction)anotherGame:(id)sender
+{
+    self.view.alpha = 0.0;
+    [self.view removeFromSuperview];
+}
+
+- (IBAction)rate:(id)sender
+{
+    //TODO: change AppID
+    int appId = 830277724;
+    if (!IS_OS_7_OR_LATER) {
+        SKStoreProductViewController *storeViewController = [[SKStoreProductViewController alloc] init];
+        NSDictionary *parameters = @{SKStoreProductParameterITunesItemIdentifier:[NSNumber numberWithInteger: appId]};
+        [storeViewController loadProductWithParameters:parameters completionBlock:nil];
+        storeViewController.delegate = self;
+        [self presentViewController:storeViewController animated:YES completion:nil];
+    }
+    else
+    {
+        NSString *str = [NSString stringWithFormat:
+                         @"itms-apps://itunes.apple.com/app/id%d",appId];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }
+}
+
+#pragma mark  --SKStoreProductViewControllerDelegate Method--
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController{
+    //
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
