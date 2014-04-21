@@ -25,11 +25,12 @@
 #import "QBAnimationSequence.h"
 #import "Global.h"
 #import "DatabaseAccessor.h"
+#import "Utilies.h"
 
 #define pieceSize 59
 #define barSize 30
 #define marginWidth 13
-#define timeDuration 0.5
+#define timeDuration 0.1
 
 
 // defition of user gesture direction
@@ -56,6 +57,7 @@ typedef struct{
     // store the init point of each gesture.
     CGPoint _initTouchPoint;
     BOOL _isTouchValid;
+    BOOL _havePresentedGameOverView;
     
     // used to store the game state
     enum PieceState gameState[4][4];
@@ -141,6 +143,7 @@ typedef struct{
             [self beginNewGame];
         }
         _storedSequences = [[NSMutableArray alloc] init];
+        _havePresentedGameOverView = NO;
     }
     return self;
 }
@@ -253,6 +256,7 @@ typedef struct{
                         UIImageView * temp_early = pieces[row][col];
                         UIImageView * temp_late = pieces[aviablePos][col];
                         
+                        [Utilies playSound:@"sound_2"];
                         // create a moving animation item.
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x, temp.center.y - (temp_row - temp_aviablePos) * (pieceSize + marginWidth));
@@ -380,6 +384,7 @@ typedef struct{
                         UIImageView * temp_early = pieces[row][col];
                         UIImageView * temp_late = pieces[aviablePos][col];
                         
+                        [Utilies playSound:@"sound_2"];
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x, temp.center.y - (temp_row - temp_aviablePos) * (pieceSize + marginWidth));
                         } completion:^(BOOL finished){
@@ -504,6 +509,7 @@ typedef struct{
                         enum PieceState temp_neighborPieceState = neighborPieceState;
                         UIImageView * temp_early = pieces[row][col];
                         UIImageView * temp_late = pieces[row][aviablePos];
+                        [Utilies playSound:@"sound_2"];
                         
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x - (temp_col - temp_aviablePos) * (pieceSize + marginWidth), temp.center.y);
@@ -626,6 +632,7 @@ typedef struct{
                         UIImageView * temp_early = pieces[row][col];
                         UIImageView * temp_late = pieces[row][aviablePos];
                         
+                        [Utilies playSound:@"sound_2"];
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x - (temp_col - temp_aviablePos) * (pieceSize + marginWidth), temp.center.y);
                         } completion:^(BOOL finished){
@@ -777,11 +784,14 @@ typedef struct{
     if (pos.x < 0 || pos.y < 0) {
         // check whether game is over
         if ([self checkIsGameOver]) {
-            //save the game state
-            [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
-            // jump to the gameover view.
-            // in main thread.
-            [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:1];
+            if (!_havePresentedGameOverView) {
+                _havePresentedGameOverView = YES;
+                //save the game state
+                [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
+                // jump to the gameover view.
+                // in main thread.
+                [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:2];
+            }
         }
         return nil;
     }
@@ -800,10 +810,15 @@ typedef struct{
         pieces[pos.x][pos.y] = randomlyGeneratedPiece;
         [_gameBackgroundImageView addSubview:randomlyGeneratedPiece];
         if ([self checkIsGameOver]) {
-            //save the game state
-            [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
-            // jump to the gameover view.
-            [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:1];
+            if (!_havePresentedGameOverView) {
+                _havePresentedGameOverView = YES;
+                // save the game state.
+                [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
+                // jump to the gameover view.
+                // in main thread.
+                [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:2];
+            }
+
         }
         return randomlyGeneratedPiece;
     }
@@ -934,6 +949,7 @@ typedef struct{
 {
     // alternative: rewrite the setter function of currentScore to update the _score's text;
     _currentScore = 0;
+    _havePresentedGameOverView = NO;
     _score.text = [NSString stringWithFormat:@"%d", _currentScore];
     _finishedCount = 0;
     _animationCount = 0;
@@ -1037,6 +1053,10 @@ typedef struct{
             if (gameState[i][j] == StateK) {
                 return YES;
             }
+            if (gameState[i][j] == StateNone) {
+                return NO;
+            }
+            
             if (i > 0 && i < (gameDimension - 1) && j > 0 && j < (gameDimension - 1)) {
                 if (gameState[i][j] == gameState[i - 1][j]) {
                     return NO;
@@ -1052,47 +1072,47 @@ typedef struct{
                 }
             }
             if (i == 0 && j > 0 && j < (gameDimension - 1)) {
-                if (gameState[i][j] == gameState[i - 1][j]) {
-                    return NO;
-                }
-                if (gameState[i][j] == gameState[i + 1][j]) {
+                if (gameState[i][j] == gameState[i][j - 1]) {
                     return NO;
                 }
                 if (gameState[i][j] == gameState[i][j + 1]) {
+                    return NO;
+                }
+                if (gameState[i][j] == gameState[i + 1][j]) {
                     return NO;
                 }
             }
             if (i == (gameDimension - 1) && j > 0 && j < (gameDimension - 1)) {
-                if (gameState[i][j] == gameState[i - 1][j]) {
-                    return NO;
-                }
-                if (gameState[i][j] == gameState[i + 1][j]) {
-                    return NO;
-                }
-                if (gameState[i][j] == gameState[i][j - 1]) {
-                    return NO;
-                }
-            }
-            if (j == 0 && i > 0 && i < (gameDimension - 1)) {
                 if (gameState[i][j] == gameState[i][j - 1]) {
                     return NO;
                 }
                 if (gameState[i][j] == gameState[i][j + 1]) {
                     return NO;
                 }
+                if (gameState[i][j] == gameState[i - 1][j]) {
+                    return NO;
+                }
+            }
+            if (j == 0 && i > 0 && i < (gameDimension - 1)) {
+                if (gameState[i][j] == gameState[i - 1][j]) {
+                    return NO;
+                }
                 if (gameState[i][j] == gameState[i + 1][j]) {
+                    return NO;
+                }
+                if (gameState[i][j] == gameState[i][j + 1]) {
                     return NO;
                 }
                 
             }
             if (j == (gameDimension - 1) && i > 0 && i < (gameDimension - 1)) {
-                if (gameState[i][j] == gameState[i][j - 1]) {
-                    return NO;
-                }
-                if (gameState[i][j] == gameState[i][j + 1]) {
+                if (gameState[i][j] == gameState[i + 1][j]) {
                     return NO;
                 }
                 if (gameState[i][j] == gameState[i - 1][j]) {
+                    return NO;
+                }
+                if (gameState[i][j] == gameState[i][j - 1]) {
                     return NO;
                 }
             }

@@ -104,6 +104,8 @@
 		2FDFDB421902C25700EA07B8 /* UMSnsAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFDB361902C25700EA07B8 /* UMSnsAccountViewController.xib */; };
 		2FDFDB431902C25700EA07B8 /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFDB371902C25700EA07B8 /* UMSShareListController.xib */; };
 		2FDFDB441902C25700EA07B8 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFDB381902C25700EA07B8 /* UMSocialSDKResourcesNew.bundle */; };
+		2FEC43001904E2EB0073E4E5 /* sound_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC42FF1904E2EB0073E4E5 /* sound_1.wav */; };
+		2FEC43021904E3870073E4E5 /* sound_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC43011904E3870073E4E5 /* sound_2.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +247,8 @@
 		2FDFDB371902C25700EA07B8 /* UMSShareListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSShareListController.xib; sourceTree = "<group>"; };
 		2FDFDB381902C25700EA07B8 /* UMSocialSDKResourcesNew.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResourcesNew.bundle; sourceTree = "<group>"; };
 		2FDFDB391902C25700EA07B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UMSocialLocalizable.strings"; sourceTree = "<group>"; };
+		2FEC42FF1904E2EB0073E4E5 /* sound_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_1.wav; sourceTree = "<group>"; };
+		2FEC43011904E3870073E4E5 /* sound_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_2.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +301,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F05FF221904DC0C00777903 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				2FEC43011904E3870073E4E5 /* sound_2.wav */,
+				2FEC42FF1904E2EB0073E4E5 /* sound_1.wav */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		2F3BF452190028BE00D8DCDF = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +368,7 @@
 		2F3BF466190028BF00D8DCDF /* New2048 */ = {
 			isa = PBXGroup;
 			children = (
+				2F05FF221904DC0C00777903 /* Sound */,
 				2FBF3C901903C34400C2D579 /* UI */,
 				2FBF3C841903BFAC00C2D579 /* DomobAdSDK */,
 				2FBF3C3F1903B73A00C2D579 /* GameOverViewController.h */,
@@ -673,6 +687,7 @@
 				2FBF3CAD1903C48900C2D579 /* chess_background@2x.png in Resources */,
 				2FBF3CA81903C48900C2D579 /* chess_64@2x.png in Resources */,
 				2F1D086C1903F4CD008B9899 /* newgame_button@2x.png in Resources */,
+				2FEC43021904E3870073E4E5 /* sound_2.wav in Resources */,
 				2FDFDB3D1902C25700EA07B8 /* UMSCommentInputController.xib in Resources */,
 				2F1D087C19040461008B9899 /* bra_D@2x.png in Resources */,
 				2F1D088119040461008B9899 /* bra_I@2x.png in Resources */,
@@ -687,6 +702,7 @@
 				2FDFDB3F1902C25700EA07B8 /* UMShareEditViewController.xib in Resources */,
 				2F1D087A19040461008B9899 /* bra_B@2x.png in Resources */,
 				2FBF3CAA1903C48900C2D579 /* chess_256@2x.png in Resources */,
+				2FEC43001904E2EB0073E4E5 /* sound_1.wav in Resources */,
 				2FDFDB431902C25700EA07B8 /* UMSShareListController.xib in Resources */,
 				2FDFDB3A1902C25700EA07B8 /* UMSocialLocalizable.strings in Resources */,
 				2F1D087E19040461008B9899 /* bra_F@2x.png in Resources */,
