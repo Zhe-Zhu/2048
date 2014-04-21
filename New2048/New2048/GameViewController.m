@@ -96,6 +96,7 @@ typedef struct{
 - (BOOL)checkIsGameOver;
 - (position)randomlyChoosePos;
 - (void)jumpToGameOverView;
+- (void)checkIsGameOverAndJumpToGameOverView;
 
 
 - (UIImageView *)randomlyGeneratePiece;
@@ -257,6 +258,7 @@ typedef struct{
                         UIImageView * temp_late = pieces[aviablePos][col];
                         
                         [Utilies playSound:@"sound_2"];
+                        [self updateScore:temp_neighborPieceState];
                         // create a moving animation item.
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x, temp.center.y - (temp_row - temp_aviablePos) * (pieceSize + marginWidth));
@@ -266,7 +268,6 @@ typedef struct{
                             [temp_early removeFromSuperview];
                             [temp_late removeFromSuperview];
                             // only when two same pieces merage, we need to update the score.
-                            [self updateScore:temp_neighborPieceState];
                             pieces[temp_aviablePos][temp_col] = [self generateNewPiece:temp_aviablePos andCol:temp_col withState:temp_neighborPieceState + 1];
                             
                             //TODO:
@@ -321,8 +322,9 @@ typedef struct{
             
         }
     }
-    UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
+    [self checkIsGameOverAndJumpToGameOverView];
     if (shoudGenerateNewPiece) {
+        UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
             randomlyGeneratedPiece.alpha = 0;
             
@@ -385,6 +387,7 @@ typedef struct{
                         UIImageView * temp_late = pieces[aviablePos][col];
                         
                         [Utilies playSound:@"sound_2"];
+                        [self updateScore:temp_neighborPieceState];
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x, temp.center.y - (temp_row - temp_aviablePos) * (pieceSize + marginWidth));
                         } completion:^(BOOL finished){
@@ -392,7 +395,6 @@ typedef struct{
                             [self animationFinished];
                             [temp_early removeFromSuperview];
                             [temp_late removeFromSuperview];
-                            [self updateScore:temp_neighborPieceState];
                             pieces[temp_aviablePos][temp_col] = [self generateNewPiece:temp_aviablePos andCol:temp_col withState:temp_neighborPieceState + 1];
                             
                             // do animation;
@@ -443,8 +445,9 @@ typedef struct{
             
         }
     }
-    UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
+    [self checkIsGameOverAndJumpToGameOverView];
     if (shoudGenerateNewPiece) {
+        UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
             randomlyGeneratedPiece.alpha = 0;
             
@@ -510,6 +513,7 @@ typedef struct{
                         UIImageView * temp_early = pieces[row][col];
                         UIImageView * temp_late = pieces[row][aviablePos];
                         [Utilies playSound:@"sound_2"];
+                        [self updateScore:temp_neighborPieceState];
                         
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x - (temp_col - temp_aviablePos) * (pieceSize + marginWidth), temp.center.y);
@@ -517,7 +521,6 @@ typedef struct{
                             [self animationFinished];
                             [temp_early removeFromSuperview];
                             [temp_late removeFromSuperview];
-                            [self updateScore:temp_neighborPieceState];
                             pieces[temp_row][temp_aviablePos] = [self generateNewPiece:temp_row andCol:temp_aviablePos withState:temp_neighborPieceState + 1];
                             
                             // do animation;
@@ -566,8 +569,9 @@ typedef struct{
             
         }
     }
-    UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
+    [self checkIsGameOverAndJumpToGameOverView];
     if (shoudGenerateNewPiece) {
+        UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
             randomlyGeneratedPiece.alpha = 0;
             
@@ -633,13 +637,13 @@ typedef struct{
                         UIImageView * temp_late = pieces[row][aviablePos];
                         
                         [Utilies playSound:@"sound_2"];
+                        [self updateScore:temp_neighborPieceState];
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x - (temp_col - temp_aviablePos) * (pieceSize + marginWidth), temp.center.y);
                         } completion:^(BOOL finished){
                             [self animationFinished];
                             [temp_early removeFromSuperview];
                             [temp_late removeFromSuperview];
-                            [self updateScore:temp_neighborPieceState];
                             pieces[temp_row][temp_aviablePos] = [self generateNewPiece:temp_row andCol:temp_aviablePos withState:temp_neighborPieceState + 1];
                             
                             // do animation;
@@ -689,8 +693,9 @@ typedef struct{
             
         }
     }
-    UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
+    [self checkIsGameOverAndJumpToGameOverView];
     if (shoudGenerateNewPiece) {
+        UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
             randomlyGeneratedPiece.alpha = 0;
             
@@ -782,17 +787,7 @@ typedef struct{
 {
     position pos = [self randomlyChoosePos];
     if (pos.x < 0 || pos.y < 0) {
-        // check whether game is over
-        if ([self checkIsGameOver]) {
-            if (!_havePresentedGameOverView) {
-                _havePresentedGameOverView = YES;
-                //save the game state
-                [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
-                // jump to the gameover view.
-                // in main thread.
-                [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:2];
-            }
-        }
+        [self checkIsGameOverAndJumpToGameOverView];
         return nil;
     }
     else
@@ -809,17 +804,7 @@ typedef struct{
         barLabel.text = @"A";
         pieces[pos.x][pos.y] = randomlyGeneratedPiece;
         [_gameBackgroundImageView addSubview:randomlyGeneratedPiece];
-        if ([self checkIsGameOver]) {
-            if (!_havePresentedGameOverView) {
-                _havePresentedGameOverView = YES;
-                // save the game state.
-                [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
-                // jump to the gameover view.
-                // in main thread.
-                [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:2];
-            }
-
-        }
+        [self checkIsGameOverAndJumpToGameOverView];
         return randomlyGeneratedPiece;
     }
 }
@@ -1119,6 +1104,21 @@ typedef struct{
         }
     }
     return YES;
+}
+
+- (void)checkIsGameOverAndJumpToGameOverView
+{
+    // check whether game is over
+    if ([self checkIsGameOver]) {
+        if (!_havePresentedGameOverView) {
+            _havePresentedGameOverView = YES;
+            //save the game state
+            [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
+            // jump to the gameover view.
+            // in main thread.
+            [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:2];
+        }
+    }
 }
 
 - (void)dealloc
