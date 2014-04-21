@@ -16,11 +16,11 @@
 
 enum PieceState{
     StateNone,
-    StateA,    // white
-    StateB,    // red
-    StateC,    // blue
-    StateD,    // green
-    StateE,    // black
+    StateA,
+    StateB,
+    StateC,
+    StateD,
+    StateE,    
     StateF,
     StateG,
     StateH,

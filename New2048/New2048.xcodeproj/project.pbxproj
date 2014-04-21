@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F05FF191904C11900777903 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F05FF181904C11900777903 /* libiconv.dylib */; };
+		2F05FF1B1904C15700777903 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F05FF1A1904C15700777903 /* libstdc++.dylib */; };
+		2F05FF211904CDAF00777903 /* Utilies.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F05FF201904CDAF00777903 /* Utilies.m */; };
 		2F1D085D1903EC97008B9899 /* board_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F1D085C1903EC97008B9899 /* board_background@2x.png */; };
 		2F1D08621903EFA7008B9899 /* comment_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F1D085E1903EFA7008B9899 /* comment_button@2x.png */; };
 		2F1D08631903EFA7008B9899 /* continue_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F1D085F1903EFA7008B9899 /* continue_button@2x.png */; };
@@ -114,6 +117,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F05FF181904C11900777903 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		2F05FF1A1904C15700777903 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		2F05FF1F1904CDAF00777903 /* Utilies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilies.h; sourceTree = "<group>"; };
+		2F05FF201904CDAF00777903 /* Utilies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilies.m; sourceTree = "<group>"; };
 		2F1D085C1903EC97008B9899 /* board_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "board_background@2x.png"; sourceTree = "<group>"; };
 		2F1D085E1903EFA7008B9899 /* comment_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment_button@2x.png"; sourceTree = "<group>"; };
 		2F1D085F1903EFA7008B9899 /* continue_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "continue_button@2x.png"; sourceTree = "<group>"; };
@@ -245,13 +252,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FBF3C831903BCB500C2D579 /* SystemConfiguration.framework in Frameworks */,
-				2FBF3C8F1903BFAC00C2D579 /* libDomobAdSDK.a in Frameworks */,
+				2FBF3C7F1903BC7C00C2D579 /* AudioToolbox.framework in Frameworks */,
+				2FBF3C671903BC1600C2D579 /* libz.dylib in Frameworks */,
+				2F05FF1B1904C15700777903 /* libstdc++.dylib in Frameworks */,
+				2FBF3C5F1903BBF800C2D579 /* CoreTelephony.framework in Frameworks */,
+				2FBF3C811903BC8B00C2D579 /* libsqlite3.dylib in Frameworks */,
 				2F3BF461190028BE00D8DCDF /* CoreGraphics.framework in Frameworks */,
+				2FBF3C831903BCB500C2D579 /* SystemConfiguration.framework in Frameworks */,
+				2F05FF191904C11900777903 /* libiconv.dylib in Frameworks */,
+				2FBF3C5D1903BBF000C2D579 /* Security.framework in Frameworks */,
+				2FBF3C8F1903BFAC00C2D579 /* libDomobAdSDK.a in Frameworks */,
 				2F3BF463190028BF00D8DCDF /* UIKit.framework in Frameworks */,
 				2F3BF45F190028BE00D8DCDF /* Foundation.framework in Frameworks */,
-				2FBF3C811903BC8B00C2D579 /* libsqlite3.dylib in Frameworks */,
-				2FBF3C7F1903BC7C00C2D579 /* AudioToolbox.framework in Frameworks */,
 				2FBF3C7D1903BC6E00C2D579 /* AVFoundation.framework in Frameworks */,
 				2FBF3C7B1903BC6600C2D579 /* EventKit.framework in Frameworks */,
 				2FBF3C791903BC5B00C2D579 /* Social.framework in Frameworks */,
@@ -263,12 +275,9 @@
 				2FBF3C6D1903BC2D00C2D579 /* QuartzCore.framework in Frameworks */,
 				2FBF3C6B1903BC2700C2D579 /* MediaPlayer.framework in Frameworks */,
 				2FBF3C691903BC1E00C2D579 /* CoreMedia.framework in Frameworks */,
-				2FBF3C671903BC1600C2D579 /* libz.dylib in Frameworks */,
 				2FBF3C651903BC0D00C2D579 /* MobileCoreServices.framework in Frameworks */,
 				2FBF3C631903BC0500C2D579 /* CFNetwork.framework in Frameworks */,
 				2FBF3C611903BBFF00C2D579 /* MessageUI.framework in Frameworks */,
-				2FBF3C5F1903BBF800C2D579 /* CoreTelephony.framework in Frameworks */,
-				2FBF3C5D1903BBF000C2D579 /* Security.framework in Frameworks */,
 				2FDFDB3B1902C25700EA07B8 /* libUMSocial_Sdk_3.3.7.a in Frameworks */,
 				2F3BF465190028BF00D8DCDF /* CoreData.framework in Frameworks */,
 			);
@@ -312,6 +321,8 @@
 		2F3BF45D190028BE00D8DCDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2F05FF1A1904C15700777903 /* libstdc++.dylib */,
+				2F05FF181904C11900777903 /* libiconv.dylib */,
 				2FBF3C821903BCB500C2D579 /* SystemConfiguration.framework */,
 				2FBF3C801903BC8B00C2D579 /* libsqlite3.dylib */,
 				2FBF3C7E1903BC7C00C2D579 /* AudioToolbox.framework */,
@@ -403,6 +414,8 @@
 			children = (
 				2F3BF4991900298A00D8DCDF /* DatabaseAccessor.h */,
 				2F3BF49A1900298A00D8DCDF /* DatabaseAccessor.m */,
+				2F05FF1F1904CDAF00777903 /* Utilies.h */,
+				2F05FF201904CDAF00777903 /* Utilies.m */,
 			);
 			path = Utilies;
 			sourceTree = "<group>";
@@ -719,6 +732,7 @@
 				2F46523E1900D104004E3338 /* QBAnimationGroup.m in Sources */,
 				2F3BF49F19002A0200D8DCDF /* GameViewController.m in Sources */,
 				2F3BF471190028BF00D8DCDF /* New2048AppDelegate.m in Sources */,
+				2F05FF211904CDAF00777903 /* Utilies.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,19 @@
 //  Copyright (c) 2014 Chen Xiangwen. All rights reserved.
 //
 
+// this class is the main part of this project.
+// challenge: how to make the animation serial
+/**********************
+ 1. each time a user gesture generated, store it in the a array(FIFO).
+ 2. if there are no animation, then start the animtaion assicated with the gesture.
+ 3. when the animation finish, remove the associated gesture from the array.
+ 4. if the array is not empty, then start the animation associated with the next gesture.
+ 
+ * all these actions are run in the main thread.
+ 
+*********************/
+
+
 #import "GameViewController.h"
 #import "QBAnimationGroup.h"
 #import "QBAnimationItem.h"
@@ -18,6 +31,8 @@
 #define marginWidth 13
 #define timeDuration 0.5
 
+
+// defition of user gesture direction
 enum Direction{
     None,
     Up,
@@ -25,8 +40,6 @@ enum Direction{
     Left,
     Right
 };
-
-
 
 typedef struct{
     int x;
@@ -39,16 +52,24 @@ typedef struct{
     __weak UILabel * _topTitle;
     __weak UIButton * _option;
     __weak UIImageView * _gameBackgroundImageView;
+    
+    // store the init point of each gesture.
     CGPoint _initTouchPoint;
+    BOOL _isTouchValid;
+    
     // used to store the game state
     enum PieceState gameState[4][4];
     UIImageView * pieces[4][4];
+    int _everBestScore;
+    int _currentScore;
+    
+    // used to make the animation sequence serial.
     NSInteger  _finishedCount;
     NSInteger  _animationCount;
     NSMutableArray * _storedSequences;
-    int _everBestScore;
-    int _currentScore;
+    
     __weak DMAdView * _dmAdView;
+    
     OptionViewController *_optionViewController;
     GameOverViewController * _gameOverViewController;
 }
@@ -60,35 +81,31 @@ typedef struct{
 @property(nonatomic, assign) NSInteger finishedCount;
 @property(nonatomic, assign) NSInteger animationCount;
 @property(nonatomic, strong) NSMutableArray * storedSequences;
+@property(nonatomic, weak) DMAdView *dmAdView;
+@property(nonatomic, strong) OptionViewController *optionViewController;
 
-
-
-
-
+// update the game state.
 - (void)updateScore:(enum PieceState)score;
-
 - (void)updatePieces;
-
-- (enum Direction)calculateDirection:(CGPoint)initPoint endPoint:(CGPoint)endPoint;
 - (void)updateGameState:(enum Direction)direction;
 
-- (UIImageView *)generateNewPiece:(int)row andCol:(int)col withState:(enum PieceState)state;
-
-- (position)randomlyChoosePos;
-
-- (void)beginNewGame;
-
+// utilies
+- (enum Direction)calculateDirection:(CGPoint)initPoint endPoint:(CGPoint)endPoint;
 - (BOOL)checkIsGameOver;
+- (position)randomlyChoosePos;
+- (void)jumpToGameOverView;
 
-//
+
+- (UIImageView *)randomlyGeneratePiece;
+- (UIImageView *)generateNewPiece:(int)row andCol:(int)col withState:(enum PieceState)state;
+- (void)beginNewGame;
+- (void)animationFinished;
+
+// handle the user gesture.
 - (void)handleUpGesture;
 - (void)handleDownGesture;
 - (void)handleLeftGesture;
 - (void)handleRightGesture;
-
-- (void)animationFinished;
-@property(nonatomic, weak) DMAdView *dmAdView;
-@property(nonatomic, strong) OptionViewController *optionViewController;
 
 - (IBAction)setting:(id)sender;
 
@@ -103,7 +120,6 @@ typedef struct{
 @synthesize finishedCount = _finishedCount;
 @synthesize animationCount = _animationCount;
 @synthesize storedSequences = _storedSequences;
-
 @synthesize dmAdView = _dmAdView;
 @synthesize optionViewController = _optionViewController;
 
@@ -115,19 +131,15 @@ typedef struct{
         // restore the game state
         BOOL indicator = [[DatabaseAccessor sharedInstance] restoreGameState:gameState score:&_everBestScore currentScore:&_currentScore];
         
+        // indicator
+        /***********
+         YES: the game state restored from database is available.
+         NO: not available.
+         ************/
+        // if not available, the start a new game.
         if (!indicator) {
             [self beginNewGame];
         }
-        //        // for debug
-        //        for (int i = 0; i < gameDimension; i++) {
-        //            for (int j = 0; j < gameDimension; j++) {
-        //                gameState[i][j] = StateNone;
-        //            }
-        //        }
-        //        gameState[1][0] = StateA;
-        //        gameState[3][0] = StateC;
-        //        gameState[2][0] = StateB;
-        //        gameState[3][2] = StateB;
         _storedSequences = [[NSMutableArray alloc] init];
     }
     return self;
@@ -137,22 +149,16 @@ typedef struct{
 {
     [super viewDidLoad];
     
-    // for debug
-    //TODO: improve this code
     
+    // adjust the UI.
     self.view.backgroundColor = [UIColor colorWithRed:1 green:0.94 blue:0.81 alpha:1];
     _topTitle.textColor = [UIColor colorWithRed:0.87 green:0.7 blue:0.43 alpha:1];
     _score.textColor = [UIColor colorWithRed:0.97 green:0.49 blue:0.21 alpha:1];
+    _score.text = [NSString stringWithFormat:@"%d", _currentScore];
     
     // update the UI according to the game state
-    
     [self updatePieces];
     
-    
-    
-    
-    // Do any additional setup after loading the view from its nib.
-    _score.text = [NSString stringWithFormat:@"%d", _currentScore];
     // add ad view
     [self initDmAdView];
 }
@@ -169,14 +175,19 @@ typedef struct{
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -- Touches --
 // track the gesture of the user.
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    _isTouchValid = NO;
     UITouch * touch = [touches anyObject];
     CGPoint point = [touch locationInView:_gameBackgroundImageView];
     
     if ([_gameBackgroundImageView pointInside:point withEvent:nil]) {
+        // store the init point.
         _initTouchPoint = point;
+        // indicate that this touch is valid.
+        _isTouchValid = YES;
     }
     
 }
@@ -188,30 +199,13 @@ typedef struct{
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (YES) {
-        //save the game state
-        [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
-        // jump to the gameover view.
-        if (_gameOverViewController == nil) {
-            _gameOverViewController = [[GameOverViewController alloc] initWithNibName:@"GameOverViewController" bundle:nil];
-        }
-        _gameOverViewController.view.alpha = 0.0;
-        _gameOverViewController.delegate = self;
-        _gameOverViewController.score = _currentScore;
-        [self.view addSubview:_gameOverViewController.view];
-        [UIView animateWithDuration:0.2 animations:^{
-            _gameOverViewController.view.alpha = 1.0;
-        } completion:^(BOOL finished) {
-            
-        }];
+    if (!_isTouchValid) {
+        return;
     }
-    return;
     UITouch * touch = [touches anyObject];
     CGPoint point = [touch locationInView:_gameBackgroundImageView];
     enum Direction direction = [self calculateDirection:_initTouchPoint endPoint:point];
-    //    dispatch_async(dispatch_get_main_queue(), ^{
-    //        [self updateGameState:direction];
-    //    });
+    
     if (direction == StateNone) {
         return;
     }
@@ -227,46 +221,13 @@ typedef struct{
     }
 }
 
-- (enum Direction)calculateDirection:(CGPoint)initPoint endPoint:(CGPoint)endPoint
-{
-    float dx = endPoint.x - initPoint.x;
-    float dy = endPoint.y - initPoint.y;
-    float distance = sqrt(dx * dx + dy * dy);
-    if (distance < 20) {
-        return None;
-    }
-    
-    if (dy < 0 && abs(dy) > abs(dx) ) {
-        return Up;
-    }
-    else if (dy > 0 && abs(dy) > abs(dx) )
-    {
-        return Down;
-    }
-    else if (dx > 0 && abs(dx) > abs(dy))
-    {
-        return Right;
-    }
-    else if (dx < 0 && abs(dx) > abs(dy))
-    {
-        return Left;
-    }
-    else
-    {
-        return None;
-    }
-    return None;
-    
-}
-
+#pragma mark -- User Gesture Handler --
 - (void)handleDownGesture
 {
     int col, row;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
-    NSMutableArray * animationMergingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (col = 0; col < gameDimension; col++) {
-        
         row = gameDimension - 1;
         int aviablePos = gameDimension;
         enum PieceState neighborPieceState = StateNone;
@@ -276,14 +237,15 @@ typedef struct{
             }
             else
             {
+                // there are same pieces in the col.
                 if (gameState[row][col] == neighborPieceState) {
-                    
-                    
                     if (row != aviablePos) {
                         neighborPieceState = gameState[row][col];
                         UIImageView * temp = pieces[row][col];
-                        // add the animation, merge the same pieces.
                         
+                        // store the varibles, used in the block.
+                        // if not stored, the varibale value will changed when
+                        // the block is called.
                         int temp_row = row;
                         int temp_col = col;
                         int temp_aviablePos = aviablePos;
@@ -291,21 +253,25 @@ typedef struct{
                         UIImageView * temp_early = pieces[row][col];
                         UIImageView * temp_late = pieces[aviablePos][col];
                         
+                        // create a moving animation item.
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x, temp.center.y - (temp_row - temp_aviablePos) * (pieceSize + marginWidth));
                         } completion:^(BOOL finished){
-                            //remove one duplicated piece
                             [self animationFinished];
+                            //remove two same pieces
                             [temp_early removeFromSuperview];
                             [temp_late removeFromSuperview];
+                            // only when two same pieces merage, we need to update the score.
                             [self updateScore:temp_neighborPieceState];
                             pieces[temp_aviablePos][temp_col] = [self generateNewPiece:temp_aviablePos andCol:temp_col withState:temp_neighborPieceState + 1];
                             
+                            //TODO:
                             // do animation;
                             
                             
                         }];
                         [animationMovingArry addObject:item_merging];
+                        // need to generate a new piece.
                         shoudGenerateNewPiece = YES;
                         // update the game state
                         gameState[aviablePos][col] = gameState[row][col] + 1;
@@ -319,13 +285,13 @@ typedef struct{
                 }
                 else
                 {
-                    
-                    // add the animation
+                    // store the variable.
                     UIImageView * temp = pieces[row][col];
                     int temp_row = row;
                     int temp_col = col;
                     aviablePos--;
                     int temp_aviablePos = aviablePos;
+                    
                     neighborPieceState = gameState[row][col];
                     if (row != aviablePos) {
                         QBAnimationItem * item = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
@@ -334,7 +300,6 @@ typedef struct{
                         } completion:^(BOOL finished){
                             [self animationFinished];
                         }];
-                        
                         
                         [animationMovingArry addObject:item];
                         shoudGenerateNewPiece = YES;
@@ -358,13 +323,11 @@ typedef struct{
             randomlyGeneratedPiece.alpha = 0;
             
             QBAnimationItem * generateNewPieceAnimation = [QBAnimationItem itemWithDuration:timeDuration delay:timeDuration options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseIn animations:^{
-                
                 randomlyGeneratedPiece.alpha = 1;
             } completion:^(BOOL finished){
                 [self animationFinished];
                 
             }];
-            
             [animationMovingArry addObject:generateNewPieceAnimation];
         }
     }
@@ -394,10 +357,8 @@ typedef struct{
 {
     int col, row;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
-    NSMutableArray * animationMergingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (col = 0; col < gameDimension; col++) {
-        
         row = 0;
         int aviablePos = -1;
         enum PieceState neighborPieceState = StateNone;
@@ -408,12 +369,9 @@ typedef struct{
             else
             {
                 if (gameState[row][col] == neighborPieceState) {
-                    
-                    
                     if (row != aviablePos) {
                         neighborPieceState = gameState[row][col];
                         UIImageView * temp = pieces[row][col];
-                        // add the animation, merge the same pieces.
                         
                         int temp_row = row;
                         int temp_col = col;
@@ -449,13 +407,12 @@ typedef struct{
                 }
                 else
                 {
-                    
-                    // add the animation
                     int temp_row = row;
                     int temp_col = col;
                     UIImageView * temp = pieces[row][col];
                     aviablePos++;
                     int temp_aviablePos = aviablePos;
+                    
                     neighborPieceState = gameState[row][col];
                     if (row != aviablePos) {
                         QBAnimationItem * item = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
@@ -464,7 +421,6 @@ typedef struct{
                         } completion:^(BOOL finished){
                             [self animationFinished];
                         }];
-                        
                         
                         [animationMovingArry addObject:item];
                         shoudGenerateNewPiece = YES;
@@ -525,7 +481,6 @@ typedef struct{
 {
     int col, row;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
-    NSMutableArray * animationMergingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (row = 0; row < gameDimension; row++) {
         col = 0;
@@ -539,11 +494,9 @@ typedef struct{
             {
                 if (gameState[row][col] == neighborPieceState) {
                     
-                    
                     if (col != aviablePos) {
                         neighborPieceState = gameState[row][col];
                         UIImageView * temp = pieces[row][col];
-                        // add the animation, merge the same pieces.
                         
                         int temp_row = row;
                         int temp_col = col;
@@ -555,7 +508,6 @@ typedef struct{
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x - (temp_col - temp_aviablePos) * (pieceSize + marginWidth), temp.center.y);
                         } completion:^(BOOL finished){
-                            //remove one duplicated piece
                             [self animationFinished];
                             [temp_early removeFromSuperview];
                             [temp_late removeFromSuperview];
@@ -578,8 +530,6 @@ typedef struct{
                 }
                 else
                 {
-                    
-                    // add the animation
                     UIImageView * temp = pieces[row][col];
                     aviablePos++;
                     int temp_row = row;
@@ -593,7 +543,6 @@ typedef struct{
                         } completion:^(BOOL finished){
                             [self animationFinished];
                         }];
-                        
                         
                         [animationMovingArry addObject:item];
                         shoudGenerateNewPiece = YES;
@@ -654,7 +603,6 @@ typedef struct{
 {
     int col, row;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
-    NSMutableArray * animationMergingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (row = 0; row < gameDimension; row++) {
         col = gameDimension - 1;
@@ -667,12 +615,9 @@ typedef struct{
             else
             {
                 if (gameState[row][col] == neighborPieceState) {
-                    
-                    
                     if (col != aviablePos) {
                         neighborPieceState = gameState[row][col];
                         UIImageView * temp = pieces[row][col];
-                        // add the animation, merge the same pieces.
                         
                         int temp_row = row;
                         int temp_col = col;
@@ -684,7 +629,6 @@ typedef struct{
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x - (temp_col - temp_aviablePos) * (pieceSize + marginWidth), temp.center.y);
                         } completion:^(BOOL finished){
-                            //remove one duplicated piece
                             [self animationFinished];
                             [temp_early removeFromSuperview];
                             [temp_late removeFromSuperview];
@@ -708,8 +652,6 @@ typedef struct{
                 }
                 else
                 {
-                    
-                    // add the animation
                     UIImageView * temp = pieces[row][col];
                     aviablePos--;
                     int temp_row = row;
@@ -723,7 +665,6 @@ typedef struct{
                         } completion:^(BOOL finished){
                             [self animationFinished];
                         }];
-                        
                         
                         [animationMovingArry addObject:item];
                         shoudGenerateNewPiece = YES;
@@ -779,6 +720,7 @@ typedef struct{
     }
 }
 
+#pragma mark -- Update Game State --
 - (void)updateGameState:(enum Direction)direction
 {
     switch (direction) {
@@ -786,32 +728,86 @@ typedef struct{
         {
             [self handleUpGesture];
             break;
-            
         }
         case Down:
         {
             [self handleDownGesture];
             break;
-            
         }
         case Right:
         {
             [self handleRightGesture];
             break;
-            
         }
         case Left:
         {
             [self handleLeftGesture];
             break;
-            
         }
         default:
             break;
     }
-    
 }
 
+- (void)updatePieces
+{
+    for (int i = 0; i < gameDimension; i++){
+        for (int j = 0; j < gameDimension; j++) {
+            if (pieces[i][j] != nil) {
+                [pieces[i][j] removeFromSuperview];
+                pieces[i][j] = nil;
+            }
+            pieces[i][j] = [self generateNewPiece:i andCol:j withState:gameState[i][j]];
+        }
+    }
+}
+
+- (void)updateScore:(enum PieceState)score;
+{
+    int scoreDx = score;
+    _currentScore += ((int)pow(2, scoreDx + 1));
+    _score.text = [NSString stringWithFormat:@"%d", _currentScore];
+}
+
+
+#pragma mark -- Generate Pieces and Animation Related --
+- (UIImageView *)randomlyGeneratePiece
+{
+    position pos = [self randomlyChoosePos];
+    if (pos.x < 0 || pos.y < 0) {
+        // check whether game is over
+        if ([self checkIsGameOver]) {
+            //save the game state
+            [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
+            // jump to the gameover view.
+            // in main thread.
+            [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:1];
+        }
+        return nil;
+    }
+    else
+    {
+        // generate a new piece with StateA.
+        gameState[pos.x][pos.y] = StateA;
+        UIImageView * randomlyGeneratedPiece = [[UIImageView alloc] initWithFrame:CGRectMake(marginWidth + pos.y  * (marginWidth + pieceSize), marginWidth + pos.x  * (marginWidth + pieceSize), pieceSize, pieceSize)];
+        randomlyGeneratedPiece.image = [UIImage imageNamed:imageLevelA];
+        UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 23, barSize, barSize)];
+        UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 20, 20)];
+        [randomlyGeneratedPiece addSubview:barView];
+        [randomlyGeneratedPiece addSubview:barLabel];
+        barView.image = [UIImage imageNamed:barLevelA];
+        barLabel.text = @"A";
+        pieces[pos.x][pos.y] = randomlyGeneratedPiece;
+        [_gameBackgroundImageView addSubview:randomlyGeneratedPiece];
+        if ([self checkIsGameOver]) {
+            //save the game state
+            [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
+            // jump to the gameover view.
+            [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:1];
+        }
+        return randomlyGeneratedPiece;
+    }
+}
 
 - (UIImageView *)generateNewPiece:(int)row andCol:(int)col withState:(enum PieceState)state
 {
@@ -820,7 +816,6 @@ typedef struct{
     }
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(marginWidth + col  * (marginWidth + pieceSize), marginWidth + row  * (marginWidth + pieceSize), pieceSize, pieceSize)];
     UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 23, barSize, barSize)];
-    barView.backgroundColor = [UIColor redColor];
     UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 20, 20)];
     [imageView addSubview:barView];
     [imageView addSubview:barLabel];
@@ -829,7 +824,6 @@ typedef struct{
         {
             imageView.image = [UIImage imageNamed:imageLevelA];
             barView.image = [UIImage imageNamed:barLevelA];
-            [imageView addSubview:barView];
             barLabel.text = @"A";
             break;
         }
@@ -837,7 +831,6 @@ typedef struct{
         {
             imageView.image = [UIImage imageNamed:imageLevelB];
             barView.image = [UIImage imageNamed:barLevelB];
-            [imageView addSubview:barView];
             barLabel.text = @"B";
             break;
         }
@@ -916,22 +909,74 @@ typedef struct{
     
     [_gameBackgroundImageView addSubview:imageView];
     return imageView;
-    
 }
 
-- (void)updatePieces
+- (void)animationFinished
 {
-    for (int i = 0; i < gameDimension; i++){
-        for (int j = 0; j < gameDimension; j++) {
-            if (pieces[i][j] != nil) {
-                [pieces[i][j] removeFromSuperview];
-                pieces[i][j] = nil;
-            }
-            pieces[i][j] = [self generateNewPiece:i andCol:j withState:gameState[i][j]];
+    _finishedCount++;
+    if (_finishedCount == _animationCount) {
+        if ([_storedSequences count] > 0) {
+            [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:YES];
+            [_storedSequences removeObjectAtIndex:0];
         }
-        
+        if ([_storedSequences count] > 0) {
+            _finishedCount = 0;
+            _animationCount = 0;
+            NSNumber * num = [_storedSequences objectAtIndex:0];
+            enum Direction direction = [num intValue];
+            [self updateGameState:direction];
+        }
     }
+}
 
+#pragma mark -- BeginNewGameDelegate --
+- (void)beginNewGame
+{
+    // alternative: rewrite the setter function of currentScore to update the _score's text;
+    _currentScore = 0;
+    _score.text = [NSString stringWithFormat:@"%d", _currentScore];
+    _finishedCount = 0;
+    _animationCount = 0;
+    for (int i = 0; i < gameDimension; i++) {
+        for (int j = 0; j < gameDimension; j++) {
+            gameState[i][j] = StateNone;
+        }
+    }
+    [self updatePieces];
+    [self randomlyGeneratePiece];
+    [self randomlyGeneratePiece];
+    [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:YES];
+}
+
+#pragma mark -- Utilies --
+- (enum Direction)calculateDirection:(CGPoint)initPoint endPoint:(CGPoint)endPoint
+{
+    float dx = endPoint.x - initPoint.x;
+    float dy = endPoint.y - initPoint.y;
+    float distance = sqrt(dx * dx + dy * dy);
+    if (distance < 20) {
+        return None;
+    }
+    if (dy < 0 && abs(dy) > abs(dx) ) {
+        return Up;
+    }
+    else if (dy > 0 && abs(dy) > abs(dx) )
+    {
+        return Down;
+    }
+    else if (dx > 0 && abs(dx) > abs(dy))
+    {
+        return Right;
+    }
+    else if (dx < 0 && abs(dx) > abs(dy))
+    {
+        return Left;
+    }
+    else
+    {
+        return None;
+    }
+    return None;
 }
 
 - (position)randomlyChoosePos
@@ -960,117 +1005,31 @@ typedef struct{
             pos.y = j;
             return pos;
         }
-        
     }
     return pos;
 }
 
-- (void)animationFinished
+- (void)jumpToGameOverView
 {
-    _finishedCount++;
-    if (_finishedCount == _animationCount) {
-        if ([_storedSequences count] > 0) {
-            [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:YES];
-            [_storedSequences removeObjectAtIndex:0];
-        }
-        if ([_storedSequences count] > 0) {
-            _finishedCount = 0;
-            _animationCount = 0;
-            NSNumber * num = [_storedSequences objectAtIndex:0];
-            enum Direction direction = [num intValue];
-            [self updateGameState:direction];
-        }
+    if (_gameOverViewController == nil) {
+        _gameOverViewController = [[GameOverViewController alloc] initWithNibName:@"GameOverViewController" bundle:nil];
     }
+    _gameOverViewController.view.alpha = 0.0;
+    _gameOverViewController.delegate = self;
+    _gameOverViewController.score = _currentScore;
+    [self.view addSubview:_gameOverViewController.view];
+    [UIView animateWithDuration:0.2 animations:^{
+        _gameOverViewController.view.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
-// BeginNewGameDelegate 
-- (void)beginNewGame
-{
-    // alternative: rewrite the setter function of currentScore to update the _score's text;
-    _currentScore = 0;
-    _score.text = [NSString stringWithFormat:@"%d", _currentScore];
-    _finishedCount = 0;
-    _animationCount = 0;
-    for (int i = 0; i < gameDimension; i++) {
-        for (int j = 0; j < gameDimension; j++) {
-            gameState[i][j] = StateNone;
-        }
-    }
-    [self updatePieces];
-    [self randomlyGeneratePiece];
-    [self randomlyGeneratePiece];
-    [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:YES];
-}
-
-
-
-- (UIImageView *)randomlyGeneratePiece
-{
-    position pos = [self randomlyChoosePos];
-    if (pos.x < 0 || pos.y < 0) {
-        // game is over
-        if ([self checkIsGameOver]) {
-            //save the game state
-            [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
-            // jump to the gameover view.
-            if (_gameOverViewController == nil) {
-                _gameOverViewController = [[GameOverViewController alloc] initWithNibName:@"GameOverViewController" bundle:nil];
-            }
-            _gameOverViewController.view.alpha = 0.0;
-            _gameOverViewController.delegate = self;
-            _gameOverViewController.score = _currentScore;
-            [self.view addSubview:_gameOverViewController.view];
-            [UIView animateWithDuration:0.2 animations:^{
-                _gameOverViewController.view.alpha = 1.0;
-            } completion:^(BOOL finished) {
-                
-            }];
-
-            
-        }
-        return nil;
-    }
-    else
-    {
-        gameState[pos.x][pos.y] = StateA;
-        UIImageView * randomlyGeneratedPiece = [[UIImageView alloc] initWithFrame:CGRectMake(marginWidth + pos.y  * (marginWidth + pieceSize), marginWidth + pos.x  * (marginWidth + pieceSize), pieceSize, pieceSize)];
-        randomlyGeneratedPiece.image = [UIImage imageNamed:imageLevelA];
-        UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 23, barSize, barSize)];
-        UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 20, 20)];
-        [randomlyGeneratedPiece addSubview:barView];
-        [randomlyGeneratedPiece addSubview:barLabel];
-        barView.image = [UIImage imageNamed:barLevelA];
-        barLabel.text = @"A";
-        pieces[pos.x][pos.y] = randomlyGeneratedPiece;
-        [_gameBackgroundImageView addSubview:randomlyGeneratedPiece];
-        if ([self checkIsGameOver]) {
-            //save the game state
-            [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
-            // jump to the gameover view.
-            if (_gameOverViewController == nil) {
-                _gameOverViewController = [[GameOverViewController alloc] initWithNibName:@"GameOverViewController" bundle:nil];
-            }
-            _gameOverViewController.view.alpha = 0.0;
-            _gameOverViewController.delegate = self;
-            _gameOverViewController.score = _currentScore;
-            [self.view addSubview:_gameOverViewController.view];
-            [UIView animateWithDuration:0.2 animations:^{
-                _gameOverViewController.view.alpha = 1.0;
-            } completion:^(BOOL finished) {
-                
-            }];
-        }
-        return randomlyGeneratedPiece;
-    }
-}
-
-- (void)updateScore:(enum PieceState)score;
-{
-    int scoreDx = score;
-    _currentScore += ((int)pow(2, scoreDx + 1));
-    _score.text = [NSString stringWithFormat:@"%d", _currentScore];
-}
-
+// gameover
+/*****************
+ 1. reach LevelK
+ 2. there are no available empty piece and all of adjacent pieces are in different state.
+ ****************/
 - (BOOL)checkIsGameOver
 {
     for (int i = 0; i < gameDimension; i++) {
@@ -1113,7 +1072,6 @@ typedef struct{
                 if (gameState[i][j] == gameState[i][j - 1]) {
                     return NO;
                 }
-                
             }
             if (j == 0 && i > 0 && i < (gameDimension - 1)) {
                 if (gameState[i][j] == gameState[i][j - 1]) {
@@ -1137,7 +1095,6 @@ typedef struct{
                 if (gameState[i][j] == gameState[i - 1][j]) {
                     return NO;
                 }
-                
             }
         }
     }
@@ -1151,6 +1108,7 @@ typedef struct{
     [_dmAdView removeFromSuperview];
 }
 
+#pragma mark -- DuoMeng AD --
 - (void)initDmAdView
 {
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1218,6 +1176,7 @@ typedef struct{
     NSLog(@"[Domob Sample] will enter background.");
 }
 
+#pragma mark -- Actions --
 - (IBAction)setting:(id)sender
 {
     if (_optionViewController == nil) {

@@ -8,6 +8,7 @@
 
 #import "New2048AppDelegate.h"
 #import "GameViewController.h"
+#import "UMSocial.h"
 
 @interface New2048AppDelegate ()
 {
@@ -38,6 +39,9 @@
     
     self.window.rootViewController = _gameViewController;
     
+    // set UM appkey
+    [UMSocialData setAppKey:UMAppKey];
+    [self setSocialPlatformAppID];
     return YES;
 }
 
@@ -162,6 +166,36 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+//设置分享到社交平台的开关
+- (void)setSocialPlatformAppID
+{
+    //设置微信AppId，url地址传nil，将默认使用友盟的网址
+    //需要#import "UMSocialWechatHandler.h"
+    //[UMSocialWechatHandler setWXAppId:kWeiXinID url:nil];
+    //打开Qzone的SSO开关，
+    //需要#import <TencentOpenAPI/QQApiInterface.h>  #import <TencentOpenAPI/TencentOAuth.h>
+    //[UMSocialConfig setSupportQzoneSSO:YES importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
+    //[UMSocialConfig setShareQzoneWithQQSDK:YES url:@"http://www.umeng.com/social" importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
+    //需要#import <TencentOpenAPI/QQApiInterface.h>  #import <TencentOpenAPI/TencentOAuth.h>
+    //设置手机QQ的AppId，url传nil，将使用友盟的网址
+    //[UMSocialConfig setQQAppId:kQQAppID url:nil importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
+    //打开新浪微博的SSO开关
+    [UMSocialConfig setSupportSinaSSO:YES];
+}
+
+//设置友盟的SSO分享的系统回调函数
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
 }
 
 @end

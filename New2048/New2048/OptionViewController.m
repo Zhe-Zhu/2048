@@ -55,6 +55,7 @@
         _rate.center = CGPointMake(160, IPhone4Height - 165);
     }
 
+    //self.view.userInteractionEnabled = NO;
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -103,4 +104,18 @@
     [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+// 吸收发生在该view上的touch事件以防止下传到superview。
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
 @end

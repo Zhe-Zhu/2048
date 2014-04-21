@@ -7,6 +7,8 @@
 //
 
 #import "GameOverViewController.h"
+#import "UMSocial.h"
+#import "Global.h"
 
 @interface GameOverViewController ()
 {
@@ -75,6 +77,7 @@
 - (IBAction)share:(id)sender {
     
     // share
+    [self shareThingsToSocialMedia:self text:@"hello" Image:nil delegate:nil];
 }
 
 - (IBAction)restartGame:(id)sender {
@@ -83,4 +86,30 @@
     self.view.alpha = 0.0;
     [self.view removeFromSuperview];
 }
+
+- (void)shareThingsToSocialMedia:(UIViewController *)inController text:(NSString *)text Image:(UIImage *)image delegate:(id<UMSocialUIDelegate>)delegate
+{
+    [UMSocialSnsService presentSnsIconSheetView:inController
+                                         appKey:UMAppKey
+                                      shareText:text
+                                     shareImage:nil
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
+                                       delegate:delegate];
+}
+
+// 吸收发生在该view上的touch事件以防止下传到superview。
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
+
 @end
