@@ -58,6 +58,7 @@ typedef struct{
     CGPoint _initTouchPoint;
     BOOL _isTouchValid;
     BOOL _havePresentedGameOverView;
+    BOOL _didJustLaunch;
     
     // used to store the game state
     enum PieceState gameState[4][4];
@@ -165,12 +166,25 @@ typedef struct{
     
     // add ad view
     [self initDmAdView];
+    _didJustLaunch = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+//    if (!IS_OS_7_OR_LATER) {
+//        if (_didJustLaunch) {
+//            _didJustLaunch = NO;
+//            CGRect frame = _gameBackgroundImageView.frame;
+//            _gameBackgroundImageView.frame = CGRectMake(frame.origin.x, frame.origin.y - 44, frame.size.width, frame.size.height);
+//        }
+//    }
 }
 
 - (void)didReceiveMemoryWarning

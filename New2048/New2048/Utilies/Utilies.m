@@ -17,7 +17,7 @@
     SystemSoundID soundID;
     NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:soundName withExtension:@"wav"];
     OSStatus error = AudioServicesCreateSystemSoundID( (__bridge CFURLRef)(fileUrl), &soundID);
-    NSLog(@"%d", error);
+    //NSLog(@"%d", error);
     if (error == kAudioServicesNoError) {
         AudioServicesPlaySystemSound(soundID);
     }
