@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187CDD44190545B100E51221 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187CDD46190545B100E51221 /* Localizable.strings */; };
 		2F05FF191904C11900777903 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F05FF181904C11900777903 /* libiconv.dylib */; };
 		2F05FF1B1904C15700777903 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F05FF1A1904C15700777903 /* libstdc++.dylib */; };
 		2F05FF211904CDAF00777903 /* Utilies.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F05FF201904CDAF00777903 /* Utilies.m */; };
@@ -119,6 +120,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		187CDD3E1905454700E51221 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		187CDD45190545B100E51221 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		187CDD47190545B600E51221 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2F05FF181904C11900777903 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		2F05FF1A1904C15700777903 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		2F05FF1F1904CDAF00777903 /* Utilies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilies.h; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 				2F3BF469190028BF00D8DCDF /* InfoPlist.strings */,
 				2F3BF46C190028BF00D8DCDF /* main.m */,
 				2F3BF46E190028BF00D8DCDF /* New2048-Prefix.pch */,
+				187CDD46190545B100E51221 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -683,6 +688,7 @@
 				2FBF3CA61903C48900C2D579 /* chess_16@2x.png in Resources */,
 				2F1D085D1903EC97008B9899 /* board_background@2x.png in Resources */,
 				2FDFDB421902C25700EA07B8 /* UMSnsAccountViewController.xib in Resources */,
+				187CDD44190545B100E51221 /* Localizable.strings in Resources */,
 				2FBF3CAC1903C48900C2D579 /* chess_2048@2x.png in Resources */,
 				2FBF3CAD1903C48900C2D579 /* chess_background@2x.png in Resources */,
 				2FBF3CA81903C48900C2D579 /* chess_64@2x.png in Resources */,
@@ -771,10 +777,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		187CDD46190545B100E51221 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				187CDD45190545B100E51221 /* en */,
+				187CDD47190545B600E51221 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		2F3BF469190028BF00D8DCDF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2F3BF46A190028BF00D8DCDF /* en */,
+				187CDD3E1905454700E51221 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
