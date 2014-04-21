@@ -188,6 +188,24 @@ typedef struct{
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (YES) {
+        //save the game state
+        [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
+        // jump to the gameover view.
+        if (_gameOverViewController == nil) {
+            _gameOverViewController = [[GameOverViewController alloc] initWithNibName:@"GameOverViewController" bundle:nil];
+        }
+        _gameOverViewController.view.alpha = 0.0;
+        _gameOverViewController.delegate = self;
+        _gameOverViewController.score = _currentScore;
+        [self.view addSubview:_gameOverViewController.view];
+        [UIView animateWithDuration:0.2 animations:^{
+            _gameOverViewController.view.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+    return;
     UITouch * touch = [touches anyObject];
     CGPoint point = [touch locationInView:_gameBackgroundImageView];
     enum Direction direction = [self calculateDirection:_initTouchPoint endPoint:point];

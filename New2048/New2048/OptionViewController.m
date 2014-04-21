@@ -11,7 +11,13 @@
 @interface OptionViewController ()
 {
     __weak id<BeginNewGameDelegate> _delegate;
+    
+    __weak UIButton * _restartGame;
+    __weak UIButton * _rate;
 }
+
+@property(nonatomic, weak) IBOutlet UIButton * restartGame;
+@property(nonatomic, weak) IBOutlet UIButton * rate;
 
 - (IBAction)resumeGame:(id)sender;
 - (IBAction)anotherGame:(id)sender;
@@ -22,6 +28,8 @@
 @implementation OptionViewController
 
 @synthesize delegate = _delegate;
+@synthesize restartGame = _restartGame;
+@synthesize rate = _rate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +44,17 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:1 green:0.94 blue:0.81 alpha:1];
+    
+    if (IS_IPHONE5) {
+        _restartGame.center = CGPointMake(160, IPhone5Height - 92);
+        _rate.center = CGPointMake(160, IPhone5Height - 165);
+    }
+    else
+    {
+        _restartGame.center = CGPointMake(160, IPhone4Height - 92);
+        _rate.center = CGPointMake(160, IPhone4Height - 165);
+    }
+
     
     // Do any additional setup after loading the view from its nib.
 }

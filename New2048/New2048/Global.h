@@ -17,6 +17,10 @@
 #define IS_OS_7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 #define IS_IPHONE5 ([UIScreen mainScreen].bounds.size.height > 560.0)
 
+#define IPhone5Height 568
+#define IPhone4Height 480
+
+
 #define imageLevelA @"chess_2"
 #define imageLevelB @"chess_4"
 #define imageLevelC @"chess_8"

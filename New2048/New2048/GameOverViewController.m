@@ -11,12 +11,16 @@
 @interface GameOverViewController ()
 {
     __weak id<BeginNewGameDelegate> _delegate;
+    __weak UIButton * _share;
+    __weak UIButton * _restart;
     int _score;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
+@property (weak, nonatomic) IBOutlet UIButton * share;
+@property (weak, nonatomic) IBOutlet UIButton * restart;
 
 - (IBAction)share:(id)sender;
 - (IBAction)restartGame:(id)sender;
@@ -26,6 +30,8 @@
 
 @synthesize delegate = _delegate;
 @synthesize score = _score;
+@synthesize share = _share;
+@synthesize restart = _restart;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,6 +53,17 @@
     self.view.backgroundColor = [UIColor colorWithRed:1 green:0.94 blue:0.81 alpha:1];
     [_scoreLabel setText:[NSString stringWithFormat:@"%d",_score]];
     // Do any additional setup after loading the view from its nib.
+    
+    // adjust the share and restart position.
+    if (IS_IPHONE5) {
+        _restart.center = CGPointMake(160, IPhone5Height - 92);
+        _share.center = CGPointMake(160, IPhone5Height - 165);
+    }
+    else
+    {
+        _restart.center = CGPointMake(160, IPhone4Height - 92);
+        _share.center = CGPointMake(160, IPhone4Height - 165);
+    }
 }
 
 - (void)didReceiveMemoryWarning
