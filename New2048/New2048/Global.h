@@ -29,7 +29,7 @@
 #define imageLevelF @"chess_64"
 #define imageLevelG @"chess_128"
 #define imageLevelH @"chess_256"
-#define imageLevelI @"chess_1024"
+#define imageLevelI @"chess_512"
 #define imageLevelJ @"chess_1024"
 #define imageLevelK @"chess_2048"
 

@@ -154,10 +154,12 @@ typedef struct{
     
     
     // adjust the UI.
-    self.view.backgroundColor = [UIColor colorWithRed:1 green:0.94 blue:0.81 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:250/255.0 green:248/255.0 blue:239/255.0 alpha:1];
     _topTitle.textColor = [UIColor colorWithRed:0.87 green:0.7 blue:0.43 alpha:1];
+    _topTitle.font = [UIFont fontWithName:@"Verdana-Bold" size:18];
     _score.textColor = [UIColor colorWithRed:0.97 green:0.49 blue:0.21 alpha:1];
     _score.text = [NSString stringWithFormat:@"%d", _currentScore];
+    _score.font = [UIFont fontWithName:@"Verdana-Bold" size:36];
     
     // update the UI according to the game state
     [self updatePieces];
@@ -802,7 +804,9 @@ typedef struct{
         UIImageView * randomlyGeneratedPiece = [[UIImageView alloc] initWithFrame:CGRectMake(marginWidth + pos.y  * (marginWidth + pieceSize), marginWidth + pos.x  * (marginWidth + pieceSize), pieceSize, pieceSize)];
         randomlyGeneratedPiece.image = [UIImage imageNamed:imageLevelA];
         UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 23, barSize, barSize)];
-        UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 20, 20)];
+        UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.5, 3, 20, 16)];
+        barLabel.textAlignment = NSTextAlignmentCenter;
+        barLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:14];
         [randomlyGeneratedPiece addSubview:barView];
         [randomlyGeneratedPiece addSubview:barLabel];
         barView.image = [UIImage imageNamed:barLevelA];
@@ -831,7 +835,9 @@ typedef struct{
     }
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(marginWidth + col  * (marginWidth + pieceSize), marginWidth + row  * (marginWidth + pieceSize), pieceSize, pieceSize)];
     UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 23, barSize, barSize)];
-    UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 20, 20)];
+    UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.5, 3, 20, 16)];
+    barLabel.textAlignment = NSTextAlignmentCenter;
+    barLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:14];
     [imageView addSubview:barView];
     [imageView addSubview:barLabel];
     switch (state) {
@@ -840,6 +846,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelA];
             barView.image = [UIImage imageNamed:barLevelA];
             barLabel.text = @"A";
+            barLabel.textColor = [UIColor colorWithWhite:30/255.0 alpha:0.9];
             break;
         }
         case StateB:
@@ -847,6 +854,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelB];
             barView.image = [UIImage imageNamed:barLevelB];
             barLabel.text = @"B";
+            barLabel.textColor = [UIColor colorWithWhite:30/255.0 alpha:0.9];
             break;
         }
         case StateC:
@@ -854,6 +862,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelC];
             barView.image = [UIImage imageNamed:barLevelC];
             barLabel.text = @"C";
+            barLabel.textColor = [UIColor colorWithWhite:30/255.0 alpha:1];
             break;
         }
         case StateD:
@@ -861,6 +870,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelD];
             barView.image = [UIImage imageNamed:barLevelD];
             barLabel.text = @"D";
+            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateE:
@@ -868,6 +878,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelE];
             barView.image = [UIImage imageNamed:barLevelE];
             barLabel.text = @"E";
+            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateF:
@@ -875,6 +886,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelF];
             barView.image = [UIImage imageNamed:barLevelF];
             barLabel.text = @"F";
+            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateG:
@@ -882,6 +894,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelG];
             barView.image = [UIImage imageNamed:barLevelG];
             barLabel.text = @"G";
+            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateH:
@@ -889,6 +902,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelH];
             barView.image = [UIImage imageNamed:barLevelH];
             barLabel.text = @"H";
+            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateI:
@@ -896,6 +910,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelI];
             barView.image = [UIImage imageNamed:barLevelI];
             barLabel.text = @"I";
+            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateJ:
@@ -903,6 +918,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelJ];
             barView.image = [UIImage imageNamed:barLevelJ];
             barLabel.text = @"J";
+            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateK:
@@ -910,6 +926,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelK];
             barView.image = [UIImage imageNamed:barLevelK];
             barLabel.text = @"K";
+            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:0.9];
             break;
         }
         default:
@@ -917,6 +934,7 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelK];
             barView.image = [UIImage imageNamed:barLevelK];
             barLabel.text = @"K";
+            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:0.9];
             break;
             
         }

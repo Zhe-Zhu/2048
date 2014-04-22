@@ -106,6 +106,7 @@
 		2FDFDB441902C25700EA07B8 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFDB381902C25700EA07B8 /* UMSocialSDKResourcesNew.bundle */; };
 		2FEC43001904E2EB0073E4E5 /* sound_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC42FF1904E2EB0073E4E5 /* sound_1.wav */; };
 		2FEC43021904E3870073E4E5 /* sound_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC43011904E3870073E4E5 /* sound_2.wav */; };
+		CEB75C96190626FB00D9B7F9 /* chess_512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB75C95190626FB00D9B7F9 /* chess_512@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -249,6 +250,7 @@
 		2FDFDB391902C25700EA07B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UMSocialLocalizable.strings"; sourceTree = "<group>"; };
 		2FEC42FF1904E2EB0073E4E5 /* sound_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_1.wav; sourceTree = "<group>"; };
 		2FEC43011904E3870073E4E5 /* sound_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_2.wav; sourceTree = "<group>"; };
+		CEB75C95190626FB00D9B7F9 /* chess_512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chess_512@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -504,6 +506,7 @@
 				2F1D087419040461008B9899 /* bra_G@2x.png */,
 				2F1D087519040461008B9899 /* bra_H@2x.png */,
 				2F1D087619040461008B9899 /* bra_I@2x.png */,
+				CEB75C95190626FB00D9B7F9 /* chess_512@2x.png */,
 				2F1D087719040461008B9899 /* bra_J@2x.png */,
 				2F1D087819040461008B9899 /* bra_K@2x.png */,
 				2F1D085C1903EC97008B9899 /* board_background@2x.png */,
@@ -679,6 +682,7 @@
 				2F1D088019040461008B9899 /* bra_H@2x.png in Resources */,
 				2FBF3CA51903C48900C2D579 /* chess_8@2x.png in Resources */,
 				2FBF3CA91903C48900C2D579 /* chess_128@2x.png in Resources */,
+				CEB75C96190626FB00D9B7F9 /* chess_512@2x.png in Resources */,
 				2F1D08631903EFA7008B9899 /* continue_button@2x.png in Resources */,
 				2FBF3CA61903C48900C2D579 /* chess_16@2x.png in Resources */,
 				2F1D085D1903EC97008B9899 /* board_background@2x.png in Resources */,
