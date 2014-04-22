@@ -15,6 +15,7 @@
 #define UMAppKey @"5352964b56240b09f40a2a4d"
 
 #define IS_OS_7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define IS_OS_6_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
 #define IS_IPHONE5 ([UIScreen mainScreen].bounds.size.height > 560.0)
 
 #define IPhone5Height 568

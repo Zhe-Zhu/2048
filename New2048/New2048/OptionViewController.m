@@ -83,7 +83,7 @@
 {
     //TODO: change AppID
     int appId = 830277724;
-    if (!IS_OS_7_OR_LATER) {
+    if (!IS_OS_7_OR_LATER && IS_OS_6_OR_LATER) {
         SKStoreProductViewController *storeViewController = [[SKStoreProductViewController alloc] init];
         NSDictionary *parameters = @{SKStoreProductParameterITunesItemIdentifier:[NSNumber numberWithInteger: appId]};
         [storeViewController loadProductWithParameters:parameters completionBlock:nil];
@@ -92,8 +92,7 @@
     }
     else
     {
-        NSString *str = [NSString stringWithFormat:
-                         @"itms-apps://itunes.apple.com/app/id%d",appId];
+        NSString *str = [NSString stringWithFormat: @"itms-apps://itunes.apple.com/app/id%d",appId];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }
 }

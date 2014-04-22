@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187CDD44190545B100E51221 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187CDD46190545B100E51221 /* Localizable.strings */; };
 		2F05FF191904C11900777903 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F05FF181904C11900777903 /* libiconv.dylib */; };
 		2F05FF1B1904C15700777903 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F05FF1A1904C15700777903 /* libstdc++.dylib */; };
 		2F05FF211904CDAF00777903 /* Utilies.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F05FF201904CDAF00777903 /* Utilies.m */; };
@@ -68,12 +69,10 @@
 		2FBF3C6F1903BC3700C2D579 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C6E1903BC3700C2D579 /* CoreText.framework */; };
 		2FBF3C711903BC3D00C2D579 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C701903BC3D00C2D579 /* AdSupport.framework */; };
 		2FBF3C731903BC4300C2D579 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C721903BC4300C2D579 /* CoreLocation.framework */; };
-		2FBF3C751903BC4A00C2D579 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C741903BC4A00C2D579 /* StoreKit.framework */; };
 		2FBF3C771903BC5200C2D579 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C761903BC5200C2D579 /* PassKit.framework */; };
 		2FBF3C791903BC5B00C2D579 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C781903BC5B00C2D579 /* Social.framework */; };
 		2FBF3C7B1903BC6600C2D579 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C7A1903BC6600C2D579 /* EventKit.framework */; };
 		2FBF3C7D1903BC6E00C2D579 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C7C1903BC6E00C2D579 /* AVFoundation.framework */; };
-		2FBF3C7F1903BC7C00C2D579 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C7E1903BC7C00C2D579 /* AudioToolbox.framework */; };
 		2FBF3C811903BC8B00C2D579 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C801903BC8B00C2D579 /* libsqlite3.dylib */; };
 		2FBF3C831903BCB500C2D579 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C821903BCB500C2D579 /* SystemConfiguration.framework */; };
 		2FBF3C8E1903BFAC00C2D579 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2FBF3C8C1903BFAC00C2D579 /* DomobAdSDKBundle.bundle */; };
@@ -120,6 +119,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		187CDD3E1905454700E51221 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		187CDD45190545B100E51221 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		187CDD47190545B600E51221 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2F05FF181904C11900777903 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		2F05FF1A1904C15700777903 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		2F05FF1F1904CDAF00777903 /* Utilies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilies.h; sourceTree = "<group>"; };
@@ -193,12 +195,10 @@
 		2FBF3C6E1903BC3700C2D579 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		2FBF3C701903BC3D00C2D579 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		2FBF3C721903BC4300C2D579 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		2FBF3C741903BC4A00C2D579 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2FBF3C761903BC5200C2D579 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		2FBF3C781903BC5B00C2D579 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		2FBF3C7A1903BC6600C2D579 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		2FBF3C7C1903BC6E00C2D579 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		2FBF3C7E1903BC7C00C2D579 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2FBF3C801903BC8B00C2D579 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2FBF3C821903BCB500C2D579 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2FBF3C851903BFAC00C2D579 /* DMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAdView.h; sourceTree = "<group>"; };
@@ -258,7 +258,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FBF3C7F1903BC7C00C2D579 /* AudioToolbox.framework in Frameworks */,
 				2FBF3C671903BC1600C2D579 /* libz.dylib in Frameworks */,
 				2F05FF1B1904C15700777903 /* libstdc++.dylib in Frameworks */,
 				2FBF3C5F1903BBF800C2D579 /* CoreTelephony.framework in Frameworks */,
@@ -274,7 +273,6 @@
 				2FBF3C7B1903BC6600C2D579 /* EventKit.framework in Frameworks */,
 				2FBF3C791903BC5B00C2D579 /* Social.framework in Frameworks */,
 				2FBF3C771903BC5200C2D579 /* PassKit.framework in Frameworks */,
-				2FBF3C751903BC4A00C2D579 /* StoreKit.framework in Frameworks */,
 				2FBF3C731903BC4300C2D579 /* CoreLocation.framework in Frameworks */,
 				2FBF3C711903BC3D00C2D579 /* AdSupport.framework in Frameworks */,
 				2FBF3C6F1903BC3700C2D579 /* CoreText.framework in Frameworks */,
@@ -340,12 +338,10 @@
 				2F05FF181904C11900777903 /* libiconv.dylib */,
 				2FBF3C821903BCB500C2D579 /* SystemConfiguration.framework */,
 				2FBF3C801903BC8B00C2D579 /* libsqlite3.dylib */,
-				2FBF3C7E1903BC7C00C2D579 /* AudioToolbox.framework */,
 				2FBF3C7C1903BC6E00C2D579 /* AVFoundation.framework */,
 				2FBF3C7A1903BC6600C2D579 /* EventKit.framework */,
 				2FBF3C781903BC5B00C2D579 /* Social.framework */,
 				2FBF3C761903BC5200C2D579 /* PassKit.framework */,
-				2FBF3C741903BC4A00C2D579 /* StoreKit.framework */,
 				2FBF3C721903BC4300C2D579 /* CoreLocation.framework */,
 				2FBF3C701903BC3D00C2D579 /* AdSupport.framework */,
 				2FBF3C6E1903BC3700C2D579 /* CoreText.framework */,
@@ -403,6 +399,7 @@
 				2F3BF469190028BF00D8DCDF /* InfoPlist.strings */,
 				2F3BF46C190028BF00D8DCDF /* main.m */,
 				2F3BF46E190028BF00D8DCDF /* New2048-Prefix.pch */,
+				187CDD46190545B100E51221 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -640,6 +637,17 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Chen Xiangwen";
 				TargetAttributes = {
+					2F3BF45A190028BE00D8DCDF = {
+						DevelopmentTeam = 87N4K2M736;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
+					};
 					2F3BF47A190028BF00D8DCDF = {
 						TestTargetID = 2F3BF45A190028BE00D8DCDF;
 					};
@@ -687,6 +695,7 @@
 				2FBF3CA61903C48900C2D579 /* chess_16@2x.png in Resources */,
 				2F1D085D1903EC97008B9899 /* board_background@2x.png in Resources */,
 				2FDFDB421902C25700EA07B8 /* UMSnsAccountViewController.xib in Resources */,
+				187CDD44190545B100E51221 /* Localizable.strings in Resources */,
 				2FBF3CAC1903C48900C2D579 /* chess_2048@2x.png in Resources */,
 				2FBF3CAD1903C48900C2D579 /* chess_background@2x.png in Resources */,
 				2FBF3CA81903C48900C2D579 /* chess_64@2x.png in Resources */,
@@ -775,10 +784,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		187CDD46190545B100E51221 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				187CDD45190545B100E51221 /* en */,
+				187CDD47190545B600E51221 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		2F3BF469190028BF00D8DCDF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2F3BF46A190028BF00D8DCDF /* en */,
+				187CDD3E1905454700E51221 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -807,6 +826,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv7,
+					armv7s,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -835,9 +859,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -845,6 +870,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv7,
+					armv7s,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -867,9 +897,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -878,6 +909,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "New2048/New2048-Prefix.pch";
 				INFOPLIST_FILE = "New2048/New2048-Info.plist";
@@ -892,6 +925,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -901,6 +935,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "New2048/New2048-Prefix.pch";
 				INFOPLIST_FILE = "New2048/New2048-Info.plist";
@@ -915,6 +951,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
