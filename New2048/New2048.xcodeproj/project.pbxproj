@@ -51,6 +51,13 @@
 		2F3BF49F19002A0200D8DCDF /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BF49D19002A0200D8DCDF /* GameViewController.m */; };
 		2F3BF4A019002A0200D8DCDF /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F3BF49E19002A0200D8DCDF /* GameViewController.xib */; };
 		2F3BF4A419002A3700D8DCDF /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BF4A219002A3700D8DCDF /* OptionViewController.m */; };
+		2F3E0B4B1906CF2800F04011 /* game_over_title_en@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3E0B481906CF2800F04011 /* game_over_title_en@2x.png */; };
+		2F3E0B4C1906CF2800F04011 /* newgame_button_en@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3E0B491906CF2800F04011 /* newgame_button_en@2x.png */; };
+		2F3E0B4D1906CF2800F04011 /* share_button_en@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3E0B4A1906CF2800F04011 /* share_button_en@2x.png */; };
+		2F3E0B521906D2BC00F04011 /* comment_button_en@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3E0B4E1906D2BC00F04011 /* comment_button_en@2x.png */; };
+		2F3E0B531906D2BC00F04011 /* continue_button_en@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3E0B4F1906D2BC00F04011 /* continue_button_en@2x.png */; };
+		2F3E0B541906D2BC00F04011 /* restart_button_en@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3E0B501906D2BC00F04011 /* restart_button_en@2x.png */; };
+		2F3E0B551906D2BC00F04011 /* setting_title_en@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3E0B511906D2BC00F04011 /* setting_title_en@2x.png */; };
 		2F46523E1900D104004E3338 /* QBAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4652391900D104004E3338 /* QBAnimationGroup.m */; };
 		2F46523F1900D104004E3338 /* QBAnimationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F46523B1900D104004E3338 /* QBAnimationItem.m */; };
 		2F4652401900D104004E3338 /* QBAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F46523D1900D104004E3338 /* QBAnimationSequence.m */; };
@@ -173,6 +180,13 @@
 		2F3BF49E19002A0200D8DCDF /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		2F3BF4A119002A3700D8DCDF /* OptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionViewController.h; sourceTree = "<group>"; };
 		2F3BF4A219002A3700D8DCDF /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
+		2F3E0B481906CF2800F04011 /* game_over_title_en@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_over_title_en@2x.png"; sourceTree = "<group>"; };
+		2F3E0B491906CF2800F04011 /* newgame_button_en@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newgame_button_en@2x.png"; sourceTree = "<group>"; };
+		2F3E0B4A1906CF2800F04011 /* share_button_en@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_button_en@2x.png"; sourceTree = "<group>"; };
+		2F3E0B4E1906D2BC00F04011 /* comment_button_en@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment_button_en@2x.png"; sourceTree = "<group>"; };
+		2F3E0B4F1906D2BC00F04011 /* continue_button_en@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "continue_button_en@2x.png"; sourceTree = "<group>"; };
+		2F3E0B501906D2BC00F04011 /* restart_button_en@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restart_button_en@2x.png"; sourceTree = "<group>"; };
+		2F3E0B511906D2BC00F04011 /* setting_title_en@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_title_en@2x.png"; sourceTree = "<group>"; };
 		2F4652381900D104004E3338 /* QBAnimationGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAnimationGroup.h; sourceTree = "<group>"; };
 		2F4652391900D104004E3338 /* QBAnimationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAnimationGroup.m; sourceTree = "<group>"; };
 		2F46523A1900D104004E3338 /* QBAnimationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAnimationItem.h; sourceTree = "<group>"; };
@@ -483,6 +497,9 @@
 		2FBF3C911903C34500C2D579 /* ImagesInGameOverViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2F3E0B481906CF2800F04011 /* game_over_title_en@2x.png */,
+				2F3E0B491906CF2800F04011 /* newgame_button_en@2x.png */,
+				2F3E0B4A1906CF2800F04011 /* share_button_en@2x.png */,
 				2F1D08661903F4CD008B9899 /* achievement_frame@2x.png */,
 				2F1D08671903F4CD008B9899 /* game_over_title@2x.png */,
 				2F1D08681903F4CD008B9899 /* newgame_button@2x.png */,
@@ -528,6 +545,10 @@
 		2FBF3C931903C34500C2D579 /* ImagesInOptionViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2F3E0B4E1906D2BC00F04011 /* comment_button_en@2x.png */,
+				2F3E0B4F1906D2BC00F04011 /* continue_button_en@2x.png */,
+				2F3E0B501906D2BC00F04011 /* restart_button_en@2x.png */,
+				2F3E0B511906D2BC00F04011 /* setting_title_en@2x.png */,
 				2F1D085E1903EFA7008B9899 /* comment_button@2x.png */,
 				2F1D085F1903EFA7008B9899 /* continue_button@2x.png */,
 				2F1D08601903EFA7008B9899 /* restart_button@2x.png */,
@@ -683,7 +704,9 @@
 				2FBF3C431903B73A00C2D579 /* GameOverViewController.xib in Resources */,
 				2F1D086A1903F4CD008B9899 /* achievement_frame@2x.png in Resources */,
 				2FBF3C8E1903BFAC00C2D579 /* DomobAdSDKBundle.bundle in Resources */,
+				2F3E0B4C1906CF2800F04011 /* newgame_button_en@2x.png in Resources */,
 				2F1D087919040461008B9899 /* bra_A@2x.png in Resources */,
+				2F3E0B4B1906CF2800F04011 /* game_over_title_en@2x.png in Resources */,
 				2FBF3CA31903C48900C2D579 /* chess_2@2x.png in Resources */,
 				2F1D088319040461008B9899 /* bra_K@2x.png in Resources */,
 				2FDFDB401902C25700EA07B8 /* UMShareEditViewControlleriPad.xib in Resources */,
@@ -693,10 +716,13 @@
 				CEB75C96190626FB00D9B7F9 /* chess_512@2x.png in Resources */,
 				2F1D08631903EFA7008B9899 /* continue_button@2x.png in Resources */,
 				2FBF3CA61903C48900C2D579 /* chess_16@2x.png in Resources */,
+				2F3E0B551906D2BC00F04011 /* setting_title_en@2x.png in Resources */,
 				2F1D085D1903EC97008B9899 /* board_background@2x.png in Resources */,
 				2FDFDB421902C25700EA07B8 /* UMSnsAccountViewController.xib in Resources */,
+				2F3E0B4D1906CF2800F04011 /* share_button_en@2x.png in Resources */,
 				187CDD44190545B100E51221 /* Localizable.strings in Resources */,
 				2FBF3CAC1903C48900C2D579 /* chess_2048@2x.png in Resources */,
+				2F3E0B541906D2BC00F04011 /* restart_button_en@2x.png in Resources */,
 				2FBF3CAD1903C48900C2D579 /* chess_background@2x.png in Resources */,
 				2FBF3CA81903C48900C2D579 /* chess_64@2x.png in Resources */,
 				2F1D086C1903F4CD008B9899 /* newgame_button@2x.png in Resources */,
@@ -707,6 +733,7 @@
 				2F1D087B19040461008B9899 /* bra_C@2x.png in Resources */,
 				2F1D087D19040461008B9899 /* bra_E@2x.png in Resources */,
 				2FBF3C451903B95800C2D579 /* OptionViewController.xib in Resources */,
+				2F3E0B531906D2BC00F04011 /* continue_button_en@2x.png in Resources */,
 				2FDFDB3C1902C25700EA07B8 /* UMSCommentDetailController.xib in Resources */,
 				2F3BF46B190028BF00D8DCDF /* InfoPlist.strings in Resources */,
 				2FDFDB441902C25700EA07B8 /* UMSocialSDKResourcesNew.bundle in Resources */,
@@ -719,6 +746,7 @@
 				2FDFDB431902C25700EA07B8 /* UMSShareListController.xib in Resources */,
 				2FDFDB3A1902C25700EA07B8 /* UMSocialLocalizable.strings in Resources */,
 				2F1D087E19040461008B9899 /* bra_F@2x.png in Resources */,
+				2F3E0B521906D2BC00F04011 /* comment_button_en@2x.png in Resources */,
 				2F1D088219040461008B9899 /* bra_J@2x.png in Resources */,
 				2F3BF476190028BF00D8DCDF /* Images.xcassets in Resources */,
 				2F3BF4A019002A0200D8DCDF /* GameViewController.xib in Resources */,

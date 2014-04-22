@@ -245,6 +245,7 @@ typedef struct{
 - (void)handleDownGesture
 {
     int col, row;
+    int additionalAnimationCount = 0;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (col = 0; col < gameDimension; col++) {
@@ -275,6 +276,7 @@ typedef struct{
                         
                         [Utilies playSound:@"sound_2"];
                         [self updateScore:temp_neighborPieceState];
+                        additionalAnimationCount++;
                         // create a moving animation item.
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x, temp.center.y - (temp_row - temp_aviablePos) * (pieceSize + marginWidth));
@@ -288,6 +290,16 @@ typedef struct{
                             
                             //TODO:
                             // do animation;
+                            [UIView animateWithDuration:timeDuration
+                                                  delay:0
+                                                options:UIViewAnimationOptionAllowUserInteraction
+                                             animations:^{
+                                                 pieces[temp_aviablePos][temp_col].transform=CGAffineTransformMakeScale(1.2, 1.2);
+                                             }
+                                             completion:^(BOOL finished){
+                                                 [self animationFinished];
+                                                 pieces[temp_aviablePos][temp_col].transform=CGAffineTransformIdentity;
+                                             }];
                             
                             
                         }];
@@ -343,9 +355,11 @@ typedef struct{
         UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
             randomlyGeneratedPiece.alpha = 0;
+            randomlyGeneratedPiece.transform = CGAffineTransformMakeScale(0.1,0.1);
             
             QBAnimationItem * generateNewPieceAnimation = [QBAnimationItem itemWithDuration:timeDuration delay:timeDuration options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseIn animations:^{
                 randomlyGeneratedPiece.alpha = 1;
+                randomlyGeneratedPiece.transform = CGAffineTransformIdentity;
             } completion:^(BOOL finished){
                 [self animationFinished];
                 
@@ -355,7 +369,7 @@ typedef struct{
     }
     QBAnimationGroup * animationMovingGroup = [QBAnimationGroup groupWithItems:animationMovingArry];
     animationMovingGroup.waitUntilDone = NO;
-    _animationCount = [animationMovingGroup.items count];
+    _animationCount = [animationMovingGroup.items count] + additionalAnimationCount;
     if (_animationCount > 0) {
         QBAnimationSequence * sequence = [QBAnimationSequence sequenceWithAnimationGroups:[NSArray arrayWithObjects:animationMovingGroup , nil]];
         [sequence start];
@@ -378,6 +392,7 @@ typedef struct{
 - (void)handleUpGesture
 {
     int col, row;
+    int additionalAnimationCount = 0;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (col = 0; col < gameDimension; col++) {
@@ -404,6 +419,7 @@ typedef struct{
                         
                         [Utilies playSound:@"sound_2"];
                         [self updateScore:temp_neighborPieceState];
+                        additionalAnimationCount++;
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x, temp.center.y - (temp_row - temp_aviablePos) * (pieceSize + marginWidth));
                         } completion:^(BOOL finished){
@@ -414,6 +430,16 @@ typedef struct{
                             pieces[temp_aviablePos][temp_col] = [self generateNewPiece:temp_aviablePos andCol:temp_col withState:temp_neighborPieceState + 1];
                             
                             // do animation;
+                            [UIView animateWithDuration:timeDuration
+                                                  delay:0
+                                                options:UIViewAnimationOptionAllowUserInteraction
+                                             animations:^{
+                                                 pieces[temp_aviablePos][temp_col].transform=CGAffineTransformMakeScale(1.2, 1.2);
+                                             }
+                                             completion:^(BOOL finished){
+                                                 [self animationFinished];
+                                                 pieces[temp_aviablePos][temp_col].transform=CGAffineTransformIdentity;
+                                             }];
                             
                             
                         }];
@@ -466,10 +492,12 @@ typedef struct{
         UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
             randomlyGeneratedPiece.alpha = 0;
+            randomlyGeneratedPiece.transform = CGAffineTransformMakeScale(0.1,0.1);
             
             QBAnimationItem * generateNewPieceAnimation = [QBAnimationItem itemWithDuration:timeDuration delay:timeDuration options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseIn animations:^{
                 
                 randomlyGeneratedPiece.alpha = 1;
+                randomlyGeneratedPiece.transform = CGAffineTransformIdentity;
             } completion:^(BOOL finished){
                 [self animationFinished];
                 
@@ -481,7 +509,7 @@ typedef struct{
     }
     QBAnimationGroup * animationMovingGroup = [QBAnimationGroup groupWithItems:animationMovingArry];
     animationMovingGroup.waitUntilDone = NO;
-    _animationCount = [animationMovingGroup.items count];
+    _animationCount = [animationMovingGroup.items count] + additionalAnimationCount;
     if (_animationCount > 0) {
         QBAnimationSequence * sequence = [QBAnimationSequence sequenceWithAnimationGroups:[NSArray arrayWithObjects:animationMovingGroup , nil]];
         [sequence start];
@@ -504,6 +532,7 @@ typedef struct{
 - (void)handleLeftGesture
 {
     int col, row;
+    int additionalAnimationCount = 0;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (row = 0; row < gameDimension; row++) {
@@ -530,6 +559,7 @@ typedef struct{
                         UIImageView * temp_late = pieces[row][aviablePos];
                         [Utilies playSound:@"sound_2"];
                         [self updateScore:temp_neighborPieceState];
+                        additionalAnimationCount++;
                         
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x - (temp_col - temp_aviablePos) * (pieceSize + marginWidth), temp.center.y);
@@ -540,6 +570,18 @@ typedef struct{
                             pieces[temp_row][temp_aviablePos] = [self generateNewPiece:temp_row andCol:temp_aviablePos withState:temp_neighborPieceState + 1];
                             
                             // do animation;
+                            
+                            [UIView animateWithDuration:timeDuration
+                                                  delay:0
+                                                options:UIViewAnimationOptionAllowUserInteraction
+                                             animations:^{
+                                                 pieces[temp_row][temp_aviablePos].transform=CGAffineTransformMakeScale(1.2, 1.2);
+                                             }
+                                             completion:^(BOOL finished){
+                                                 [self animationFinished];
+                                                 pieces[temp_row][temp_aviablePos].transform=CGAffineTransformIdentity;
+                                             }];
+
                             
                             
                         }];
@@ -590,10 +632,12 @@ typedef struct{
         UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
             randomlyGeneratedPiece.alpha = 0;
+            randomlyGeneratedPiece.transform = CGAffineTransformMakeScale(0.1,0.1);
             
             QBAnimationItem * generateNewPieceAnimation = [QBAnimationItem itemWithDuration:timeDuration delay:timeDuration options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseIn animations:^{
                 
                 randomlyGeneratedPiece.alpha = 1;
+                randomlyGeneratedPiece.transform = CGAffineTransformIdentity;
             } completion:^(BOOL finished){
                 [self animationFinished];
                 
@@ -604,7 +648,7 @@ typedef struct{
     }
     QBAnimationGroup * animationMovingGroup = [QBAnimationGroup groupWithItems:animationMovingArry];
     animationMovingGroup.waitUntilDone = NO;
-    _animationCount = [animationMovingGroup.items count];
+    _animationCount = [animationMovingGroup.items count] + additionalAnimationCount;
     if (_animationCount > 0) {
         QBAnimationSequence * sequence = [QBAnimationSequence sequenceWithAnimationGroups:[NSArray arrayWithObjects:animationMovingGroup , nil]];
         [sequence start];
@@ -628,6 +672,7 @@ typedef struct{
 - (void)handleRightGesture
 {
     int col, row;
+    int additionalAnimationCount = 0;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (row = 0; row < gameDimension; row++) {
@@ -654,6 +699,7 @@ typedef struct{
                         
                         [Utilies playSound:@"sound_2"];
                         [self updateScore:temp_neighborPieceState];
+                        additionalAnimationCount++;
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x - (temp_col - temp_aviablePos) * (pieceSize + marginWidth), temp.center.y);
                         } completion:^(BOOL finished){
@@ -663,6 +709,16 @@ typedef struct{
                             pieces[temp_row][temp_aviablePos] = [self generateNewPiece:temp_row andCol:temp_aviablePos withState:temp_neighborPieceState + 1];
                             
                             // do animation;
+                            [UIView animateWithDuration:timeDuration
+                                                  delay:0
+                                                options:UIViewAnimationOptionAllowUserInteraction
+                                             animations:^{
+                                                 pieces[temp_row][temp_aviablePos].transform=CGAffineTransformMakeScale(1.2, 1.2);
+                                             }
+                                             completion:^(BOOL finished){
+                                                 [self animationFinished];
+                                                 pieces[temp_row][temp_aviablePos].transform=CGAffineTransformIdentity;
+                                             }];
                             
                             
                         }];
@@ -714,10 +770,12 @@ typedef struct{
         UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
             randomlyGeneratedPiece.alpha = 0;
+            randomlyGeneratedPiece.transform = CGAffineTransformMakeScale(0.1,0.1);
             
             QBAnimationItem * generateNewPieceAnimation = [QBAnimationItem itemWithDuration:timeDuration delay:timeDuration options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseIn animations:^{
                 
                 randomlyGeneratedPiece.alpha = 1;
+                randomlyGeneratedPiece.transform = CGAffineTransformIdentity;
             } completion:^(BOOL finished){
                 [self animationFinished];
                 
@@ -728,7 +786,7 @@ typedef struct{
     }
     QBAnimationGroup * animationMovingGroup = [QBAnimationGroup groupWithItems:animationMovingArry];
     animationMovingGroup.waitUntilDone = NO;
-    _animationCount = [animationMovingGroup.items count];
+    _animationCount = [animationMovingGroup.items count] + additionalAnimationCount;
     if (_animationCount > 0) {
         QBAnimationSequence * sequence = [QBAnimationSequence sequenceWithAnimationGroups:[NSArray arrayWithObjects:animationMovingGroup , nil]];
         [sequence start];

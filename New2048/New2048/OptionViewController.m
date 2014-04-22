@@ -14,10 +14,14 @@
     
     __weak UIButton * _restartGame;
     __weak UIButton * _rate;
+    __weak UIButton * _continueGame;
+    __weak UIImageView * _settingTitle;
 }
 
 @property(nonatomic, weak) IBOutlet UIButton * restartGame;
 @property(nonatomic, weak) IBOutlet UIButton * rate;
+@property(nonatomic, weak) IBOutlet UIButton * continueGame;;
+@property(nonatomic, weak) IBOutlet UIImageView * settingTitle;
 
 - (IBAction)resumeGame:(id)sender;
 - (IBAction)anotherGame:(id)sender;
@@ -30,6 +34,8 @@
 @synthesize delegate = _delegate;
 @synthesize restartGame = _restartGame;
 @synthesize rate = _rate;
+@synthesize settingTitle = _settingTitle;
+@synthesize continueGame = _continueGame;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,14 +51,19 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:1 green:0.94 blue:0.81 alpha:1];
     
+    [_settingTitle setImage:[UIImage imageNamed:NSLocalizedString(@"SettingTitle", nil)]];
+    [_continueGame setImage:[UIImage imageNamed:NSLocalizedString(@"ContinueGame", nil)] forState:UIControlStateNormal];
+    [_rate setImage:[UIImage imageNamed:NSLocalizedString(@"Rate", nil)] forState:UIControlStateNormal];
+    [_restartGame setImage:[UIImage imageNamed:NSLocalizedString(@"RestartGame", nil)] forState:UIControlStateNormal];
+    
     if (IS_IPHONE5) {
-        _restartGame.center = CGPointMake(160, IPhone5Height - 92);
-        _rate.center = CGPointMake(160, IPhone5Height - 165);
+        _restartGame.center = CGPointMake(160, IPhone5Height - 165);
+        _rate.center = CGPointMake(160, IPhone5Height - 92);
     }
     else
     {
-        _restartGame.center = CGPointMake(160, IPhone4Height - 92);
-        _rate.center = CGPointMake(160, IPhone4Height - 165);
+        _restartGame.center = CGPointMake(160, IPhone4Height - 165);
+        _rate.center = CGPointMake(160, IPhone4Height - 92);
     }
 
     //self.view.userInteractionEnabled = NO;

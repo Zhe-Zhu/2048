@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameOverViewController">
             <connections>
                 <outlet property="imageView" destination="ZJe-ua-0aJ" id="g2N-fF-Yot"/>
+                <outlet property="imageViewTitle" destination="MWL-aF-xfh" id="g38-0E-VdI"/>
                 <outlet property="levelLabel" destination="wVE-Zd-wJ3" id="ae9-B5-Rtu"/>
                 <outlet property="restart" destination="wem-3M-U6v" id="uZy-Zp-e3R"/>
                 <outlet property="scoreLabel" destination="gAc-Zn-QRo" id="6cu-wT-fme"/>

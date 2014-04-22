@@ -15,11 +15,13 @@
     __weak id<BeginNewGameDelegate> _delegate;
     __weak UIButton * _share;
     __weak UIButton * _restart;
+    __weak UIImageView * _gameOverTitle;
     int _score;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewTitle;
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 @property (weak, nonatomic) IBOutlet UIButton * share;
 @property (weak, nonatomic) IBOutlet UIButton * restart;
@@ -34,6 +36,7 @@
 @synthesize score = _score;
 @synthesize share = _share;
 @synthesize restart = _restart;
+@synthesize imageViewTitle = _imageViewTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,6 +57,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:1 green:0.94 blue:0.81 alpha:1];
     [_scoreLabel setText:[NSString stringWithFormat:@"%d",_score]];
+    
+    [_imageViewTitle setImage:[UIImage imageNamed:NSLocalizedString(@"GameOverTitle", nil)]];
+    [_share setImage:[UIImage imageNamed:NSLocalizedString(@"Share", nil)] forState:UIControlStateNormal];
+    [_restart setImage:[UIImage imageNamed:NSLocalizedString(@"NewGame", nil)] forState:UIControlStateNormal];
     // Do any additional setup after loading the view from its nib.
     
     // adjust the share and restart position.
