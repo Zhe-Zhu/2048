@@ -9,6 +9,10 @@
 #import "New2048AppDelegate.h"
 #import "GameViewController.h"
 #import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import "UMSocialQQHandler.h"
 
 @interface New2048AppDelegate ()
 {
@@ -173,7 +177,9 @@
 {
     //设置微信AppId，url地址传nil，将默认使用友盟的网址
     //需要#import "UMSocialWechatHandler.h"
-    //[UMSocialWechatHandler setWXAppId:kWeiXinID url:nil];
+    [UMSocialWechatHandler setWXAppId:WeiXinAppID url:@"http://weibo.com/ashstudio"];
+    
+    [UMSocialQQHandler setQQWithAppId:QQAppID appKey:QQAppKey url:@"http://weibo.com/ashstudio"];
     //打开Qzone的SSO开关，
     //需要#import <TencentOpenAPI/QQApiInterface.h>  #import <TencentOpenAPI/TencentOAuth.h>
     //[UMSocialConfig setSupportQzoneSSO:YES importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
@@ -183,6 +189,9 @@
     //[UMSocialConfig setQQAppId:kQQAppID url:nil importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
     //打开新浪微博的SSO开关
     [UMSocialConfig setSupportSinaSSO:YES];
+    
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
+    [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
 }
 
 //设置友盟的SSO分享的系统回调函数

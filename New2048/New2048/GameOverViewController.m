@@ -84,7 +84,8 @@
 - (IBAction)share:(id)sender {
     
     // share
-    [self shareThingsToSocialMedia:self text:@"hello" Image:nil delegate:nil];
+    // TODO:
+    [self shareThingsToSocialMedia:self text:nil Image:[UIImage imageNamed:@"bra_D"] delegate:nil];
 }
 
 - (IBAction)restartGame:(id)sender {
@@ -99,8 +100,8 @@
     [UMSocialSnsService presentSnsIconSheetView:inController
                                          appKey:UMAppKey
                                       shareText:text
-                                     shareImage:nil
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
+                                     shareImage:image
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil]
                                        delegate:delegate];
 }
 

@@ -296,7 +296,6 @@ typedef struct{
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x, temp.center.y - (temp_row - temp_aviablePos) * (pieceSize + marginWidth));
                         } completion:^(BOOL finished){
-                            [self animationFinished];
                             //remove two same pieces
                             [temp_early removeFromSuperview];
                             [temp_late removeFromSuperview];
@@ -312,9 +311,10 @@ typedef struct{
                                                  pieces[temp_aviablePos][temp_col].transform=CGAffineTransformMakeScale(1.2, 1.2);
                                              }
                                              completion:^(BOOL finished){
-                                                 [self animationFinished];
                                                  pieces[temp_aviablePos][temp_col].transform=CGAffineTransformIdentity;
+                                                 [self animationFinished];
                                              }];
+                            [self animationFinished];
                             
                             
                         }];
@@ -439,7 +439,6 @@ typedef struct{
                             temp.center = CGPointMake(temp.center.x, temp.center.y - (temp_row - temp_aviablePos) * (pieceSize + marginWidth));
                         } completion:^(BOOL finished){
                             //remove one duplicated piece
-                            [self animationFinished];
                             [temp_early removeFromSuperview];
                             [temp_late removeFromSuperview];
                             pieces[temp_aviablePos][temp_col] = [self generateNewPiece:temp_aviablePos andCol:temp_col withState:temp_neighborPieceState + 1];
@@ -452,11 +451,10 @@ typedef struct{
                                                  pieces[temp_aviablePos][temp_col].transform=CGAffineTransformMakeScale(1.2, 1.2);
                                              }
                                              completion:^(BOOL finished){
-                                                 [self animationFinished];
                                                  pieces[temp_aviablePos][temp_col].transform=CGAffineTransformIdentity;
+                                                 [self animationFinished];
                                              }];
-                            
-                            
+                            [self animationFinished];
                         }];
                         [animationMovingArry addObject:item_merging];
                         shoudGenerateNewPiece = YES;
@@ -579,7 +577,6 @@ typedef struct{
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x - (temp_col - temp_aviablePos) * (pieceSize + marginWidth), temp.center.y);
                         } completion:^(BOOL finished){
-                            [self animationFinished];
                             [temp_early removeFromSuperview];
                             [temp_late removeFromSuperview];
                             pieces[temp_row][temp_aviablePos] = [self generateNewPiece:temp_row andCol:temp_aviablePos withState:temp_neighborPieceState + 1];
@@ -593,12 +590,10 @@ typedef struct{
                                                  pieces[temp_row][temp_aviablePos].transform=CGAffineTransformMakeScale(1.2, 1.2);
                                              }
                                              completion:^(BOOL finished){
-                                                 [self animationFinished];
                                                  pieces[temp_row][temp_aviablePos].transform=CGAffineTransformIdentity;
+                                                 [self animationFinished];
                                              }];
-
-                            
-                            
+                            [self animationFinished];
                         }];
                         [animationMovingArry addObject:item_merging];
                         shoudGenerateNewPiece = YES;
@@ -607,7 +602,6 @@ typedef struct{
                         neighborPieceState = StateNone;
                         gameState[row][col] = StateNone;
                         pieces[row][col] = nil;
-                        
                     }
                 }
                 else
@@ -718,7 +712,6 @@ typedef struct{
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                             temp.center = CGPointMake(temp.center.x - (temp_col - temp_aviablePos) * (pieceSize + marginWidth), temp.center.y);
                         } completion:^(BOOL finished){
-                            [self animationFinished];
                             [temp_early removeFromSuperview];
                             [temp_late removeFromSuperview];
                             pieces[temp_row][temp_aviablePos] = [self generateNewPiece:temp_row andCol:temp_aviablePos withState:temp_neighborPieceState + 1];
@@ -731,11 +724,10 @@ typedef struct{
                                                  pieces[temp_row][temp_aviablePos].transform=CGAffineTransformMakeScale(1.2, 1.2);
                                              }
                                              completion:^(BOOL finished){
-                                                 [self animationFinished];
                                                  pieces[temp_row][temp_aviablePos].transform=CGAffineTransformIdentity;
+                                                 [self animationFinished];
                                              }];
-                            
-                            
+                            [self animationFinished];
                         }];
                         [animationMovingArry addObject:item_merging];
                         shoudGenerateNewPiece = YES;
@@ -1021,7 +1013,14 @@ typedef struct{
     _finishedCount++;
     if (_finishedCount == _animationCount) {
         if ([_storedSequences count] > 0) {
-            [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:YES];
+            if ([self checkIsGameOver]) {
+                [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
+            }
+            else
+            {
+                [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:YES];
+                
+            }
             [_storedSequences removeObjectAtIndex:0];
         }
         if ([_storedSequences count] > 0) {
