@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18750C161907DA690066D41E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18750C151907DA690066D41E /* AudioToolbox.framework */; };
+		18750C1A1907DA790066D41E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18750C191907DA790066D41E /* StoreKit.framework */; };
 		187CDD44190545B100E51221 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187CDD46190545B100E51221 /* Localizable.strings */; };
+		187CDD4D1905687100E51221 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187CDD4C1905687100E51221 /* PassKit.framework */; };
 		2F05FF191904C11900777903 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F05FF181904C11900777903 /* libiconv.dylib */; };
 		2F05FF1B1904C15700777903 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F05FF1A1904C15700777903 /* libstdc++.dylib */; };
 		2F05FF211904CDAF00777903 /* Utilies.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F05FF201904CDAF00777903 /* Utilies.m */; };
@@ -76,7 +79,6 @@
 		2FBF3C6F1903BC3700C2D579 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C6E1903BC3700C2D579 /* CoreText.framework */; };
 		2FBF3C711903BC3D00C2D579 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C701903BC3D00C2D579 /* AdSupport.framework */; };
 		2FBF3C731903BC4300C2D579 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C721903BC4300C2D579 /* CoreLocation.framework */; };
-		2FBF3C771903BC5200C2D579 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C761903BC5200C2D579 /* PassKit.framework */; };
 		2FBF3C791903BC5B00C2D579 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C781903BC5B00C2D579 /* Social.framework */; };
 		2FBF3C7B1903BC6600C2D579 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C7A1903BC6600C2D579 /* EventKit.framework */; };
 		2FBF3C7D1903BC6E00C2D579 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF3C7C1903BC6E00C2D579 /* AVFoundation.framework */; };
@@ -126,9 +128,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18750C151907DA690066D41E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		18750C191907DA790066D41E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		187CDD3E1905454700E51221 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		187CDD45190545B100E51221 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		187CDD47190545B600E51221 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		187CDD491905683300E51221 /* New2048.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = New2048.entitlements; sourceTree = "<group>"; };
+		187CDD4C1905687100E51221 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		2F05FF181904C11900777903 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		2F05FF1A1904C15700777903 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		2F05FF1F1904CDAF00777903 /* Utilies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilies.h; sourceTree = "<group>"; };
@@ -209,7 +215,6 @@
 		2FBF3C6E1903BC3700C2D579 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		2FBF3C701903BC3D00C2D579 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		2FBF3C721903BC4300C2D579 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		2FBF3C761903BC5200C2D579 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		2FBF3C781903BC5B00C2D579 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		2FBF3C7A1903BC6600C2D579 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		2FBF3C7C1903BC6E00C2D579 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -280,13 +285,14 @@
 				2FBF3C831903BCB500C2D579 /* SystemConfiguration.framework in Frameworks */,
 				2F05FF191904C11900777903 /* libiconv.dylib in Frameworks */,
 				2FBF3C5D1903BBF000C2D579 /* Security.framework in Frameworks */,
+				187CDD4D1905687100E51221 /* PassKit.framework in Frameworks */,
 				2FBF3C8F1903BFAC00C2D579 /* libDomobAdSDK.a in Frameworks */,
 				2F3BF463190028BF00D8DCDF /* UIKit.framework in Frameworks */,
 				2F3BF45F190028BE00D8DCDF /* Foundation.framework in Frameworks */,
 				2FBF3C7D1903BC6E00C2D579 /* AVFoundation.framework in Frameworks */,
 				2FBF3C7B1903BC6600C2D579 /* EventKit.framework in Frameworks */,
 				2FBF3C791903BC5B00C2D579 /* Social.framework in Frameworks */,
-				2FBF3C771903BC5200C2D579 /* PassKit.framework in Frameworks */,
+				18750C1A1907DA790066D41E /* StoreKit.framework in Frameworks */,
 				2FBF3C731903BC4300C2D579 /* CoreLocation.framework in Frameworks */,
 				2FBF3C711903BC3D00C2D579 /* AdSupport.framework in Frameworks */,
 				2FBF3C6F1903BC3700C2D579 /* CoreText.framework in Frameworks */,
@@ -295,6 +301,7 @@
 				2FBF3C691903BC1E00C2D579 /* CoreMedia.framework in Frameworks */,
 				2FBF3C651903BC0D00C2D579 /* MobileCoreServices.framework in Frameworks */,
 				2FBF3C631903BC0500C2D579 /* CFNetwork.framework in Frameworks */,
+				18750C161907DA690066D41E /* AudioToolbox.framework in Frameworks */,
 				2FBF3C611903BBFF00C2D579 /* MessageUI.framework in Frameworks */,
 				2FDFDB3B1902C25700EA07B8 /* libUMSocial_Sdk_3.3.7.a in Frameworks */,
 				2F3BF465190028BF00D8DCDF /* CoreData.framework in Frameworks */,
@@ -348,6 +355,9 @@
 		2F3BF45D190028BE00D8DCDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18750C191907DA790066D41E /* StoreKit.framework */,
+				18750C151907DA690066D41E /* AudioToolbox.framework */,
+				187CDD4C1905687100E51221 /* PassKit.framework */,
 				2F05FF1A1904C15700777903 /* libstdc++.dylib */,
 				2F05FF181904C11900777903 /* libiconv.dylib */,
 				2FBF3C821903BCB500C2D579 /* SystemConfiguration.framework */,
@@ -355,7 +365,6 @@
 				2FBF3C7C1903BC6E00C2D579 /* AVFoundation.framework */,
 				2FBF3C7A1903BC6600C2D579 /* EventKit.framework */,
 				2FBF3C781903BC5B00C2D579 /* Social.framework */,
-				2FBF3C761903BC5200C2D579 /* PassKit.framework */,
 				2FBF3C721903BC4300C2D579 /* CoreLocation.framework */,
 				2FBF3C701903BC3D00C2D579 /* AdSupport.framework */,
 				2FBF3C6E1903BC3700C2D579 /* CoreText.framework */,
@@ -380,6 +389,7 @@
 		2F3BF466190028BF00D8DCDF /* New2048 */ = {
 			isa = PBXGroup;
 			children = (
+				187CDD491905683300E51221 /* New2048.entitlements */,
 				2F05FF221904DC0C00777903 /* Sound */,
 				2FBF3C901903C34400C2D579 /* UI */,
 				2FBF3C841903BFAC00C2D579 /* DomobAdSDK */,
@@ -662,9 +672,15 @@
 						DevelopmentTeam = 87N4K2M736;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.InterAppAudio = {
+								enabled = 1;
+							};
+							com.apple.Passbook = {
+								enabled = 1;
+							};
+							com.apple.iOS = {
 								enabled = 0;
 							};
 						};
@@ -937,6 +953,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = New2048/New2048.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -963,6 +980,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = New2048/New2048.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
