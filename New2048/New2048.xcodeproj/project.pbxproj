@@ -34,6 +34,7 @@
 		2F1D088119040461008B9899 /* bra_I@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F1D087619040461008B9899 /* bra_I@2x.png */; };
 		2F1D088219040461008B9899 /* bra_J@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F1D087719040461008B9899 /* bra_J@2x.png */; };
 		2F1D088319040461008B9899 /* bra_K@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F1D087819040461008B9899 /* bra_K@2x.png */; };
+		2F21A9521907F8F80095C3B2 /* toptitle_label@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F21A9511907F8F80095C3B2 /* toptitle_label@2x.png */; };
 		2F3BF45F190028BE00D8DCDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BF45E190028BE00D8DCDF /* Foundation.framework */; };
 		2F3BF461190028BE00D8DCDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BF460190028BE00D8DCDF /* CoreGraphics.framework */; };
 		2F3BF463190028BF00D8DCDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BF462190028BF00D8DCDF /* UIKit.framework */; };
@@ -159,6 +160,7 @@
 		2F1D087619040461008B9899 /* bra_I@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bra_I@2x.png"; sourceTree = "<group>"; };
 		2F1D087719040461008B9899 /* bra_J@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bra_J@2x.png"; sourceTree = "<group>"; };
 		2F1D087819040461008B9899 /* bra_K@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bra_K@2x.png"; sourceTree = "<group>"; };
+		2F21A9511907F8F80095C3B2 /* toptitle_label@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toptitle_label@2x.png"; sourceTree = "<group>"; };
 		2F3BF45B190028BE00D8DCDF /* New2048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = New2048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3BF45E190028BE00D8DCDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F3BF460190028BE00D8DCDF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -521,6 +523,7 @@
 		2FBF3C921903C34500C2D579 /* ImagesInGameViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2F21A9511907F8F80095C3B2 /* toptitle_label@2x.png */,
 				2F1D086E19040461008B9899 /* bra_A@2x.png */,
 				2F1D086F19040461008B9899 /* bra_B@2x.png */,
 				2F1D087019040461008B9899 /* bra_C@2x.png */,
@@ -724,6 +727,7 @@
 				2F1D087919040461008B9899 /* bra_A@2x.png in Resources */,
 				2F3E0B4B1906CF2800F04011 /* game_over_title_en@2x.png in Resources */,
 				2FBF3CA31903C48900C2D579 /* chess_2@2x.png in Resources */,
+				2F21A9521907F8F80095C3B2 /* toptitle_label@2x.png in Resources */,
 				2F1D088319040461008B9899 /* bra_K@2x.png in Resources */,
 				2FDFDB401902C25700EA07B8 /* UMShareEditViewControlleriPad.xib in Resources */,
 				2F1D088019040461008B9899 /* bra_H@2x.png in Resources */,

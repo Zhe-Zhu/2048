@@ -52,6 +52,7 @@ typedef struct{
     __weak UILabel * _score;
     __weak UILabel * _topTitle;
     __weak UIButton * _option;
+    __weak UIImageView * _bestView;
     __weak UIImageView * _gameBackgroundImageView;
     
     // store the init point of each gesture.
@@ -81,6 +82,7 @@ typedef struct{
 @property(nonatomic, weak) IBOutlet UILabel * topTitle;
 @property(nonatomic, weak) IBOutlet UIButton* option;
 @property(nonatomic, weak) IBOutlet UIImageView* gameBackgroundImageView;
+@property(nonatomic, weak) IBOutlet UIImageView* bestView;
 @property(nonatomic, assign) NSInteger finishedCount;
 @property(nonatomic, assign) NSInteger animationCount;
 @property(nonatomic, strong) NSMutableArray * storedSequences;
@@ -121,6 +123,7 @@ typedef struct{
 @synthesize option = _option;
 @synthesize topTitle = _topTitle;
 @synthesize gameBackgroundImageView = _gameBackgroundImageView;
+@synthesize bestView = _bestView;
 @synthesize finishedCount = _finishedCount;
 @synthesize animationCount = _animationCount;
 @synthesize storedSequences = _storedSequences;
@@ -162,6 +165,18 @@ typedef struct{
     _score.textColor = [UIColor colorWithRed:0.97 green:0.49 blue:0.21 alpha:1];
     _score.text = [NSString stringWithFormat:@"%d", _currentScore];
     _score.font = [UIFont fontWithName:@"Verdana-Bold" size:36];
+    _bestView.image = [UIImage imageNamed:NSLocalizedString(@"BestView", nil)];
+    
+    // adjust the position of _gameBackgroundImageView.
+    if (IS_IPHONE5) {
+        _gameBackgroundImageView.center = CGPointMake(160, 300);
+    }
+    else
+    {
+        _gameBackgroundImageView.center = CGPointMake(160, 267);
+    }
+
+    
     
     // update the UI according to the game state
     [self updatePieces];

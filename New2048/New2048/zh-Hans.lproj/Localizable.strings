@@ -12,3 +12,4 @@
 "Rate" = "comment_button";
 "RestartGame" = "restart_button";
 "ContinueGame" = "continue_button";
+"BestView" = "toptitle_label";

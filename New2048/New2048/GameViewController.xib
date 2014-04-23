@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController">
             <connections>
+                <outlet property="bestView" destination="L1L-DQ-cNL" id="Uui-cd-wTl"/>
                 <outlet property="gameBackgroundImageView" destination="QTX-0q-8We" id="KAU-El-nt0"/>
                 <outlet property="option" destination="Zxl-pT-CPy" id="ESU-XG-ND4"/>
                 <outlet property="score" destination="6Qj-qV-1jl" id="eFe-Am-35W"/>
@@ -44,12 +45,16 @@
                         <action selector="setting:" destination="-1" eventType="touchUpInside" id="6yP-NV-8vO"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最高2048" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J03-57-p5w">
-                    <rect key="frame" x="0.0" y="0.0" width="146" height="32"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2048" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J03-57-p5w">
+                    <rect key="frame" x="56" y="1" width="82" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toptitle_label.png" id="L1L-DQ-cNL">
+                    <rect key="frame" x="6" y="6" width="45" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -59,5 +64,6 @@
         <image name="board_background.png" width="301" height="301"/>
         <image name="setting_icon.png" width="44" height="38"/>
         <image name="toolbar_background.png" width="320" height="54"/>
+        <image name="toptitle_label.png" width="45" height="22"/>
     </resources>
 </document>
