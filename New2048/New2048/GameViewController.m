@@ -860,6 +860,7 @@ typedef struct{
 
 
 #pragma mark -- Generate Pieces and Animation Related --
+// generate the StateA and StateB according the ratio 8:1
 - (UIImageView *)randomlyGeneratePiece
 {
     position pos = [self randomlyChoosePos];
@@ -870,17 +871,26 @@ typedef struct{
     else
     {
         // generate a new piece with StateA.
+        int randomNum = arc4random() % 9;
+        NSString * imageLevel = imageLevelA;
+        NSString * barLevel = barLevelA;
+        NSString * barLevelText = @"A";
+        if (randomNum == 0) {
+            imageLevel = imageLevelB;
+            barLevel = barLevelB;
+            barLevelText = @"B";
+        }
         gameState[pos.x][pos.y] = StateA;
         UIImageView * randomlyGeneratedPiece = [[UIImageView alloc] initWithFrame:CGRectMake(marginWidth + pos.y  * (marginWidth + pieceSize), marginWidth + pos.x  * (marginWidth + pieceSize), pieceSize, pieceSize)];
-        randomlyGeneratedPiece.image = [UIImage imageNamed:imageLevelA];
+        randomlyGeneratedPiece.image = [UIImage imageNamed:imageLevel];
         UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 23, barSize, barSize)];
         UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.5, 3, 20, 16)];
         barLabel.textAlignment = NSTextAlignmentCenter;
         barLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:14];
         [randomlyGeneratedPiece addSubview:barView];
         [randomlyGeneratedPiece addSubview:barLabel];
-        barView.image = [UIImage imageNamed:barLevelA];
-        barLabel.text = @"A";
+        barView.image = [UIImage imageNamed:barLevel];
+        barLabel.text = barLevelText;
         pieces[pos.x][pos.y] = randomlyGeneratedPiece;
         [_gameBackgroundImageView addSubview:randomlyGeneratedPiece];
         [self checkIsGameOverAndJumpToGameOverView];
