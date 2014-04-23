@@ -11,6 +11,7 @@
 #import "DMTools.h"
 #import "OptionViewController.h"
 #import "GameOverViewController.h"
+#import "GADBannerViewDelegate.h"
 
 // the main view of the game.
 
@@ -29,6 +30,6 @@ enum PieceState{
     StateK
 };
 
-@interface GameViewController : UIViewController<DMAdViewDelegate, BeginNewGameDelegate>
+@interface GameViewController : UIViewController<DMAdViewDelegate, BeginNewGameDelegate, GADBannerViewDelegate>
 
 @end
