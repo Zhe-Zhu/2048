@@ -70,8 +70,8 @@
     }
     else
     {
-        _restart.center = CGPointMake(160, IPhone4Height - 92);
-        _share.center = CGPointMake(160, IPhone4Height - 165);
+        _restart.center = CGPointMake(160, IPhone4Height - 92 + 20);
+        _share.center = CGPointMake(160, IPhone4Height - 165 + 20);
     }
 }
 
