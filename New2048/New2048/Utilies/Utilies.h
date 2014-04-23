@@ -11,5 +11,5 @@
 @interface Utilies : NSObject
 
 + (void)playSound:(NSString *)soundName;
-
++ (BOOL)isChineseUser;
 @end

@@ -26,6 +26,8 @@
 #import "Global.h"
 #import "DatabaseAccessor.h"
 #import "Utilies.h"
+#import "GADBannerView.h"
+#import "GADRequest.h"
 
 #define pieceSize 59
 #define barSize 30
@@ -88,6 +90,7 @@ typedef struct{
 @property(nonatomic, strong) NSMutableArray * storedSequences;
 @property(nonatomic, weak) DMAdView *dmAdView;
 @property(nonatomic, strong) OptionViewController *optionViewController;
+@property(nonatomic, strong) GADBannerView *adBanner;
 
 // update the game state.
 - (void)updateScore:(enum PieceState)score;
@@ -182,7 +185,12 @@ typedef struct{
     [self updatePieces];
     
     // add ad view
-    [self initDmAdView];
+    if ([Utilies isChineseUser]) {
+        [self initDmAdView];
+    }
+    else{
+        [self initAdMobView];
+    }
     _didJustLaunch = YES;
 }
 
@@ -190,18 +198,6 @@ typedef struct{
 {
     [super viewWillAppear:animated];
     
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-//    if (!IS_OS_7_OR_LATER) {
-//        if (_didJustLaunch) {
-//            _didJustLaunch = NO;
-//            CGRect frame = _gameBackgroundImageView.frame;
-//            _gameBackgroundImageView.frame = CGRectMake(frame.origin.x, frame.origin.y - 44, frame.size.width, frame.size.height);
-//        }
-//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -1231,6 +1227,49 @@ typedef struct{
     _dmAdView.delegate = nil;
     _dmAdView.rootViewController = nil;
     [_dmAdView removeFromSuperview];
+}
+
+#pragma mark -- AdMob --
+- (void)initAdMobView
+{
+    CGSize winSize = [UIScreen mainScreen].bounds.size;
+    CGPoint origin = CGPointMake(0.0, winSize.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height);
+    
+    // Use predefined GADAdSize constants to define the GADBannerView.
+    self.adBanner = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:origin];
+    
+    // Note: Edit SampleConstants.h to provide a definition for kSampleAdUnitID before compiling.
+    self.adBanner.adUnitID = @"a15357c6c988f4f";
+    self.adBanner.delegate = self;
+    self.adBanner.rootViewController = self;
+    [self.view addSubview:self.adBanner];
+    [self.adBanner loadRequest:[self request]];
+}
+
+#pragma mark GADRequest generation
+
+- (GADRequest *)request {
+    GADRequest *request = [GADRequest request];
+    
+    // Make the request for a test ad. Put in an identifier for the simulator as well as any devices
+    // you want to receive test ads.
+    request.testDevices = @[
+                            // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
+                            // the console when the app is launched.
+                            GAD_SIMULATOR_ID
+                            ];
+    return request;
+}
+
+#pragma mark GADBannerViewDelegate implementation
+
+// We've received an ad successfully.
+- (void)adViewDidReceiveAd:(GADBannerView *)adView {
+    NSLog(@"Received ad successfully");
+}
+
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"Failed to receive ad with error: %@", [error localizedFailureReason]);
 }
 
 #pragma mark -- DuoMeng AD --
