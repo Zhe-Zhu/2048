@@ -1131,7 +1131,7 @@ typedef struct{
     _gameOverViewController.delegate = self;
     _gameOverViewController.score = _currentScore;
     [self.view addSubview:_gameOverViewController.view];
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:1 animations:^{
         _gameOverViewController.view.alpha = 1.0;
     } completion:^(BOOL finished) {
         
