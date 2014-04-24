@@ -786,6 +786,7 @@
 				ORGANIZATIONNAME = "Chen Xiangwen";
 				TargetAttributes = {
 					2F3BF45A190028BE00D8DCDF = {
+						DevelopmentTeam = 87N4K2M736;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
