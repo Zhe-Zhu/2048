@@ -13,5 +13,6 @@
 
 @property(nonatomic, weak) id<BeginNewGameDelegate> delegate;
 @property(nonatomic, assign) int score;
+@property(nonatomic, strong) NSString * titleStr;
 
 @end

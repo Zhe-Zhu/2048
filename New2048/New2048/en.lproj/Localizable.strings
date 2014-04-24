@@ -12,4 +12,14 @@
 "Rate" = "comment_button_en";
 "RestartGame" = "restart_button_en";
 "ContinueGame" = "continue_button_en";
-"BestView" = "toptitle_label";
+"BestView" = "toptitle_label_en";
+"LevelBTitle" = "太平公主";
+"LevelCTitle" = "小风小浪";
+"LevelDTitle" = "有点料儿";
+"LevelETitle" = "山峦起伏";
+"LevelFTitle" = "波涛胸涌";
+"LevelGTitle" = "忍ru负重";
+"LevelHTitle" = "胸怀大志";
+"LevelITitle" = "奇耻大ru";
+"LevelJTitle" = "ru量惊人";
+"LevelKTitle" = "我以我胸定乾坤";

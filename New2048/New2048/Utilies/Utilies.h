@@ -12,4 +12,5 @@
 
 + (void)playSound:(NSString *)soundName;
 + (BOOL)isChineseUser;
++ (UIImage *)addTextInImage:(UIImage *)image withText:(NSString *)text inPosition:(CGRect)rect;
 @end

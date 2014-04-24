@@ -9,6 +9,7 @@
 #import "GameOverViewController.h"
 #import "UMSocial.h"
 #import "Global.h"
+#import "Utilies.h"
 
 @interface GameOverViewController ()
 {
@@ -16,6 +17,7 @@
     __weak UIButton * _share;
     __weak UIButton * _restart;
     __weak UIImageView * _gameOverTitle;
+    NSString * _titleStr;
     int _score;
 }
 
@@ -37,6 +39,7 @@
 @synthesize share = _share;
 @synthesize restart = _restart;
 @synthesize imageViewTitle = _imageViewTitle;
+@synthesize titleStr = _titleStr;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,11 +55,18 @@
     _score = score;
     [_scoreLabel setText:[NSString stringWithFormat:@"%d",score]];
 }
+
+- (void)setTitleStr:(NSString *)titleStr
+{
+    _titleStr = titleStr;
+    [_levelLabel setText:_titleStr];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:1 green:0.94 blue:0.81 alpha:1];
     [_scoreLabel setText:[NSString stringWithFormat:@"%d",_score]];
+    [_levelLabel setText:_titleStr];
     
     [_imageViewTitle setImage:[UIImage imageNamed:NSLocalizedString(@"GameOverTitle", nil)]];
     [_share setImage:[UIImage imageNamed:NSLocalizedString(@"Share", nil)] forState:UIControlStateNormal];
@@ -85,7 +95,10 @@
     
     // share
     // TODO:
-    [self shareThingsToSocialMedia:self text:nil Image:[UIImage imageNamed:@"bra_D"] delegate:nil];
+    UIImage * sharedImage = [Utilies addTextInImage:[UIImage imageNamed:@"demo_share"] withText:[NSString stringWithFormat:@"%d", _score] inPosition:CGRectMake(0, 50, 320, 100)];
+    UIImageView * imageView = [[UIImageView alloc] initWithImage:sharedImage];
+    //[self.view addSubview:imageView];
+    [self shareThingsToSocialMedia:self text:nil Image:sharedImage delegate:nil];
 }
 
 - (IBAction)restartGame:(id)sender {

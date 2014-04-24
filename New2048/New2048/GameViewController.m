@@ -103,6 +103,7 @@ typedef struct{
 - (position)randomlyChoosePos;
 - (void)jumpToGameOverView;
 - (void)checkIsGameOverAndJumpToGameOverView;
+- (NSString *)getLevelTitle;
 
 
 - (UIImageView *)randomlyGeneratePiece;
@@ -257,6 +258,7 @@ typedef struct{
 {
     int col, row;
     int additionalAnimationCount = 0;
+    BOOL isPlayingMergingSound = NO;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (col = 0; col < gameDimension; col++) {
@@ -285,7 +287,10 @@ typedef struct{
                         UIImageView * temp_early = pieces[row][col];
                         UIImageView * temp_late = pieces[aviablePos][col];
                         
-                        [Utilies playSound:@"sound_2"];
+                        if (!isPlayingMergingSound) {
+                            isPlayingMergingSound = YES;
+                            [Utilies playSound:@"sound_2"];
+                        }
                         [self updateScore:temp_neighborPieceState];
                         additionalAnimationCount++;
                         // create a moving animation item.
@@ -365,9 +370,11 @@ typedef struct{
     if (shoudGenerateNewPiece) {
         UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
+            if (!isPlayingMergingSound) {
+                [Utilies playSound:@"generatingSound"];
+            }
             randomlyGeneratedPiece.alpha = 0;
             randomlyGeneratedPiece.transform = CGAffineTransformMakeScale(0.1,0.1);
-            
             QBAnimationItem * generateNewPieceAnimation = [QBAnimationItem itemWithDuration:timeDuration delay:timeDuration options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseIn animations:^{
                 randomlyGeneratedPiece.alpha = 1;
                 randomlyGeneratedPiece.transform = CGAffineTransformIdentity;
@@ -404,6 +411,7 @@ typedef struct{
 {
     int col, row;
     int additionalAnimationCount = 0;
+    BOOL isPlayingMergingSound = NO;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (col = 0; col < gameDimension; col++) {
@@ -428,7 +436,10 @@ typedef struct{
                         UIImageView * temp_early = pieces[row][col];
                         UIImageView * temp_late = pieces[aviablePos][col];
                         
-                        [Utilies playSound:@"sound_2"];
+                        if (!isPlayingMergingSound) {
+                            isPlayingMergingSound = YES;
+                            [Utilies playSound:@"sound_2"];
+                        }
                         [self updateScore:temp_neighborPieceState];
                         additionalAnimationCount++;
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
@@ -500,6 +511,9 @@ typedef struct{
     if (shoudGenerateNewPiece) {
         UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
+            if (!isPlayingMergingSound) {
+                [Utilies playSound:@"generatingSound"];
+            }
             randomlyGeneratedPiece.alpha = 0;
             randomlyGeneratedPiece.transform = CGAffineTransformMakeScale(0.1,0.1);
             
@@ -542,6 +556,7 @@ typedef struct{
 {
     int col, row;
     int additionalAnimationCount = 0;
+    BOOL isPlayingMergingSound = NO;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (row = 0; row < gameDimension; row++) {
@@ -566,7 +581,10 @@ typedef struct{
                         enum PieceState temp_neighborPieceState = neighborPieceState;
                         UIImageView * temp_early = pieces[row][col];
                         UIImageView * temp_late = pieces[row][aviablePos];
-                        [Utilies playSound:@"sound_2"];
+                        if (!isPlayingMergingSound) {
+                            isPlayingMergingSound = YES;
+                            [Utilies playSound:@"sound_2"];
+                        }
                         [self updateScore:temp_neighborPieceState];
                         additionalAnimationCount++;
                         
@@ -636,6 +654,9 @@ typedef struct{
     if (shoudGenerateNewPiece) {
         UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
+            if (!isPlayingMergingSound) {
+                [Utilies playSound:@"generatingSound"];
+            }
             randomlyGeneratedPiece.alpha = 0;
             randomlyGeneratedPiece.transform = CGAffineTransformMakeScale(0.1,0.1);
             
@@ -678,6 +699,7 @@ typedef struct{
 {
     int col, row;
     int additionalAnimationCount = 0;
+    BOOL isPlayingMergingSound = NO;
     NSMutableArray * animationMovingArry = [[NSMutableArray alloc] init];
     BOOL shoudGenerateNewPiece = NO;
     for (row = 0; row < gameDimension; row++) {
@@ -701,8 +723,10 @@ typedef struct{
                         enum PieceState temp_neighborPieceState = neighborPieceState;
                         UIImageView * temp_early = pieces[row][col];
                         UIImageView * temp_late = pieces[row][aviablePos];
-                        
-                        [Utilies playSound:@"sound_2"];
+                        if (!isPlayingMergingSound) {
+                            isPlayingMergingSound = YES;
+                            [Utilies playSound:@"sound_2"];
+                        }
                         [self updateScore:temp_neighborPieceState];
                         additionalAnimationCount++;
                         QBAnimationItem * item_merging = [QBAnimationItem itemWithDuration:timeDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
@@ -772,6 +796,9 @@ typedef struct{
     if (shoudGenerateNewPiece) {
         UIImageView * randomlyGeneratedPiece = [self randomlyGeneratePiece];
         if (randomlyGeneratedPiece != nil) {
+            if (!isPlayingMergingSound) {
+                [Utilies playSound:@"generatingSound"];
+            }
             randomlyGeneratedPiece.alpha = 0;
             randomlyGeneratedPiece.transform = CGAffineTransformMakeScale(0.1,0.1);
             
@@ -1124,12 +1151,14 @@ typedef struct{
 
 - (void)jumpToGameOverView
 {
+    [Utilies playSound:@"finish"];
     if (_gameOverViewController == nil) {
         _gameOverViewController = [[GameOverViewController alloc] initWithNibName:@"GameOverViewController" bundle:nil];
     }
     _gameOverViewController.view.alpha = 0.0;
     _gameOverViewController.delegate = self;
     _gameOverViewController.score = _currentScore;
+    _gameOverViewController.titleStr = [self getLevelTitle];
     [self.view addSubview:_gameOverViewController.view];
     [UIView animateWithDuration:1 animations:^{
         _gameOverViewController.view.alpha = 1.0;
@@ -1231,6 +1260,87 @@ typedef struct{
             [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:2];
         }
     }
+}
+
+- (NSString *)getLevelTitle
+{
+    enum PieceState maxState = StateNone;
+    for (int i = 0; i < gameDimension; i++) {
+        for (int j = 0; j < gameDimension; j++) {
+            if (gameState[i][j] > maxState) {
+                maxState = gameState[i][j];
+            }
+        }
+    }
+    NSString *title;
+    switch (maxState) {
+        case StateNone:
+        {
+            title = NSLocalizedString(@"LevelBTitle", nil);
+            break;
+        }
+        case StateA:
+        {
+            title = NSLocalizedString(@"LevelBTitle", nil);
+            break;
+        }
+        case StateB:
+        {
+            title = NSLocalizedString(@"LevelBTitle", nil);
+            break;
+        }
+        case StateC:
+        {
+            title = NSLocalizedString(@"LevelCTitle", nil);
+            break;
+        }
+        case StateD:
+        {
+            title = NSLocalizedString(@"LevelDTitle", nil);
+            break;
+        }
+        case StateE:
+        {
+            title = NSLocalizedString(@"LevelETitle", nil);
+            break;
+        }
+        case StateF:
+        {
+            title = NSLocalizedString(@"LevelFTitle", nil);
+            break;
+        }
+        case StateG:
+        {
+            title = NSLocalizedString(@"LevelGTitle", nil);
+            break;
+        }
+        case StateH:
+        {
+            title = NSLocalizedString(@"LevelHTitle", nil);
+            break;
+        }
+        case StateI:
+        {
+            title = NSLocalizedString(@"LevelITitle", nil);
+            break;
+        }
+        case StateJ:
+        {
+            title = NSLocalizedString(@"LevelJTitle", nil);
+            break;
+        }
+        case StateK:
+        {
+            title = NSLocalizedString(@"LevelKTitle", nil);
+            break;
+        }
+        default:
+        {
+            title = NSLocalizedString(@"LevelBTitle", nil);
+            break;
+        }
+    }
+    return title;
 }
 
 - (void)dealloc

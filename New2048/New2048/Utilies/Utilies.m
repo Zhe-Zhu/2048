@@ -48,4 +48,21 @@
     }
 }
 
++ (UIImage *)addTextInImage:(UIImage *)image withText:(NSString *)text inPosition:(CGRect)rect
+{
+    UIGraphicsBeginImageContext(image.size);
+    [image drawAtPoint:CGPointZero];
+    UIColor * textColor = [UIColor blackColor];
+    UIFont * font = [UIFont fontWithName:@"Verdana-Bold" size:36];
+    NSMutableParagraphStyle *textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+    textStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    NSDictionary * dictionary = @{NSFontAttributeName: font,
+                                  NSParagraphStyleAttributeName: textStyle,
+                                  NSForegroundColorAttributeName: textColor};
+    [text drawInRect:rect withAttributes:dictionary];
+    UIImage * myImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return myImage;
+}
+
 @end

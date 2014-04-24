@@ -37,8 +37,8 @@
 #define imageLevelJ @"chess_1024"
 #define imageLevelK @"chess_2048"
 
-#define barLevelA @"bra_A"
-#define barLevelB @"bra_B"
+#define barLevelA @"temp_a"
+#define barLevelB @"temp_b"
 #define barLevelC @"bra_C"
 #define barLevelD @"bra_D"
 #define barLevelE @"bra_E"
