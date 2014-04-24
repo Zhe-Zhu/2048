@@ -875,12 +875,14 @@ typedef struct{
         NSString * imageLevel = imageLevelA;
         NSString * barLevel = barLevelA;
         NSString * barLevelText = @"A";
+        enum PieceState state = StateA;
         if (randomNum == 0) {
             imageLevel = imageLevelB;
             barLevel = barLevelB;
             barLevelText = @"B";
+            state = StateB;
         }
-        gameState[pos.x][pos.y] = StateA;
+        gameState[pos.x][pos.y] = state;
         UIImageView * randomlyGeneratedPiece = [[UIImageView alloc] initWithFrame:CGRectMake(marginWidth + pos.y  * (marginWidth + pieceSize), marginWidth + pos.x  * (marginWidth + pieceSize), pieceSize, pieceSize)];
         randomlyGeneratedPiece.image = [UIImage imageNamed:imageLevel];
         UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 23, barSize, barSize)];
