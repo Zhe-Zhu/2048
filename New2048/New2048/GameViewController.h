@@ -27,7 +27,8 @@ enum PieceState{
     StateH,
     StateI,
     StateJ,
-    StateK
+    StateK,
+    StateL
 };
 
 @interface GameViewController : UIViewController<DMAdViewDelegate, BeginNewGameDelegate, GADBannerViewDelegate>

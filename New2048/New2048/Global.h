@@ -36,6 +36,7 @@
 #define imageLevelI @"chess_512"
 #define imageLevelJ @"chess_1024"
 #define imageLevelK @"chess_2048"
+#define imageLevelL @"chess_2048"
 
 #define barLevelA @"temp_a"
 #define barLevelB @"temp_b"
@@ -48,5 +49,6 @@
 #define barLevelI @"bra_I"
 #define barLevelJ @"bra_J"
 #define barLevelK @"bra_K"
+#define barLevelL @"bra_K"
 
 #endif /* defined(__New2048__Global__) */

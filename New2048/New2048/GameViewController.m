@@ -165,7 +165,8 @@ typedef struct{
     // adjust the UI.
     self.view.backgroundColor = [UIColor colorWithRed:250/255.0 green:248/255.0 blue:239/255.0 alpha:1];
     _topTitle.textColor = [UIColor colorWithRed:0.87 green:0.7 blue:0.43 alpha:1];
-    _topTitle.font = [UIFont fontWithName:@"Verdana-Bold" size:18];
+    _topTitle.font = [UIFont fontWithName:@"Verdana-Bold" size:20];
+    _topTitle.text = [NSString stringWithFormat:@"%d", _everBestScore];
     _score.textColor = [UIColor colorWithRed:0.97 green:0.49 blue:0.21 alpha:1];
     _score.text = [NSString stringWithFormat:@"%d", _currentScore];
     _score.font = [UIFont fontWithName:@"Verdana-Bold" size:36];
@@ -929,6 +930,7 @@ typedef struct{
 
 - (UIImageView *)generateNewPiece:(int)row andCol:(int)col withState:(enum PieceState)state
 {
+    //TODO: change the piece UI
     if (state == StateNone) {
         return nil;
     }
@@ -1028,11 +1030,19 @@ typedef struct{
             barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:0.9];
             break;
         }
+        case StateL:
+        {
+            imageView.image = [UIImage imageNamed:imageLevelL];
+            barView.image = [UIImage imageNamed:barLevelL];
+            barLabel.text = @"L";
+            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:0.9];
+            break;
+        }
         default:
         {
-            imageView.image = [UIImage imageNamed:imageLevelK];
-            barView.image = [UIImage imageNamed:barLevelK];
-            barLabel.text = @"K";
+            imageView.image = [UIImage imageNamed:imageLevelL];
+            barView.image = [UIImage imageNamed:barLevelL];
+            barLabel.text = @"L";
             barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:0.9];
             break;
             
@@ -1176,9 +1186,9 @@ typedef struct{
 {
     for (int i = 0; i < gameDimension; i++) {
         for (int j = 0; j < gameDimension; j++) {
-            if (gameState[i][j] == StateK) {
-                return YES;
-            }
+//            if (gameState[i][j] == StateK) {
+//                return YES;
+//            }
             if (gameState[i][j] == StateNone) {
                 return NO;
             }
@@ -1334,9 +1344,14 @@ typedef struct{
             title = NSLocalizedString(@"LevelKTitle", nil);
             break;
         }
+        case StateL:
+        {
+            title = NSLocalizedString(@"LevelLTitle", nil);
+            break;
+        }
         default:
         {
-            title = NSLocalizedString(@"LevelBTitle", nil);
+            title = NSLocalizedString(@"LevelLTitle", nil);
             break;
         }
     }
