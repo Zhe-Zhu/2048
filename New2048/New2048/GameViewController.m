@@ -1262,11 +1262,11 @@ typedef struct{
     
     // Make the request for a test ad. Put in an identifier for the simulator as well as any devices
     // you want to receive test ads.
-    request.testDevices = @[
-                            // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
-                            // the console when the app is launched.
-                            GAD_SIMULATOR_ID
-                            ];
+//    request.testDevices = @[
+//                            // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
+//                            // the console when the app is launched.
+//                            GAD_SIMULATOR_ID
+//                            ];
     return request;
 }
 

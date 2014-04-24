@@ -92,8 +92,7 @@
 
 - (IBAction)rate:(id)sender
 {
-    //TODO: change AppID
-    int appId = 830277724;
+    int appId = 866715231;
     if (!IS_OS_7_OR_LATER && IS_OS_6_OR_LATER) {
         SKStoreProductViewController *storeViewController = [[SKStoreProductViewController alloc] init];
         NSDictionary *parameters = @{SKStoreProductParameterITunesItemIdentifier:[NSNumber numberWithInteger: appId]};
