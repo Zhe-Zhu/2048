@@ -1218,7 +1218,7 @@ typedef struct{
             [[DatabaseAccessor sharedInstance] saveGame:gameState score:_currentScore indicator:NO];
             // jump to the gameover view.
             // in main thread.
-            [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:2];
+            [self performSelector:@selector(jumpToGameOverView) withObject:nil afterDelay:1.5];
         }
     }
 }
