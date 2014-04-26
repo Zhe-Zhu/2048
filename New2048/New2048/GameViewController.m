@@ -58,6 +58,7 @@ typedef struct{
     __weak UIImageView * _gameBackgroundImageView;
     
     UIImage * _maxLevelImage;
+    enum PieceState _maxPieceState;
     
     // store the init point of each gesture.
     CGPoint _initTouchPoint;
@@ -1118,6 +1119,7 @@ typedef struct{
     _gameOverViewController.score = _currentScore;
     _gameOverViewController.titleStr = [self getLevelTitle];
     _gameOverViewController.levelImage = _maxLevelImage;
+    _gameOverViewController.level = _maxPieceState;
     [self.view addSubview:_gameOverViewController.view];
     [UIView animateWithDuration:1 animations:^{
         _gameOverViewController.view.alpha = 1.0;
@@ -1231,6 +1233,7 @@ typedef struct{
             }
         }
     }
+    _maxPieceState = maxState;
     NSString *title;
     switch (maxState) {
         case StateNone:

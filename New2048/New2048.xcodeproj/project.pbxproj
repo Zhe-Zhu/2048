@@ -84,6 +84,7 @@
 		2F46523E1900D104004E3338 /* QBAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4652391900D104004E3338 /* QBAnimationGroup.m */; };
 		2F46523F1900D104004E3338 /* QBAnimationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F46523B1900D104004E3338 /* QBAnimationItem.m */; };
 		2F4652401900D104004E3338 /* QBAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F46523D1900D104004E3338 /* QBAnimationSequence.m */; };
+		2F5C4EED190B4D630090D1D1 /* share_B@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5C4EE2190B4D630090D1D1 /* share_B@2x.png */; };
 		2F5C4EEE190B4D630090D1D1 /* share_C@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5C4EE3190B4D630090D1D1 /* share_C@2x.png */; };
 		2F5C4EEF190B4D630090D1D1 /* share_D@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5C4EE4190B4D630090D1D1 /* share_D@2x.png */; };
 		2F5C4EF0190B4D630090D1D1 /* share_E@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5C4EE5190B4D630090D1D1 /* share_E@2x.png */; };
@@ -106,7 +107,6 @@
 		2F5C4F0E190B59360090D1D1 /* CUP-J-L@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5C4F02190B59360090D1D1 /* CUP-J-L@2x.png */; };
 		2F5C4F0F190B59360090D1D1 /* CUP-K-L@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5C4F03190B59360090D1D1 /* CUP-K-L@2x.png */; };
 		2F5C4F10190B59360090D1D1 /* CUP-L-L@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5C4F04190B59360090D1D1 /* CUP-L-L@2x.png */; };
-		2F5C4F12190B5DEA0090D1D1 /* share_B@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5C4F11190B5DEA0090D1D1 /* share_B@2x.png */; };
 		2FBF3C421903B73A00C2D579 /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF3C401903B73A00C2D579 /* GameOverViewController.m */; };
 		2FBF3C431903B73A00C2D579 /* GameOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FBF3C411903B73A00C2D579 /* GameOverViewController.xib */; };
 		2FBF3C451903B95800C2D579 /* OptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FBF3C441903B95800C2D579 /* OptionViewController.xib */; };
@@ -271,6 +271,7 @@
 		2F46523B1900D104004E3338 /* QBAnimationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAnimationItem.m; sourceTree = "<group>"; };
 		2F46523C1900D104004E3338 /* QBAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAnimationSequence.h; sourceTree = "<group>"; };
 		2F46523D1900D104004E3338 /* QBAnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAnimationSequence.m; sourceTree = "<group>"; };
+		2F5C4EE2190B4D630090D1D1 /* share_B@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_B@2x.png"; sourceTree = "<group>"; };
 		2F5C4EE3190B4D630090D1D1 /* share_C@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_C@2x.png"; sourceTree = "<group>"; };
 		2F5C4EE4190B4D630090D1D1 /* share_D@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_D@2x.png"; sourceTree = "<group>"; };
 		2F5C4EE5190B4D630090D1D1 /* share_E@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_E@2x.png"; sourceTree = "<group>"; };
@@ -293,7 +294,6 @@
 		2F5C4F02190B59360090D1D1 /* CUP-J-L@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CUP-J-L@2x.png"; sourceTree = "<group>"; };
 		2F5C4F03190B59360090D1D1 /* CUP-K-L@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CUP-K-L@2x.png"; sourceTree = "<group>"; };
 		2F5C4F04190B59360090D1D1 /* CUP-L-L@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CUP-L-L@2x.png"; sourceTree = "<group>"; };
-		2F5C4F11190B5DEA0090D1D1 /* share_B@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_B@2x.png"; sourceTree = "<group>"; };
 		2FBF3C3F1903B73A00C2D579 /* GameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverViewController.h; sourceTree = "<group>"; };
 		2FBF3C401903B73A00C2D579 /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
 		2FBF3C411903B73A00C2D579 /* GameOverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameOverViewController.xib; sourceTree = "<group>"; };
@@ -654,7 +654,7 @@
 		2F5C4EE1190B4D630090D1D1 /* share */ = {
 			isa = PBXGroup;
 			children = (
-				2F5C4F11190B5DEA0090D1D1 /* share_B@2x.png */,
+				2F5C4EE2190B4D630090D1D1 /* share_B@2x.png */,
 				2F5C4EE3190B4D630090D1D1 /* share_C@2x.png */,
 				2F5C4EE4190B4D630090D1D1 /* share_D@2x.png */,
 				2F5C4EE5190B4D630090D1D1 /* share_E@2x.png */,
@@ -837,7 +837,6 @@
 				ORGANIZATIONNAME = "Chen Xiangwen";
 				TargetAttributes = {
 					2F3BF45A190028BE00D8DCDF = {
-						DevelopmentTeam = 87N4K2M736;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -883,7 +882,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F21A97D190806CF0095C3B2 /* UMSLoginViewController.xib in Resources */,
-				2F5C4F12190B5DEA0090D1D1 /* share_B@2x.png in Resources */,
 				2F1D08651903EFA7008B9899 /* setting_title@2x.png in Resources */,
 				2F1D08621903EFA7008B9899 /* comment_button@2x.png in Resources */,
 				2FBF3CAF1903C48900C2D579 /* toolbar_background@2x.png in Resources */,
@@ -908,6 +906,7 @@
 				2F21A9521907F8F80095C3B2 /* toptitle_label@2x.png in Resources */,
 				2F3C3248190ABFE000C5CB5C /* CUP-G@2x.png in Resources */,
 				2F5C4F0C190B59360090D1D1 /* CUP-H-L@2x.png in Resources */,
+				2F5C4EED190B4D630090D1D1 /* share_B@2x.png in Resources */,
 				CEB75C96190626FB00D9B7F9 /* chess_512@2x.png in Resources */,
 				2F3C3249190ABFE000C5CB5C /* CUP-H@2x.png in Resources */,
 				2F1D08631903EFA7008B9899 /* continue_button@2x.png in Resources */,
