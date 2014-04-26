@@ -103,8 +103,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)share:(id)sender {
-    
+- (IBAction)share:(id)sender
+{
     // share
     // TODO:
     NSString * sharedName;
@@ -184,7 +184,8 @@
     [self shareThingsToSocialMedia:((UIViewController *)_delegate) text:nil Image:sharedImage delegate:nil];
 }
 
-- (IBAction)restartGame:(id)sender {
+- (IBAction)restartGame:(id)sender
+{
     
     [_delegate beginNewGame];
     self.view.alpha = 0.0;
@@ -206,6 +207,7 @@
 {
     
 }
+
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     

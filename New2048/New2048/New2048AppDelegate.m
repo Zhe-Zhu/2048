@@ -199,6 +199,7 @@
 {
     return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
 }
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
