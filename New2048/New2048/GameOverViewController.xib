@@ -29,7 +29,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="achievement_frame.png" id="ZJe-ua-0aJ">
-                    <rect key="frame" x="111" y="143" width="99" height="101"/>
+                    <rect key="frame" x="111" y="143" width="99" height="99"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="0.26394421355499098" blue="0.11535298628446133" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>

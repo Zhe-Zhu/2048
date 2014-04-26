@@ -17,6 +17,8 @@
     __weak UIButton * _share;
     __weak UIButton * _restart;
     __weak UIImageView * _gameOverTitle;
+    UIImage * _levelImage;
+    enum PieceState _level;
     NSString * _titleStr;
     int _score;
 }
@@ -40,6 +42,8 @@
 @synthesize restart = _restart;
 @synthesize imageViewTitle = _imageViewTitle;
 @synthesize titleStr = _titleStr;
+@synthesize level = _level;
+@synthesize levelImage = _levelImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,12 +65,20 @@
     _titleStr = titleStr;
     [_levelLabel setText:_titleStr];
 }
+
+- (void)setLevelImage:(UIImage *)levelImage
+{
+    _levelImage = levelImage;
+    _imageView.image = _levelImage;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:1 green:0.94 blue:0.81 alpha:1];
     [_scoreLabel setText:[NSString stringWithFormat:@"%d",_score]];
     [_levelLabel setText:_titleStr];
+    _imageView.image = _levelImage;
     
     [_imageViewTitle setImage:[UIImage imageNamed:NSLocalizedString(@"GameOverTitle", nil)]];
     [_share setImage:[UIImage imageNamed:NSLocalizedString(@"Share", nil)] forState:UIControlStateNormal];
@@ -95,9 +107,80 @@
     
     // share
     // TODO:
-    UIImage * sharedImage = [Utilies addTextInImage:[UIImage imageNamed:@"demo_share"] withText:[NSString stringWithFormat:@"%d", _score] inPosition:CGRectMake(0, 50, 320, 100)];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage: sharedImage];
-    //[self.view addSubview:imageView];
+    NSString * sharedName;
+    switch (_level) {
+        case StateNone:
+        {
+            sharedName = shareLevelA;
+            break;
+        }
+        case StateA:
+        {
+            sharedName = shareLevelA;
+            break;
+        }
+        case StateB:
+        {
+            sharedName = shareLevelB;
+            break;
+        }
+        case StateC:
+        {
+            sharedName = shareLevelC;
+            break;
+        }
+        case StateD:
+        {
+            sharedName = shareLevelD;
+            break;
+        }
+        case StateE:
+        {
+            sharedName = shareLevelE;
+            break;
+        }
+        case StateF:
+        {
+            sharedName = shareLevelF;
+            break;
+        }
+        case StateG:
+        {
+            sharedName = shareLevelG;
+            break;
+        }
+        case StateH:
+        {
+            sharedName = shareLevelH;
+            break;
+        }
+        case StateI:
+        {
+            sharedName = shareLevelI;
+            break;
+        }
+        case StateJ:
+        {
+            sharedName = shareLevelJ;
+            break;
+        }
+        case StateK:
+        {
+            sharedName = shareLevelK;
+            break;
+        }
+        case StateL:
+        {
+            sharedName = shareLevelL;
+            break;
+        }
+        default:
+        {
+            sharedName = shareLevelL;
+            break;
+        }
+    }
+    UIImage * sharedImage = [Utilies addTextInImage:[UIImage imageNamed:sharedName] withText:[NSString stringWithFormat:@"%d", _score]];
     [self shareThingsToSocialMedia:((UIViewController *)_delegate) text:nil Image:sharedImage delegate:nil];
 }
 
@@ -114,7 +197,7 @@
                                          appKey:UMAppKey
                                       shareText:text
                                      shareImage:image
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession, UMShareToWechatTimeline, UMShareToSina,UMShareToQQ, UMShareToEmail, nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession, UMShareToWechatTimeline, UMShareToSina,UMShareToQQ, nil]
                                        delegate:delegate];
 }
 

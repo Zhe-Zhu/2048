@@ -10,6 +10,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import "Global.h"
 
 @implementation Utilies
 
@@ -48,12 +49,23 @@
     }
 }
 
-+ (UIImage *)addTextInImage:(UIImage *)image withText:(NSString *)text inPosition:(CGRect)rect
++ (UIImage *)addTextInImage:(UIImage *)image withText:(NSString *)text
 {
+    UIColor * textColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1];
+    UIFont * font = [UIFont fontWithName:@"Verdana-Bold" size:38];
+    CGSize size = CGSizeMake(200, MAXFLOAT);
+    CGSize  actualsize;
+    if (IS_OS_7_OR_LATER) {
+        NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName,nil];
+        actualsize = [text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:tdic context:nil].size;
+    }
+    else
+    {
+        actualsize = [text sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+    }
+    CGRect rect = CGRectMake((320 - actualsize.width) / 2, 77 - actualsize.height / 2, actualsize.width, actualsize.height);
     UIGraphicsBeginImageContext(image.size);
     [image drawAtPoint:CGPointZero];
-    UIColor * textColor = [UIColor blackColor];
-    UIFont * font = [UIFont fontWithName:@"Verdana-Bold" size:36];
     NSMutableParagraphStyle *textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
     textStyle.lineBreakMode = NSLineBreakByWordWrapping;
     NSDictionary * dictionary = @{NSFontAttributeName: font,
