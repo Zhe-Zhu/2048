@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameOverViewController">
             <connections>
-                <outlet property="imageView" destination="ZJe-ua-0aJ" id="g2N-fF-Yot"/>
+                <outlet property="imageView" destination="Ei4-Aj-x8I" id="xFl-7U-Zhi"/>
                 <outlet property="imageViewTitle" destination="MWL-aF-xfh" id="g38-0E-VdI"/>
                 <outlet property="levelLabel" destination="wVE-Zd-wJ3" id="ae9-B5-Rtu"/>
                 <outlet property="restart" destination="wem-3M-U6v" id="uZy-Zp-e3R"/>
@@ -29,9 +29,8 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="achievement_frame.png" id="ZJe-ua-0aJ">
-                    <rect key="frame" x="111" y="143" width="99" height="99"/>
+                    <rect key="frame" x="111" y="143" width="99" height="101"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="1" green="0.26394421355499098" blue="0.11535298628446133" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="波涛胸涌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wVE-Zd-wJ3">
                     <rect key="frame" x="115" y="260" width="86" height="37"/>
@@ -62,6 +61,10 @@
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_over_title.png" id="MWL-aF-xfh">
                     <rect key="frame" x="107" y="31" width="107" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Ei4-Aj-x8I">
+                    <rect key="frame" x="116" y="148" width="90" height="90"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </subviews>
