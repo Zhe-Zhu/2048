@@ -96,9 +96,9 @@
     // share
     // TODO:
     UIImage * sharedImage = [Utilies addTextInImage:[UIImage imageNamed:@"demo_share"] withText:[NSString stringWithFormat:@"%d", _score] inPosition:CGRectMake(0, 50, 320, 100)];
-    UIImageView * imageView = [[UIImageView alloc] initWithImage:sharedImage];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage: sharedImage];
     //[self.view addSubview:imageView];
-    [self shareThingsToSocialMedia:self text:nil Image:sharedImage delegate:nil];
+    [self shareThingsToSocialMedia:((UIViewController *)_delegate) text:nil Image:sharedImage delegate:nil];
 }
 
 - (IBAction)restartGame:(id)sender {
@@ -114,7 +114,7 @@
                                          appKey:UMAppKey
                                       shareText:text
                                      shareImage:image
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession, UMShareToWechatTimeline, UMShareToSina,UMShareToQQ, UMShareToEmail, nil]
                                        delegate:delegate];
 }
 

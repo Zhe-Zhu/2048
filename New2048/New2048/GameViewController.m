@@ -165,7 +165,8 @@ typedef struct{
     // adjust the UI.
     self.view.backgroundColor = [UIColor colorWithRed:250/255.0 green:248/255.0 blue:239/255.0 alpha:1];
     _topTitle.textColor = [UIColor colorWithRed:0.87 green:0.7 blue:0.43 alpha:1];
-    _topTitle.font = [UIFont fontWithName:@"Verdana-Bold" size:18];
+    _topTitle.font = [UIFont fontWithName:@"Verdana-Bold" size:20];
+    _topTitle.text = [NSString stringWithFormat:@"%d", _everBestScore];
     _score.textColor = [UIColor colorWithRed:0.97 green:0.49 blue:0.21 alpha:1];
     _score.text = [NSString stringWithFormat:@"%d", _currentScore];
     _score.font = [UIFont fontWithName:@"Verdana-Bold" size:36];
@@ -900,26 +901,26 @@ typedef struct{
         // generate a new piece with StateA.
         int randomNum = arc4random() % 9;
         NSString * imageLevel = imageLevelA;
-        NSString * barLevel = barLevelA;
-        NSString * barLevelText = @"A";
+        //NSString * barLevel = barLevelA;
+        //NSString * barLevelText = @"A";
         enum PieceState state = StateA;
         if (randomNum == 0) {
             imageLevel = imageLevelB;
-            barLevel = barLevelB;
-            barLevelText = @"B";
+         //   barLevel = barLevelB;
+         //   barLevelText = @"B";
             state = StateB;
         }
         gameState[pos.x][pos.y] = state;
         UIImageView * randomlyGeneratedPiece = [[UIImageView alloc] initWithFrame:CGRectMake(marginWidth + pos.y  * (marginWidth + pieceSize), marginWidth + pos.x  * (marginWidth + pieceSize), pieceSize, pieceSize)];
         randomlyGeneratedPiece.image = [UIImage imageNamed:imageLevel];
-        UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 23, barSize, barSize)];
-        UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.5, 3, 20, 16)];
-        barLabel.textAlignment = NSTextAlignmentCenter;
-        barLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:14];
-        [randomlyGeneratedPiece addSubview:barView];
-        [randomlyGeneratedPiece addSubview:barLabel];
-        barView.image = [UIImage imageNamed:barLevel];
-        barLabel.text = barLevelText;
+        //UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 23, barSize, barSize)];
+        //UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.5, 3, 20, 16)];
+        //barLabel.textAlignment = NSTextAlignmentCenter;
+        //barLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:14];
+        //[randomlyGeneratedPiece addSubview:barView];
+        //[randomlyGeneratedPiece addSubview:barLabel];
+        //barView.image = [UIImage imageNamed:barLevel];
+        //barLabel.text = barLevelText;
         pieces[pos.x][pos.y] = randomlyGeneratedPiece;
         [_gameBackgroundImageView addSubview:randomlyGeneratedPiece];
         [self checkIsGameOverAndJumpToGameOverView];
@@ -929,111 +930,120 @@ typedef struct{
 
 - (UIImageView *)generateNewPiece:(int)row andCol:(int)col withState:(enum PieceState)state
 {
+    //TODO: change the piece UI
     if (state == StateNone) {
         return nil;
     }
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(marginWidth + col  * (marginWidth + pieceSize), marginWidth + row  * (marginWidth + pieceSize), pieceSize, pieceSize)];
-    UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 23, barSize, barSize)];
-    UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.5, 3, 20, 16)];
-    barLabel.textAlignment = NSTextAlignmentCenter;
-    barLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:14];
-    [imageView addSubview:barView];
-    [imageView addSubview:barLabel];
+    //UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 23, barSize, barSize)];
+    //UILabel * barLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.5, 3, 20, 16)];
+    //barLabel.textAlignment = NSTextAlignmentCenter;
+    //barLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:14];
+    //[imageView addSubview:barView];
+    //[imageView addSubview:barLabel];
     switch (state) {
         case StateA:
         {
             imageView.image = [UIImage imageNamed:imageLevelA];
-            barView.image = [UIImage imageNamed:barLevelA];
-            barLabel.text = @"A";
-            barLabel.textColor = [UIColor colorWithWhite:30/255.0 alpha:0.9];
+//            barView.image = [UIImage imageNamed:barLevelA];
+//            barLabel.text = @"A";
+//            barLabel.textColor = [UIColor colorWithWhite:30/255.0 alpha:0.9];
             break;
         }
         case StateB:
         {
             imageView.image = [UIImage imageNamed:imageLevelB];
-            barView.image = [UIImage imageNamed:barLevelB];
-            barLabel.text = @"B";
-            barLabel.textColor = [UIColor colorWithWhite:30/255.0 alpha:0.9];
+//            barView.image = [UIImage imageNamed:barLevelB];
+//            barLabel.text = @"B";
+//            barLabel.textColor = [UIColor colorWithWhite:30/255.0 alpha:0.9];
             break;
         }
         case StateC:
         {
             imageView.image = [UIImage imageNamed:imageLevelC];
-            barView.image = [UIImage imageNamed:barLevelC];
-            barLabel.text = @"C";
-            barLabel.textColor = [UIColor colorWithWhite:30/255.0 alpha:1];
+//            barView.image = [UIImage imageNamed:barLevelC];
+//            barLabel.text = @"C";
+//            barLabel.textColor = [UIColor colorWithWhite:30/255.0 alpha:1];
             break;
         }
         case StateD:
         {
             imageView.image = [UIImage imageNamed:imageLevelD];
-            barView.image = [UIImage imageNamed:barLevelD];
-            barLabel.text = @"D";
-            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
+//            barView.image = [UIImage imageNamed:barLevelD];
+//            barLabel.text = @"D";
+//            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateE:
         {
             imageView.image = [UIImage imageNamed:imageLevelE];
-            barView.image = [UIImage imageNamed:barLevelE];
-            barLabel.text = @"E";
-            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
+//            barView.image = [UIImage imageNamed:barLevelE];
+//            barLabel.text = @"E";
+//            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateF:
         {
             imageView.image = [UIImage imageNamed:imageLevelF];
-            barView.image = [UIImage imageNamed:barLevelF];
-            barLabel.text = @"F";
-            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
+//            barView.image = [UIImage imageNamed:barLevelF];
+//            barLabel.text = @"F";
+//            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateG:
         {
             imageView.image = [UIImage imageNamed:imageLevelG];
-            barView.image = [UIImage imageNamed:barLevelG];
-            barLabel.text = @"G";
-            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
+//            barView.image = [UIImage imageNamed:barLevelG];
+//            barLabel.text = @"G";
+//            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateH:
         {
             imageView.image = [UIImage imageNamed:imageLevelH];
-            barView.image = [UIImage imageNamed:barLevelH];
-            barLabel.text = @"H";
-            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
+//            barView.image = [UIImage imageNamed:barLevelH];
+//            barLabel.text = @"H";
+//            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateI:
         {
             imageView.image = [UIImage imageNamed:imageLevelI];
-            barView.image = [UIImage imageNamed:barLevelI];
-            barLabel.text = @"I";
-            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
+//            barView.image = [UIImage imageNamed:barLevelI];
+//            barLabel.text = @"I";
+//            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateJ:
         {
             imageView.image = [UIImage imageNamed:imageLevelJ];
-            barView.image = [UIImage imageNamed:barLevelJ];
-            barLabel.text = @"J";
-            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
+//            barView.image = [UIImage imageNamed:barLevelJ];
+//            barLabel.text = @"J";
+//            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:1];
             break;
         }
         case StateK:
         {
             imageView.image = [UIImage imageNamed:imageLevelK];
-            barView.image = [UIImage imageNamed:barLevelK];
-            barLabel.text = @"K";
-            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:0.9];
+//            barView.image = [UIImage imageNamed:barLevelK];
+//            barLabel.text = @"K";
+//            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:0.9];
+            break;
+        }
+        case StateL:
+        {
+            imageView.image = [UIImage imageNamed:imageLevelL];
+//            barView.image = [UIImage imageNamed:barLevelL];
+//            barLabel.text = @"L";
+//            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:0.9];
             break;
         }
         default:
         {
-            imageView.image = [UIImage imageNamed:imageLevelK];
-            barView.image = [UIImage imageNamed:barLevelK];
-            barLabel.text = @"K";
-            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:0.9];
+            imageView.image = [UIImage imageNamed:imageLevelL];
+//            barView.image = [UIImage imageNamed:barLevelL];
+//            barLabel.text = @"L";
+//            barLabel.textColor = [UIColor colorWithWhite:250/255.0 alpha:0.9];
             break;
             
         }
@@ -1176,9 +1186,9 @@ typedef struct{
 {
     for (int i = 0; i < gameDimension; i++) {
         for (int j = 0; j < gameDimension; j++) {
-            if (gameState[i][j] == StateK) {
-                return YES;
-            }
+//            if (gameState[i][j] == StateK) {
+//                return YES;
+//            }
             if (gameState[i][j] == StateNone) {
                 return NO;
             }
@@ -1334,9 +1344,14 @@ typedef struct{
             title = NSLocalizedString(@"LevelKTitle", nil);
             break;
         }
+        case StateL:
+        {
+            title = NSLocalizedString(@"LevelLTitle", nil);
+            break;
+        }
         default:
         {
-            title = NSLocalizedString(@"LevelBTitle", nil);
+            title = NSLocalizedString(@"LevelLTitle", nil);
             break;
         }
     }
