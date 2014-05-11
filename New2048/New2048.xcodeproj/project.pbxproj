@@ -837,6 +837,7 @@
 				ORGANIZATIONNAME = "Chen Xiangwen";
 				TargetAttributes = {
 					2F3BF45A190028BE00D8DCDF = {
+						DevelopmentTeam = 87N4K2M736;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -1172,7 +1173,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "11281001-0B68-4538-94D0-0AE95D4CC50A";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1208,7 +1209,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "11281001-0B68-4538-94D0-0AE95D4CC50A";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
