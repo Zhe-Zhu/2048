@@ -63,7 +63,13 @@
     {
         actualsize = [text sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
     }
-    CGRect rect = CGRectMake((320 - actualsize.width) / 2, 77 - actualsize.height / 2, actualsize.width, actualsize.height);
+    CGRect rect;
+    if (IS_IPHONE5) {
+        rect = CGRectMake((320 - actualsize.width) / 2, 87 - actualsize.height / 2, actualsize.width, actualsize.height);
+    }
+    else{
+        rect = CGRectMake((320 - actualsize.width) / 2, 77 - actualsize.height / 2, actualsize.width, actualsize.height);
+    }
     UIGraphicsBeginImageContext(image.size);
     [image drawAtPoint:CGPointZero];
     NSMutableParagraphStyle *textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];

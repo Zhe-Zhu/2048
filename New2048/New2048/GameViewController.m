@@ -990,9 +990,34 @@ typedef struct{
             imageView.image = [UIImage imageNamed:imageLevelL];
             break;
         }
+        case StateM:
+        {
+            imageView.image = [UIImage imageNamed:imageLevelM];
+            break;
+        }
+        case StateN:
+        {
+            imageView.image = [UIImage imageNamed:imageLevelN];
+            break;
+        }
+        case StateO:
+        {
+            imageView.image = [UIImage imageNamed:imageLevelO];
+            break;
+        }
+        case StateP:
+        {
+            imageView.image = [UIImage imageNamed:imageLevelP];
+            break;
+        }
+        case StateQ:
+        {
+            imageView.image = [UIImage imageNamed:imageLevelQ];
+            break;
+        }
         default:
         {
-            imageView.image = [UIImage imageNamed:imageLevelL];
+            imageView.image = [UIImage imageNamed:imageLevelQ];
             break;
             
         }
@@ -1137,9 +1162,9 @@ typedef struct{
 {
     for (int i = 0; i < gameDimension; i++) {
         for (int j = 0; j < gameDimension; j++) {
-            if (gameState[i][j] == StateL) {
-                return YES;
-            }
+//            if (gameState[i][j] == StateL) {
+//                return YES;
+//            }
             if (gameState[i][j] == StateNone) {
                 return NO;
             }
@@ -1314,10 +1339,40 @@ typedef struct{
             _maxLevelImage = [UIImage imageNamed:sharedImageLevelL];
             break;
         }
+        case StateM:
+        {
+            title = NSLocalizedString(@"LevelMTitle", nil);
+            _maxLevelImage = [UIImage imageNamed:sharedImageLevelM];
+            break;
+        }
+        case StateN:
+        {
+            title = NSLocalizedString(@"LevelNTitle", nil);
+            _maxLevelImage = [UIImage imageNamed:sharedImageLevelN];
+            break;
+        }
+        case StateO:
+        {
+            title = NSLocalizedString(@"LevelOTitle", nil);
+            _maxLevelImage = [UIImage imageNamed:sharedImageLevelO];
+            break;
+        }
+        case StateP:
+        {
+            title = NSLocalizedString(@"LevelPTitle", nil);
+            _maxLevelImage = [UIImage imageNamed:sharedImageLevelP];
+            break;
+        }
+        case StateQ:
+        {
+            title = NSLocalizedString(@"LevelQTitle", nil);
+            _maxLevelImage = [UIImage imageNamed:sharedImageLevelQ];
+            break;
+        }
         default:
         {
-            title = NSLocalizedString(@"LevelLTitle", nil);
-            _maxLevelImage = [UIImage imageNamed:sharedImageLevelL];
+            title = NSLocalizedString(@"LevelQTitle", nil);
+            _maxLevelImage = [UIImage imageNamed:sharedImageLevelQ];
             break;
         }
     }

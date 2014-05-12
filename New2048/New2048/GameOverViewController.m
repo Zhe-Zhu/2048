@@ -174,9 +174,34 @@
             sharedName = shareLevelL;
             break;
         }
+        case StateM:
+        {
+            sharedName = shareLevelM;
+            break;
+        }
+        case StateN:
+        {
+            sharedName = shareLevelN;
+            break;
+        }
+        case StateO:
+        {
+            sharedName = shareLevelO;
+            break;
+        }
+        case StateP:
+        {
+            sharedName = shareLevelP;
+            break;
+        }
+        case StateQ:
+        {
+            sharedName = shareLevelQ;
+            break;
+        }
         default:
         {
-            sharedName = shareLevelL;
+            sharedName = shareLevelQ;
             break;
         }
     }
