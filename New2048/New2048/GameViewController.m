@@ -1130,16 +1130,16 @@ typedef struct{
 
 // gameover
 /*****************
- 1. reach LevelK
+ 1. reach LevelL
  2. there are no available empty piece and all of adjacent pieces are in different state.
  ****************/
 - (BOOL)checkIsGameOver
 {
     for (int i = 0; i < gameDimension; i++) {
         for (int j = 0; j < gameDimension; j++) {
-//            if (gameState[i][j] == StateK) {
-//                return YES;
-//            }
+            if (gameState[i][j] == StateL) {
+                return YES;
+            }
             if (gameState[i][j] == StateNone) {
                 return NO;
             }
